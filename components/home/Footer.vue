@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 </script>
 <template>
   <div class="footer">
@@ -6,41 +7,64 @@
       <div class="links">
         <!-- LINKS -->
         <div class="weitere-links-wrapper">
-          <span class="link-title">Weitere Links:</span>
+          <span class="link-title">{{$t('home.footer.weitereLinks')}}</span>
           <div>
             <a
               href="https://www.neumarkt.de/kultur-stadtinfo/veranstaltungen-und-feste/internationale-meistersinger-akademie/"
               target="_blank"
-            >KARTENVERKAUF/VERANSTALTUNGEN</a
+            >{{$t('home.footer.kartenverkauf')}}</a
             >
             <a href="https://www.ima-neumarkt.de/" target="_blank"
-            >FÖRDERVEREIN</a
+            >{{$t('home.footer.foerderverein')}}</a
             >
-            <nuxt-link to="/Media">MEDIEN</nuxt-link>
-            <nuxt-link to="/Sponsors">SPONSOREN</nuxt-link>
-            <nuxt-link to="/contact">KONTAKT</nuxt-link>
+            <NuxtLink :to="localePath('/Media')">{{$t('home.footer.medien')}}</NuxtLink>
+            <NuxtLink :to="localePath('/Sponsors')">{{$t('home.footer.sponsoren')}}</NuxtLink>
+            <NuxtLink :to="localePath('/Contact')">{{$t('home.footer.kontakt')}}</NuxtLink>
           </div>
         </div>
 
         <!-- SOCIAL & LANGUAGE -->
         <div class="lang-social-wrapper">
           <div class="lang-switcher">
-            <span class="link-title">Change Language:</span>
-            <div>
-              <nuxt-link class="lang-switcher-element"
-              >DEU
-              </nuxt-link
+            <span class="link-title">{{$t('home.footer.changeLanguage')}}</span>
+            <div v-if="$i18n.locale === 'de'">
+              <NuxtLink
+                :to="localePath('index', 'de')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'de'"
               >
+                DEU
+              </NuxtLink>
               <span class="lang-switcher-element">–</span>
-              <nuxt-link class="lang-switcher-element"
-              >ENG
-              </nuxt-link
+              <NuxtLink
+                :to="localePath('index', 'en')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'en'"
               >
+                ENG
+              </NuxtLink>
+            </div>
+            <div v-else>
+              <NuxtLink
+                :to="localePath('index', 'en')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'en'"
+              >
+                ENG
+              </NuxtLink>
+              <span class="lang-switcher-element">–</span>
+              <NuxtLink
+                :to="localePath('index', 'de')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'de'"
+              >
+                DEU
+              </NuxtLink>
             </div>
           </div>
 
           <div class="social-links">
-            <span class="link-title">Folgt uns auf:</span>
+            <span class="link-title">{{$t('home.footer.folgtUns')}}</span>
             <div>
               <a
                 href="https://www.facebook.com/IMA-116394978416192/"
@@ -61,8 +85,8 @@
       <!-- IMPRESSUM -->
       <div class="impressum">
         <div>
-          <nuxt-link to="/Impressum" class="impressum-link">Impressum</nuxt-link>
-          <nuxt-link to="/Datenschutz" class="datenschutz-link">Datenschutz</nuxt-link>
+          <NuxtLink :to="localePath('/Impressum')" class="impressum-link">{{$t('home.footer.impressum')}}</NuxtLink>
+          <NuxtLink :to="localePath('/Datenschutz')" class="datenschutz-link">{{$t('home.footer.datenschutz')}}</NuxtLink>
         </div>
         <span>© Copyright 2020 - {{(new Date()).getFullYear()}}</span>
       </div>
@@ -81,10 +105,6 @@
 </template>
 
 <style lang="sass" scoped>
-// VARIABLES
-$black: #202020
-$red: #A91744
-
 .impressum-link
   margin-right: 15px
 
@@ -239,30 +259,6 @@ $red: #A91744
   flex-direction: column
   align-items: center
   justify-content: center
-
-  // a
-  // 	font-size: 14px
-  // 	color: $black
-  // 	letter-spacing: 0.14px
-  // 	text-decoration: none
-  // 	margin: 5px 0 0 25px
-  // 	position: relative
-  //
-  // 	&:after
-  // 		content: ''
-  // 		position: absolute
-  // 		width: 0
-  // 		height: 2px
-  // 		display: block
-  // 		margin-top: 1px
-  // 		right: 0
-  // 		background: $black
-  // 		transition: width .3s ease
-  //
-  // 	&:hover:after
-  // 		width: 100%
-  // 		left: 0
-  // 		background: $black
 
   img
     align-self: center
