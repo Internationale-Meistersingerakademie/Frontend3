@@ -20,7 +20,7 @@ onMounted(() => {
   const routeName = route.fullPath
 
   // Dieser Code ist nicht schön. Ein Switch-Case wäre besser, aber da es nur wenige Cases sind, bin ich zu faul.
-  if (routeName.includes("home") || routeName === "/"|| routeName === "/en") {
+  if (routeName.includes("home") || routeName === "/" || routeName === "/en") {
     // @ts-ignore
     homeNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-home"
@@ -38,11 +38,12 @@ onMounted(() => {
   } else if (routeName.includes("Media")) {
     // @ts-ignore
     medienNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-media"
   } else if (routeName.includes("Application")) {
     // @ts-ignore
     bewerbungNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-application"
-  }else if (routeName.includes("Contact") || routeName.includes("Impressum") || routeName.includes("Datenschutz")) {
+  } else if (routeName.includes("Contact") || routeName.includes("Impressum") || routeName.includes("Datenschutz")) {
     backgroundClass.value = "header-wrapper-impressum"
   }
   // @ts-ignore
@@ -270,12 +271,21 @@ $red: #A91744
   z-index: 1
   background-size: cover
   background-position: center
+
 .header-wrapper-faculty
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_faculty.jpg')
   z-index: 1
   background-size: cover
   background-position: center
+
+.header-wrapper-media
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_media.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center
+
 .video-curve
   position: absolute
   bottom: -57px

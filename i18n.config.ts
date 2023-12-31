@@ -104,6 +104,7 @@ export default defineI18nConfig(() => ({
                 legal: "Legal Notice",
                 course: "Course",
                 faculty: "Faculty",
+                media: "Media",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -205,6 +206,7 @@ export default defineI18nConfig(() => ({
                 legal: "Impressum",
                 course: "Kurs",
                 faculty: "Lehrkörper",
+                media: "Medien",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
