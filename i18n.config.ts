@@ -87,12 +87,23 @@ export default defineI18nConfig(() => ({
                     tickets: "Ticket Sales"
                 }
             },
+            faculty: {
+                ourTeachers: 'OUR FACULTY',
+                categories: {
+                    masterteachers: 'MASTER TEACHERS',
+                    headCoach: 'HEAD COACH',
+                    coaching: 'COACHING',
+                    pianists: 'PIANISTS',
+                    makeupArtist: 'MAKE-UP ARTIST'
+                }
+            },
             misc: {
                 application: "Application",
                 privacy: "Privacy",
                 contact: "Contact",
                 legal: "Legal Notice",
                 course: "Course",
+                faculty: "Faculty",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -177,12 +188,23 @@ export default defineI18nConfig(() => ({
                     tickets: "Kartenverkauf"
                 }
             },
+            faculty: {
+                ourTeachers: 'UNSER LEHRKÖRPER',
+                categories: {
+                    masterteachers: 'MEISTERLEHRER',
+                    headCoach: 'STUDIENLEITER',
+                    coaching: 'COACHING',
+                    pianists: 'PIANISTEN',
+                    makeupArtist: 'MAKE-UP KÜNSTLER'
+                }
+            },
             misc: {
                 application: "Bewerbung",
                 privacy: "Datenschutz",
                 contact: "Kontakt",
                 legal: "Impressum",
                 course: "Kurs",
+                faculty: "Lehrkörper",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',

@@ -31,6 +31,7 @@ onMounted(() => {
   } else if (routeName.includes("Faculty")) {
     // @ts-ignore
     lehrerNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-faculty"
   } else if (routeName.includes("Network")) {
     // @ts-ignore
     netzwerkNavLink.value.$el.classList.add("current-page")
@@ -269,7 +270,12 @@ $red: #A91744
   z-index: 1
   background-size: cover
   background-position: center
-
+.header-wrapper-faculty
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_faculty.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center
 .video-curve
   position: absolute
   bottom: -57px
