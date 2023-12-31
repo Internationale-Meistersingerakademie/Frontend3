@@ -6,17 +6,17 @@ const localePath = useLocalePath()
     <div class="banner">
       <div class="lang-switcher">
         <div v-if="$i18n.locale === 'de'">
-          <NuxtLink :to="localePath('index', 'de')" class="lang-switcher-element"
+          <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element"
           >DEU</NuxtLink>
           <span class="lang-switcher-element">–</span>
-          <NuxtLink :to="localePath('index', 'en')" class="lang-switcher-element"
+          <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"
           >ENG</NuxtLink>
         </div>
         <div v-else>
-          <NuxtLink :to="localePath('index', 'en')" class="lang-switcher-element"
+          <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"
           >ENG</NuxtLink>
           <span class="lang-switcher-element">–</span>
-          <NuxtLink :to="localePath('index', 'de')" class="lang-switcher-element"
+          <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element"
           >DEU</NuxtLink>
         </div>
       </div>

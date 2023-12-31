@@ -49,11 +49,11 @@ const props = defineProps({
         </div>
       </div>
       <!-- ANMELDEN BUTTON -->
-      <router-link to="/en/bewerbung">
+      <NuxtLink :to="localePath('/Application')">
         <button type="button" name="button" class="border-button">
           {{ $t('home.vorsingen.apply') }}
         </button>
-      </router-link>
+      </NuxtLink>
 
       <!-- IMA AUF EINEN BLICK -->
       <div class="blick-wrapper">

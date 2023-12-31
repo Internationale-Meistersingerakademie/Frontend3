@@ -4,7 +4,7 @@ export default defineNuxtPlugin(() => {
             getElementByTitle: (title: string, data: Array<Record<string, any>>): {
                 subtitle: string;
                 title: string;
-                content: string
+                content: string | Array<{ subtitle:string, text:string }>;
             } => {
                 const nuxtApp = useNuxtApp()
                 const result = data.find((item) => item.titleIntern === title)

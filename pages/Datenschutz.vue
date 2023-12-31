@@ -32,6 +32,6 @@ await fetchTextData();
 <template>
   <ScholarshipBanner/>
   <Navigation/>
-  <Datenschutz :text="text"/>
+  <Legal :text="text"/>
   <Footer/>
 </template>

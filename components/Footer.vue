@@ -29,7 +29,7 @@ const localePath = useLocalePath()
             <span class="link-title">{{$t('home.footer.changeLanguage')}}</span>
             <div v-if="$i18n.locale === 'de'">
               <NuxtLink
-                :to="localePath('index', 'de')"
+                :to="localePath($route.fullPath, 'de')"
                 class="lang-switcher-element"
                 @click="$i18n.locale = 'de'"
               >
@@ -37,26 +37,23 @@ const localePath = useLocalePath()
               </NuxtLink>
               <span class="lang-switcher-element">–</span>
               <NuxtLink
-                :to="localePath('index', 'en')"
+                :to="localePath($route.fullPath, 'en')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'en'"
               >
                 ENG
               </NuxtLink>
             </div>
             <div v-else>
               <NuxtLink
-                :to="localePath('index', 'en')"
+                :to="localePath($route.fullPath, 'en')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'en'"
               >
                 ENG
               </NuxtLink>
               <span class="lang-switcher-element">–</span>
               <NuxtLink
-                :to="localePath('index', 'de')"
+                :to="localePath($route.fullPath, 'de')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'de'"
               >
                 DEU
               </NuxtLink>

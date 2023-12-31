@@ -20,12 +20,14 @@ onMounted(() => {
   const routeName = route.fullPath
 
   // Dieser Code ist nicht schön. Ein Switch-Case wäre besser, aber da es nur wenige Cases sind, bin ich zu faul.
-  if (routeName.includes("home") || routeName === "/") {
+  if (routeName.includes("home") || routeName === "/"|| routeName === "/en") {
     // @ts-ignore
     homeNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-home"
   } else if (routeName.includes("Course")) {
     // @ts-ignore
     kursNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-course"
   } else if (routeName.includes("Faculty")) {
     // @ts-ignore
     lehrerNavLink.value.$el.classList.add("current-page")
@@ -257,6 +259,13 @@ $red: #A91744
 .header-wrapper-impressum
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_impressum.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center
+
+.header-wrapper-course
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_course.jpg')
   z-index: 1
   background-size: cover
   background-position: center

@@ -75,10 +75,24 @@ export default defineI18nConfig(() => ({
                 director: 'EDITH WIENS',
                 position: 'Director'
             },
+            course: {
+                repertoire: {
+                    gallery:[
+                        "The historic Reitstadel with a concert hall (455 seats) and practice rooms in the modern glass extension.",
+                        "In the Residenz (with foyer, ballroom and changing rooms) (individual) lessons take place and social activities.",
+                        "The St. Josef Monastery offers an idyllic and quiet retreat with en suite rooms for all participants."
+                    ]
+                },
+                events:{
+                    tickets: "Ticket Sales"
+                }
+            },
             misc: {
                 application: "Application",
                 privacy: "Privacy",
                 contact: "Contact",
+                legal: "Legal Notice",
+                course: "Course",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -151,10 +165,24 @@ export default defineI18nConfig(() => ({
                 director: 'EDITH WIENS',
                 position: 'Director'
             },
+            course: {
+                repertoire: {
+                    gallery:[
+                        "Der Historische Reitstadel mit Konzertsaal (455 Sitzplätze) und Übungsräumen im modernen Glasanbau.",
+                        "In der Residenz (mit Foyer, Festsaal und Garderoben) finden (individueller) Unterricht statt und soziale Aktivitäten.",
+                        "Das Kloster St. Josef bietet mit en Suite Zimmern für alle Teilnehmer einen idyllischen und ruhigen Rückzugsort."
+                    ]
+                },
+                events: {
+                    tickets: "Kartenverkauf"
+                }
+            },
             misc: {
                 application: "Bewerbung",
                 privacy: "Datenschutz",
                 contact: "Kontakt",
+                legal: "Impressum",
+                course: "Kurs",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
