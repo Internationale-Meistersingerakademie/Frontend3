@@ -72,6 +72,10 @@ export default defineI18nConfig(() => ({
                 director: 'EDITH WIENS',
                 position: 'Director'
             },
+            misc: {
+                application: "Application",
+                privacy: "Privacy",
+            },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
                 description: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie.',
@@ -139,6 +143,10 @@ export default defineI18nConfig(() => ({
                 title: 'INTERNATIONALE MEISTERSINGER AKADEMIE',
                 director: 'EDITH WIENS',
                 position: 'Director'
+            },
+            misc: {
+                application: "Bewerbung",
+                privacy: "Datenschutz",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
