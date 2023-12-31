@@ -78,6 +78,7 @@ export default defineI18nConfig(() => ({
             misc: {
                 application: "Application",
                 privacy: "Privacy",
+                contact: "Contact",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -153,6 +154,7 @@ export default defineI18nConfig(() => ({
             misc: {
                 application: "Bewerbung",
                 privacy: "Datenschutz",
+                contact: "Kontakt",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',

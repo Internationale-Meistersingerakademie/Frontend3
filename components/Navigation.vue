@@ -14,11 +14,12 @@ const lehrerNavLink = ref(null)
 const netzwerkNavLink = ref(null)
 const medienNavLink = ref(null)
 const bewerbungNavLink = ref(null)
-const backgroundClass = ref("header-wrapper-home")
+const backgroundClass = ref()
 onMounted(() => {
   // HIGHLIGHT CURRENT PAGE
   const routeName = route.fullPath
 
+  // Dieser Code ist nicht schön. Ein Switch-Case wäre besser, aber da es nur wenige Cases sind, bin ich zu faul.
   if (routeName.includes("home") || routeName === "/") {
     // @ts-ignore
     homeNavLink.value.$el.classList.add("current-page")
@@ -38,6 +39,8 @@ onMounted(() => {
     // @ts-ignore
     bewerbungNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-application"
+  }else if (routeName.includes("Contact")) {
+    backgroundClass.value = "header-wrapper-contact"
   }
   // @ts-ignore
   hamburger.value.addEventListener("click", () => {
@@ -251,6 +254,12 @@ $red: #A91744
   background-size: cover
   background-position: center
 
+.header-wrapper-contact
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_impressum.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center
 
 .video-curve
   position: absolute
