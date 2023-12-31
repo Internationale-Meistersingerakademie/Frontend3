@@ -39,8 +39,8 @@ onMounted(() => {
     // @ts-ignore
     bewerbungNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-application"
-  }else if (routeName.includes("Contact")) {
-    backgroundClass.value = "header-wrapper-contact"
+  }else if (routeName.includes("Contact") || routeName.includes("Impressum") || routeName.includes("Datenschutz")) {
+    backgroundClass.value = "header-wrapper-impressum"
   }
   // @ts-ignore
   hamburger.value.addEventListener("click", () => {
@@ -254,7 +254,7 @@ $red: #A91744
   background-size: cover
   background-position: center
 
-.header-wrapper-contact
+.header-wrapper-impressum
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_impressum.jpg')
   z-index: 1
