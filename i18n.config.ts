@@ -2,6 +2,9 @@ export default defineI18nConfig(() => ({
     legacy: false,
     messages: {
         en: {
+            application:{
+                applyNow: "Apply now",
+            },
             home: {
                 scholarshipBanner: {
                     title: 'FULL SCHOLARSHIP COURSE FOR ASPIRING PROFESSIONAL SINGERS',
@@ -84,6 +87,9 @@ export default defineI18nConfig(() => ({
             }
         },
         de: {
+            application:{
+                applyNow: "Jetzt bewerben",
+            },
             home: {
                 scholarshipBanner: {
                     title: 'KURS MIT VOLLSTIPENDIUM FÜR WERDENDE PROFESSIONELLE SÄNGER',

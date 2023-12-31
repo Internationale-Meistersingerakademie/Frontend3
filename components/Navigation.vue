@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
-import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import {onMounted, onBeforeUnmount, ref} from 'vue'
+import {useRoute} from 'vue-router'
 import anime from 'animejs'
 
 const route = useRoute()
@@ -14,7 +14,7 @@ const lehrerNavLink = ref(null)
 const netzwerkNavLink = ref(null)
 const medienNavLink = ref(null)
 const bewerbungNavLink = ref(null)
-
+const backgroundClass = ref("header-wrapper-home")
 onMounted(() => {
   // HIGHLIGHT CURRENT PAGE
   const routeName = route.fullPath
@@ -37,6 +37,7 @@ onMounted(() => {
   } else if (routeName.includes("Application")) {
     // @ts-ignore
     bewerbungNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-application"
   }
   // @ts-ignore
   hamburger.value.addEventListener("click", () => {
@@ -58,7 +59,7 @@ onMounted(() => {
         .add({
           targets: mobileNav,
           opacity: [1, 0],
-          complete: function() {
+          complete: function () {
             // @ts-ignore
             mobileNav.value.removeAttribute("id", "show-mobile-nav");
           }
@@ -107,19 +108,32 @@ onMounted(() => {
 </script>
 <template>
   <div class="navigation">
-    <div class="header-wrapper">
+    <div :class="['header-wrapper', backgroundClass]">
       <!-- NAVIGATION -->
       <nav class="desktop_nav">
         <div class="nav-left">
           <NuxtLink :to="localePath('/')" class="home-nav-link" ref="homeNavLink">{{ $t('navigation.home') }}</NuxtLink>
-          <NuxtLink :to="localePath('/Course')" class="kurs-nav-link" ref="kursNavLink">{{ $t('navigation.kurs') }}</NuxtLink>
-          <NuxtLink :to="localePath('/Faculty')" class="lehrer-nav-link" ref="lehrerNavLink">{{ $t('navigation.lehrer') }}</NuxtLink>
+          <NuxtLink :to="localePath('/Course')" class="kurs-nav-link" ref="kursNavLink">{{
+              $t('navigation.kurs')
+            }}
+          </NuxtLink>
+          <NuxtLink :to="localePath('/Faculty')" class="lehrer-nav-link" ref="lehrerNavLink">{{
+              $t('navigation.lehrer')
+            }}
+          </NuxtLink>
         </div>
 
         <div class="nav-right">
-          <NuxtLink :to="localePath('/Network')" class="netzwerk-nav-link" ref="netzwerkNavLink">{{ $t('navigation.netzwerk') }}</NuxtLink>
-          <NuxtLink :to="localePath('/Media')" class="medien-nav-link" ref="medienNavLink">{{ $t('navigation.medien') }}</NuxtLink>
-          <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link" ref="bewerbungNavLink">{{ $t('navigation.bewerbung') }}</NuxtLink>
+          <NuxtLink :to="localePath('/Network')" class="netzwerk-nav-link" ref="netzwerkNavLink">
+            {{ $t('navigation.netzwerk') }}
+          </NuxtLink>
+          <NuxtLink :to="localePath('/Media')" class="medien-nav-link" ref="medienNavLink">{{
+              $t('navigation.medien')
+            }}
+          </NuxtLink>
+          <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link" ref="bewerbungNavLink">
+            {{ $t('navigation.bewerbung') }}
+          </NuxtLink>
         </div>
       </nav>
 
@@ -128,60 +142,60 @@ onMounted(() => {
         <h1>
           {{ $t('navigation.title') }}
         </h1>
-          <!-- MOBILE NAV -->
-          <div class="mobile-nav" id="mobile-nav">
-            <div class="lang-switcher">
-              <div v-if="$i18n.locale === 'de'">
-                <NuxtLink
-                  :to="localePath('index', 'de')"
-                  class="lang-switcher-element"
-                  @click="$i18n.locale = 'de'"
-                >
-                  DEU
-                </NuxtLink>
-                <span class="lang-switcher-element">–</span>
-                <NuxtLink
-                  :to="localePath('index', 'en')"
-                  class="lang-switcher-element"
-                  @click="$i18n.locale = 'en'"
-                >
-                  ENG
-                </NuxtLink>
-              </div>
-              <div v-else>
-                <NuxtLink
-                  :to="localePath('index', 'en')"
-                  class="lang-switcher-element"
-                  @click="$i18n.locale = 'en'"
-                >
-                  ENG
-                </NuxtLink>
-                <span class="lang-switcher-element">–</span>
-                <NuxtLink
-                  :to="localePath('index', 'de')"
-                  class="lang-switcher-element"
-                  @click="$i18n.locale = 'de'"
-                >
-                  DEU
-                </NuxtLink>
-              </div>
+        <!-- MOBILE NAV -->
+        <div class="mobile-nav" id="mobile-nav">
+          <div class="lang-switcher">
+            <div v-if="$i18n.locale === 'de'">
+              <NuxtLink
+                :to="localePath('index', 'de')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'de'"
+              >
+                DEU
+              </NuxtLink>
+              <span class="lang-switcher-element">–</span>
+              <NuxtLink
+                :to="localePath('index', 'en')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'en'"
+              >
+                ENG
+              </NuxtLink>
             </div>
-
-            <div class="hamburger" ref="hamburger">
-              <div></div>
-              <div></div>
-              <div></div>
+            <div v-else>
+              <NuxtLink
+                :to="localePath('index', 'en')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'en'"
+              >
+                ENG
+              </NuxtLink>
+              <span class="lang-switcher-element">–</span>
+              <NuxtLink
+                :to="localePath('index', 'de')"
+                class="lang-switcher-element"
+                @click="$i18n.locale = 'de'"
+              >
+                DEU
+              </NuxtLink>
             </div>
-
-            <nav class="mobile_nav" ref="mobileNav">
-              <NuxtLink :to="localePath('/')">{{ $t('navigation.home') }}</NuxtLink>
-              <NuxtLink :to="localePath('/Course')">{{ $t('navigation.kurs') }}</NuxtLink>
-              <NuxtLink :to="localePath('/Faculty')">{{ $t('navigation.lehrer') }}</NuxtLink>
-              <NuxtLink :to="localePath('/Network')">{{ $t('navigation.netzwerk') }}</NuxtLink>
-              <NuxtLink :to="localePath('/Media')">{{ $t('navigation.medien') }}</NuxtLink>
-              <NuxtLink :to="localePath('/Application')">{{ $t('navigation.bewerbung') }}</NuxtLink>
-            </nav>
           </div>
+
+          <div class="hamburger" ref="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
+          <nav class="mobile_nav" ref="mobileNav">
+            <NuxtLink :to="localePath('/')">{{ $t('navigation.home') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Course')">{{ $t('navigation.kurs') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Faculty')">{{ $t('navigation.lehrer') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Network')">{{ $t('navigation.netzwerk') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Media')">{{ $t('navigation.medien') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Application')">{{ $t('navigation.bewerbung') }}</NuxtLink>
+          </nav>
+        </div>
         <div>
           <h3>{{ $t('navigation.director') }}</h3>
           <h4>{{ $t('navigation.position') }}</h4>
@@ -193,7 +207,7 @@ onMounted(() => {
         />
       </div>
 
-      <img src="/media/home/video_curve.png" class="video-curve" />
+      <img src="/media/home/video_curve.png" class="video-curve"/>
     </div>
   </div>
 </template>
@@ -205,267 +219,277 @@ $black: #202020
 $red: #A91744
 
 .current-page
-	&:after
-		content: ''
-		position: absolute
-		width: 100%
-		height: 2px
-		display: block
-		margin-top: 5px
-		right: 0
-		left: 0
-		background: #FFF
-		transition: width .3s ease
+  &:after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 2px
+    display: block
+    margin-top: 5px
+    right: 0
+    left: 0
+    background: #FFF
+    transition: width .3s ease
 
 .mobile-nav
-	display: none
+  display: none
 
 .header-wrapper
-	width: 100%
-	height: 780px
-	background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0) 25%), url('/media/bg_final_overlay.png')
-	background-size: cover
-	background-position: center
-	position: relative
+  width: 100%
+  position: relative
+
+.header-wrapper-home
+  height: 780px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_home.png')
+  background-size: cover
+  background-position: center
+
+.header-wrapper-application
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_bewerbung.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center
+
 
 .video-curve
-	position: absolute
-	bottom: -57px
+  position: absolute
+  bottom: -57px
 
-	@media screen and (max-width: 1570px)
-		left: -200px
+  @media screen and (max-width: 1570px)
+    left: -200px
 
 nav
-	display: flex
-	justify-content: space-between
-	align-items: center
-	height: 112px
-	margin-top: 10px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 112px
+  margin-top: 10px
 
-	div
-		height: 100%
-		width: 35%
-		max-width: 550px
-		display: flex
-		justify-content: space-between
-		align-items: center
+  div
+    height: 100%
+    width: 35%
+    max-width: 550px
+    display: flex
+    justify-content: space-between
+    align-items: center
 
-	a
-		color: #FFF
-		text-decoration: none
-		font-weight: 600
-		font-size: 16px
-		letter-spacing: 3px
-		text-align: center
-		position: relative
+  a
+    color: #FFF
+    text-decoration: none
+    font-weight: 600
+    font-size: 16px
+    letter-spacing: 3px
+    text-align: center
+    position: relative
 
-		@media screen and (max-width: 1570px)
-			letter-spacing: 1px
+    @media screen and (max-width: 1570px)
+      letter-spacing: 1px
 
-		&:after
-			content: ''
-			position: absolute
-			width: 0
-			height: 2px
-			display: block
-			margin-top: 5px
-			right: 0
-			background: #FFF
-			transition: width .3s ease
+    &:after
+      content: ''
+      position: absolute
+      width: 0
+      height: 2px
+      display: block
+      margin-top: 5px
+      right: 0
+      background: #FFF
+      transition: width .3s ease
 
-		&:hover:after
-			width: 100%
-			left: 0
-			background: #FFF
+    &:hover:after
+      width: 100%
+      left: 0
+      background: #FFF
 
 .nav-right
-	padding-right: 50px
-	margin-left: 300px
+  padding-right: 50px
+  margin-left: 300px
 
-	@media screen and (max-width: 1570px)
-		margin-left: 250px
-		padding-right: 45px
+  @media screen and (max-width: 1570px)
+    margin-left: 250px
+    padding-right: 45px
 
 .nav-left
-	padding-left: 50px
-	margin-right: 300px
+  padding-left: 50px
+  margin-right: 300px
 
-	@media screen and (max-width: 1570px)
-		margin-right: 250px
-		padding-left: 45px
+  @media screen and (max-width: 1570px)
+    margin-right: 250px
+    padding-left: 45px
 
 .logo-wrapper
-	color: #FFF
-	display: flex
-	flex-direction: column
-	height: 300px
-	align-items: center
-	justify-content: space-between
-	text-align: center
-	margin-top: -77px
+  color: #FFF
+  display: flex
+  flex-direction: column
+  height: 300px
+  align-items: center
+  justify-content: space-between
+  text-align: center
+  margin-top: -77px
 
-	h1
-		max-width: 550px
-		font-size: 32px
-		font-weight: 700
-		letter-spacing: 3.3px
-		line-height: 51px
-		margin-bottom: 20px
+  h1
+    max-width: 550px
+    font-size: 32px
+    font-weight: 700
+    letter-spacing: 3.3px
+    line-height: 51px
+    margin-bottom: 20px
 
-		@media screen and (max-width: 1570px)
-			font-size: 23px
-			line-height: 34px
-			letter-spacing: 2px
-			width: 400px
+    @media screen and (max-width: 1570px)
+      font-size: 23px
+      line-height: 34px
+      letter-spacing: 2px
+      width: 400px
 
-		h3
-			font-size: 19px
-			letter-spacing: 1.54px
-			margin-bottom: 7px
+    h3
+      font-size: 19px
+      letter-spacing: 1.54px
+      margin-bottom: 7px
 
-		h4
-			font-weight: 400
-			font-size: 17px
-			letter-spacing: 1.34px
-			margin-bottom: 50px
+    h4
+      font-weight: 400
+      font-size: 17px
+      letter-spacing: 1.34px
+      margin-bottom: 50px
 
-	img
-		align-self: center
-		margin-top: 20px
-		height: 200px
+  img
+    align-self: center
+    margin-top: 20px
+    height: 200px
 
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
-	.header-wrapper
-		position: inherit
-		height: 450px
-		background-position: left
+  .header-wrapper
+    position: inherit
+    height: 450px
+    background-position: left
 
-	.desktop_nav
-		display: none
+  .desktop_nav
+    display: none
 
-	.logo-wrapper
-		margin-top: 0
+  .logo-wrapper
+    margin-top: 0
 
-		h1
-			font-size: 18px
-			max-width: 250px
-			line-height: 25px
-			margin-top: 40px
-			align-self: flex-start
-			text-align: left
-			margin-left: 40px
+    h1
+      font-size: 18px
+      max-width: 250px
+      line-height: 25px
+      margin-top: 40px
+      align-self: flex-start
+      text-align: left
+      margin-left: 40px
 
-			@media screen and (max-width: 320px)
-				font-size: 14px
-				max-width: 200px
-				line-height: 21px
+      @media screen and (max-width: 320px)
+        font-size: 14px
+        max-width: 200px
+        line-height: 21px
 
-		div
-			align-self: flex-start
-			margin-left: 40px
+    div
+      align-self: flex-start
+      margin-left: 40px
 
-			h3
-				font-size: 15px
+      h3
+        font-size: 15px
 
-				@media screen and (max-width: 320px)
-					font-size: 14px
+        @media screen and (max-width: 320px)
+          font-size: 14px
 
-			h4
-				text-align: left
-				font-size: 15px
+      h4
+        text-align: left
+        font-size: 15px
 
-				@media screen and (max-width: 320px)
-					font-size: 14px
+        @media screen and (max-width: 320px)
+          font-size: 14px
 
-		img
-			transform: scale(0.7)
+    img
+      transform: scale(0.7)
 
-	// MOBILE NAV
-	#mobile-nav
-		display: block
+  // MOBILE NAV
+  #mobile-nav
+    display: block
 
-	.mobile_nav
-		height: 100vh
-		width: 100vw
-		background-color: $red
-		position: absolute
-		z-index: 1000
-		top: 0
-		left: 0
-		margin-top: 0px
-		display: none
-		flex-direction: column
-		margin-top: 80px
-		padding: 25% 0 55% 0
+  .mobile_nav
+    height: 100vh
+    width: 100vw
+    background-color: $red
+    position: absolute
+    z-index: 1000
+    top: 0
+    left: 0
+    margin-top: 0px
+    display: none
+    flex-direction: column
+    margin-top: 80px
+    padding: 25% 0 55% 0
 
-	#show-mobile-nav
-		display: flex
+  #show-mobile-nav
+    display: flex
 
-	.hamburger
-		position: absolute
-		right: 40px
-		top: 115px
-		z-index: 10000
+  .hamburger
+    position: absolute
+    right: 40px
+    top: 115px
+    z-index: 10000
 
-		div
-			height: 3px
-			width: 35px
-			background-color: #FFF
-			margin-bottom: 6px
+    div
+      height: 3px
+      width: 35px
+      background-color: #FFF
+      margin-bottom: 6px
 
-	nav
-		a
-			&:after
-				content: ''
-				position: absolute
-				width: 0
-				height: 2px
-				display: none
-				margin-top: 5px
-				right: 0
-				background: #FFF
-				transition: width .3s ease
+  nav
+    a
+      &:after
+        content: ''
+        position: absolute
+        width: 0
+        height: 2px
+        display: none
+        margin-top: 5px
+        right: 0
+        background: #FFF
+        transition: width .3s ease
 
-			&:hover:after
-				width: 0
-				left: 0
-				background: #FFF
+      &:hover:after
+        width: 0
+        left: 0
+        background: #FFF
 
-	.lang-switcher
-		position: absolute
-		z-index: 10000
-		top: 115px
-		left: -45px
-		opacity: 0
+  .lang-switcher
+    position: absolute
+    z-index: 10000
+    top: 115px
+    left: -45px
+    opacity: 0
 
-		div
-			display: flex
-			width: 150px
-			justify-content: space-between
+    div
+      display: flex
+      width: 150px
+      justify-content: space-between
 
-			a, span
-				margin-right: 10px
-				color: #FFF
-				text-decoration: none
-				font-size: 15px
+      a, span
+        margin-right: 10px
+        color: #FFF
+        text-decoration: none
+        font-size: 15px
 
-				&:nth-child(2)
-					opacity: 0.3
+        &:nth-child(2)
+          opacity: 0.3
 
-				&:nth-child(3)
-					// opacity: 0.6
+        &:nth-child(3)
+          // opacity: 0.6
 
-					&:before
-						content: ""
-						display: block
-						height: 2px
-						width: 30px
-						background-color: #FFF
-						position: absolute
-						top: 12px
-						left: 93px
+          &:before
+            content: ""
+            display: block
+            height: 2px
+            width: 30px
+            background-color: #FFF
+            position: absolute
+            top: 12px
+            left: 93px
 
-	.video-curve
-		display: none
+  .video-curve
+    display: none
 </style>

@@ -91,13 +91,13 @@ useHead({
 </script>
 <template>
   <div>
-    <HomeScholarshipBanner/>
+    <ScholarshipBanner/>
     <Navigation/>
     <HomeWelcomeVideo :text="text"/>
     <HomeVorsingen :text="text" :list="list" :auditions="audition"/>
     <HomeMediaPreview :text="text" :list="list"/>
     <HomeNewsLehrer :text="text" :list="list" :persons="faculty"/>
     <HomeSocialMedia/>
-    <HomeFooter/>
+    <Footer/>
   </div>
 </template>
