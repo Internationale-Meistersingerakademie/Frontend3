@@ -35,6 +35,7 @@ onMounted(() => {
   } else if (routeName.includes("Network")) {
     // @ts-ignore
     netzwerkNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-network"
   } else if (routeName.includes("Media")) {
     // @ts-ignore
     medienNavLink.value.$el.classList.add("current-page")
@@ -282,6 +283,13 @@ $red: #A91744
 .header-wrapper-media
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_media.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center
+
+.header-wrapper-network
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_network.jpg')
   z-index: 1
   background-size: cover
   background-position: center

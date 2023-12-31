@@ -97,6 +97,13 @@ export default defineI18nConfig(() => ({
                     makeupArtist: 'MAKE-UP ARTIST'
                 }
             },
+            network:{
+                network:"NETZWERK",
+                attendeesOfTheAuditions: "ATTENDEES OF THE AUDITIONS",
+                engagements: "RESULTING ENGAGEMENTS",
+                generalManagement: "GENERAL MANAGEMENT",
+                prices: "PRICES",
+            },
             misc: {
                 application: "Application",
                 privacy: "Privacy",
@@ -105,6 +112,7 @@ export default defineI18nConfig(() => ({
                 course: "Course",
                 faculty: "Faculty",
                 media: "Media",
+                network: "Network",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -199,6 +207,13 @@ export default defineI18nConfig(() => ({
                     makeupArtist: 'MAKE-UP KÜNSTLER'
                 }
             },
+            network:{
+                network:"NETZWERK",
+                attendeesOfTheAuditions: "GREMIEN DER VORSINGEN",
+                engagements: "RESULTIERENDE ENGAGEMENTS",
+                generalManagement: "VERTRETUNGEN",
+                prices: "PREISE",
+            },
             misc: {
                 application: "Bewerbung",
                 privacy: "Datenschutz",
@@ -207,6 +222,7 @@ export default defineI18nConfig(() => ({
                 course: "Kurs",
                 faculty: "Lehrkörper",
                 media: "Medien",
+                network: "Netzwerk",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
