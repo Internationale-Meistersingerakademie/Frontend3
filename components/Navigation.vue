@@ -47,6 +47,9 @@ onMounted(() => {
   } else if (routeName.includes("Contact") || routeName.includes("Impressum") || routeName.includes("Datenschutz")) {
     backgroundClass.value = "header-wrapper-impressum"
   }
+  else if (routeName.includes("News")) {
+    backgroundClass.value = "header-wrapper-application"
+  }
   // @ts-ignore
   hamburger.value.addEventListener("click", () => {
     // @ts-ignore
@@ -250,49 +253,49 @@ $red: #A91744
   height: 780px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_home.png')
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .header-wrapper-application
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_bewerbung.jpg')
   z-index: 1
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .header-wrapper-impressum
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_impressum.jpg')
   z-index: 1
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .header-wrapper-course
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_course.jpg')
   z-index: 1
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .header-wrapper-faculty
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_faculty.jpg')
   z-index: 1
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .header-wrapper-media
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_media.jpg')
   z-index: 1
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .header-wrapper-network
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_network.jpg')
   z-index: 1
   background-size: cover
-  background-position: center
+  background-position: center !important
 
 .video-curve
   position: absolute
