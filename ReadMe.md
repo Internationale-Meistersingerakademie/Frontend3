@@ -133,11 +133,18 @@ bun install
 ```
 
 ###  Running Frontend3
+Use the following command to build Frontend3:
+```sh
+bun run build
+```
 Use the following command to run Frontend3:
 ```sh
 bun run start
 ```
-
+To run Frontend3 in development mode, use the following command:
+```sh
+bun run dev
+```
 
 ---
 
