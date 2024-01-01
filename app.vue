@@ -42,6 +42,7 @@ const description = computed(() => t('seo.description'))
 
 .site-wrapper
   overflow: hidden
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.1), -10px 0 10px rgba(0, 0, 0, 0.1)
 
 // ADD PADDING WHEN SCREEN IS TOO LARGE
 @media screen and (min-width: 1920px)
@@ -50,7 +51,7 @@ const description = computed(() => t('seo.description'))
     display: flex
     justify-content: center
     align-items: center
-    background: #F5F5F5
+    background: #fff
 
   .site-wrapper
     background-color: #fff
@@ -58,6 +59,6 @@ const description = computed(() => t('seo.description'))
     max-width: 1900px
 
 a
-  color: #c73562
+  color: #A91744
 
 </style>
