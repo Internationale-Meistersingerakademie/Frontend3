@@ -15,10 +15,10 @@ const scrollTo = (selector:string) => {
 </script>
 <template>
   <div class="medien-header">
-    <h1>{{ text.title }}</h1>
+    <h1>{{ text[0][$i18n.locale].title }}</h1>
 
     <p>
-      {{ text.content }}
+      {{ text[0][$i18n.locale].content }}
     </p>
 
     <div class="year-navigation">
