@@ -177,7 +177,7 @@ const years = Array.from({length: year - startYear + 1}, (_, i) => startYear + i
           class="engagement"
           v-if="($getElementByTitle('networkManagement', props.list) as any) != null"
         >
-          <h1>
+          <h1 class="vertretungen-hl">
             {{ ($getElementByTitle('networkManagement', props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
@@ -196,7 +196,7 @@ const years = Array.from({length: year - startYear + 1}, (_, i) => startYear + i
           class="engagement"
           v-if="($getElementByTitle('networkCompetitionPrices', props.list) as any) != null"
         >
-          <h1>
+          <h1 class="preise-hl">
             {{ ($getElementByTitle('networkCompetitionPrices', props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
