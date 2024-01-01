@@ -9,8 +9,6 @@ const localePath = useLocalePath()
         <h1 class="insta-fb-title">Instagram</h1>
         <div class="insta-grid">
           <!-- LIGHTWIDGET INSTAGRAM -->
-          <lazy-component
-          >
             <iframe
               src="https://cdn.lightwidget.com/widgets/9fe9954c82765ba4845d27ff1a3df830.html"
               scrolling="no"
@@ -19,7 +17,6 @@ const localePath = useLocalePath()
               style="width:100%;border:0;overflow:hidden;"
             ></iframe
             >
-          </lazy-component>
         </div>
 
         <a

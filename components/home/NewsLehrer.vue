@@ -58,14 +58,14 @@ const teachersShown = [
                   )
                 }}</h6>
             </div>
-            <NuxtLink to="/de/news" class="news-lehrer-link"
+            <NuxtLink :to="localePath('News')" class="news-lehrer-link"
             >{{$t('home.newsLehrer.readMore')}} <span>►</span></NuxtLink
             >
           </div>
         </div>
 
         <!-- NEWS BUTTON -->
-        <NuxtLink to="/de/news" class="border-button">{{$t('home.newsLehrer.allNews')}}</NuxtLink>
+        <NuxtLink :to="localePath('News')" class="border-button">{{$t('home.newsLehrer.allNews')}}</NuxtLink>
       </div>
 
       <!-- LEHRER SECTION -->
