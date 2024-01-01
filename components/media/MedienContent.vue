@@ -57,7 +57,7 @@ const changeAudio = (id: string, link: string) => {
               type="application/pdf"
               width="100%"
               height="315">
-              <p>Alternative text - include a link <a href="myfile.pdf">to the PDF!</a></p>
+              <p>Programm: <a :href="year.downloads[index].link" target="_system"> {{ year.downloads[index].alt}}</a></p>
             </object>
           </div>
 
@@ -355,6 +355,15 @@ audio
       max-width: 350px
       margin: 0 auto 25px auto
       height: 210px
+    .video-wrapper
+      display: flex
+      flex-direction: column
+
+      object
+        width: 100%
+        max-width: 350px
+        margin: 0 auto 25px auto
+        height: 100px
 
   .year-wrapper
     display: flex
