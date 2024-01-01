@@ -104,6 +104,9 @@ export default defineI18nConfig(() => ({
                 generalManagement: "GENERAL MANAGEMENT",
                 prices: "PRICES",
             },
+            sponsors:{
+                sponsors: "SPONSORS"
+            },
             misc: {
                 application: "Application",
                 privacy: "Privacy",
@@ -113,6 +116,8 @@ export default defineI18nConfig(() => ({
                 faculty: "Faculty",
                 media: "Media",
                 network: "Network",
+                news: "News",
+                sponsors: "Sponsors",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -214,6 +219,9 @@ export default defineI18nConfig(() => ({
                 generalManagement: "VERTRETUNGEN",
                 prices: "PREISE",
             },
+            sponsors:{
+                sponsors: "SPONSOREN"
+            },
             misc: {
                 application: "Bewerbung",
                 privacy: "Datenschutz",
@@ -223,6 +231,8 @@ export default defineI18nConfig(() => ({
                 faculty: "Lehrkörper",
                 media: "Medien",
                 network: "Netzwerk",
+                news: "News",
+                sponsors: "Sponsoren",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',

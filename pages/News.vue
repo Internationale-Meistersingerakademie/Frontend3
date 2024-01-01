@@ -4,7 +4,7 @@ const runtimeConfig = useRuntimeConfig()
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | ${t("misc.contact")}` : t("misc.contact");
+    return titleChunk ? `${titleChunk} | ${t("misc.news")}` : t("misc.news");
   }
 })
 

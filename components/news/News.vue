@@ -21,8 +21,6 @@ const props = defineProps({
    )
  }
 
- console.log($getElementByTitle('news',props.list))
-
 </script>
 <template>
   <div class="category-header">

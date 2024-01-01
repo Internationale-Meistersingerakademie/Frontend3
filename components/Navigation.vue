@@ -50,6 +50,9 @@ onMounted(() => {
   else if (routeName.includes("News")) {
     backgroundClass.value = "header-wrapper-application"
   }
+  else if (routeName.includes("Sponsors")) {
+    backgroundClass.value = "header-wrapper-sponsors"
+  }
   // @ts-ignore
   hamburger.value.addEventListener("click", () => {
     // @ts-ignore
@@ -296,6 +299,14 @@ $red: #A91744
   z-index: 1
   background-size: cover
   background-position: center !important
+
+.header-wrapper-sponsors
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_sponsors.webp')
+  z-index: 1
+  background-size: cover
+  background-position: center !important
+
 
 .video-curve
   position: absolute
