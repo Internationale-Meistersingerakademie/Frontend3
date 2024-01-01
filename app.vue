@@ -26,7 +26,7 @@ const description = computed(() => t('seo.description'))
       <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
     </template>
   </Head>
-  <div>
+  <div class="site-wrapper">
     <NuxtPage/>
   </div>
 </template>
@@ -50,8 +50,10 @@ const description = computed(() => t('seo.description'))
     display: flex
     justify-content: center
     align-items: center
+    background: #F5F5F5
 
   .site-wrapper
+    background-color: #fff
     width: 90vw
     max-width: 1900px
 
