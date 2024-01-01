@@ -88,8 +88,6 @@ onMounted(() => {
   prefetchLink = document.createElement('link')
   prefetchLink.rel = 'prefetch'
   document.head.appendChild(prefetchLink)
-
-  console.log($getElementByTitle("events_course", props.list))
 })
 
 watch(currentImage, () => {
