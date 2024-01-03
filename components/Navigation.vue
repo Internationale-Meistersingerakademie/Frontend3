@@ -36,7 +36,7 @@ onMounted(() => {
     backgroundClass.value = "header-wrapper-media"
   } else if (routeName.includes("Masterclass")) {
     // @ts-ignore
-    backgroundClass.value = "header-wrapper-course"
+    backgroundClass.value = "header-wrapper-masterclass"
   }
   else if (routeName.includes("Application")) {
     backgroundClass.value = "header-wrapper-application"
@@ -163,34 +163,30 @@ onMounted(() => {
           <div class="lang-switcher">
             <div v-if="$i18n.locale === 'de'">
               <NuxtLink
-                :to="localePath('index', 'de')"
+                :to="localePath($route.fullPath, 'de')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'de'"
               >
                 DEU
               </NuxtLink>
               <span class="lang-switcher-element">–</span>
               <NuxtLink
-                :to="localePath('index', 'en')"
+                :to="localePath($route.fullPath, 'en')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'en'"
               >
                 ENG
               </NuxtLink>
             </div>
             <div v-else>
               <NuxtLink
-                :to="localePath('index', 'en')"
+                :to="localePath($route.fullPath, 'en')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'en'"
               >
                 ENG
               </NuxtLink>
               <span class="lang-switcher-element">–</span>
               <NuxtLink
-                :to="localePath('index', 'de')"
+                :to="localePath($route.fullPath, 'de')"
                 class="lang-switcher-element"
-                @click="$i18n.locale = 'de'"
               >
                 DEU
               </NuxtLink>
@@ -206,11 +202,11 @@ onMounted(() => {
           <nav class="mobile_nav" ref="mobileNav">
             <NuxtLink :to="localePath('/')">{{ $t('navigation.home') }}</NuxtLink>
             <NuxtLink :to="localePath('/Course')">{{ $t('navigation.kurs') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Masterclass')">{{ $t('navigation.masterclass') }}</NuxtLink>
             <NuxtLink :to="localePath('/Faculty')">{{ $t('navigation.lehrer') }}</NuxtLink>
             <NuxtLink :to="localePath('/Network')">{{ $t('navigation.netzwerk') }}</NuxtLink>
             <NuxtLink :to="localePath('/Media')">{{ $t('navigation.medien') }}</NuxtLink>
             <NuxtLink :to="localePath('/Application')">{{ $t('navigation.bewerbung') }}</NuxtLink>
-            <NuxtLink :to="localePath('/Masterclass')">{{ $t('navigation.masterclass') }}</NuxtLink>
           </nav>
         </div>
         <div>
@@ -258,6 +254,13 @@ onMounted(() => {
   background-position: center !important
 
 .header-wrapper-course
+  height: 530px
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_course.jpg')
+  z-index: 1
+  background-size: cover
+  background-position: center !important
+
+.header-wrapper-masterclass
   height: 530px
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_course.jpg')
   z-index: 1
@@ -446,6 +449,8 @@ nav
     img
       transform: scale(0.7)
 
+  .header-wrapper-home
+    background-position: left !important
   // MOBILE NAV
   #mobile-nav
     display: block

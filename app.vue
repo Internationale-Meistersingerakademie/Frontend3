@@ -46,18 +46,19 @@ const description = computed(() => t('seo.description'))
 
 // other stuff
 // for nav and banner:
-.router-link-active
-  &:after
-    content: '' !important
-    position: absolute !important
-    width: 100% !important
-    height: 2px !important
-    display: block !important
-    margin-top: 5px !important
-    right: 0 !important
-    left: 0 !important
-    background: #FFF !important
-    transition: width .3s ease !important
+.nav-left, .nav-right, .mobile_nav
+  .router-link-active
+    &:after
+      content: '' !important
+      position: absolute !important
+      width: 100% !important
+      height: 2px !important
+      display: block !important
+      margin-top: 5px !important
+      right: 0 !important
+      left: 0 !important
+      background: #FFF !important
+      transition: width .3s ease !important
 
 // ADD PADDING WHEN SCREEN IS TOO LARGE
 @media screen and (min-width: 1920px)

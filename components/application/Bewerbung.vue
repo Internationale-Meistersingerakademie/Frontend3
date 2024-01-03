@@ -16,7 +16,7 @@ const props = defineProps({
       href="https://www.yaptracker.com/applications/internationale-meistersinger-akademie-2024"
       class="border-button"
       target="_blank"
-    >{{ $t("application.applyNow") }}}</a
+    >{{ $t("application.applyNow") }}</a
     >
 
     <img

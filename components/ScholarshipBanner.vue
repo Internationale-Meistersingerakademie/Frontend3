@@ -128,6 +128,7 @@ img
 @media only screen and (min-width: 50px) and (max-width: 1200px)
   .banner
     height: 70px
+    justify-content: center
 
     h2
       font-size: 12px
@@ -139,5 +140,7 @@ img
       height: 13px
 
   .lang-switcher
+    display: none
+  .bewerbung-nav-link
     display: none
 </style>

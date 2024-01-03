@@ -76,12 +76,10 @@ async function fetchFacultyData() {
   }
 }
 
-if (process.server) {
-  await fetchTextData();
-}
 await fetchListData();
 await fetchAuditionData();
 await fetchFacultyData();
+await fetchTextData();
 
 useHead({
   titleTemplate: (titleChunk) => {
