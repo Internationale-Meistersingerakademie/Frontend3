@@ -262,7 +262,7 @@ onMounted(() => {
 
 .header-wrapper-masterclass
   height: 530px
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_course.jpg')
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_masterclass.webp')
   z-index: 1
   background-size: cover
   background-position: center !important
