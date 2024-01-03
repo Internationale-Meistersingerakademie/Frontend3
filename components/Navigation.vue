@@ -13,7 +13,7 @@ const kursNavLink = ref(null)
 const lehrerNavLink = ref(null)
 const netzwerkNavLink = ref(null)
 const medienNavLink = ref(null)
-const bewerbungNavLink = ref(null)
+const meisterkursNavLink = ref(null)
 const backgroundClass = ref()
 onMounted(() => {
   // HIGHLIGHT CURRENT PAGE
@@ -21,30 +21,27 @@ onMounted(() => {
 
   // Dieser Code ist nicht schön. Ein Switch-Case wäre besser, aber da es nur wenige Cases sind, bin ich zu faul.
   if (routeName.includes("home") || routeName === "/" || routeName === "/en") {
-    // @ts-ignore
-    homeNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-home"
   } else if (routeName.includes("Course")) {
     // @ts-ignore
-    kursNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-course"
   } else if (routeName.includes("Faculty")) {
     // @ts-ignore
-    lehrerNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-faculty"
   } else if (routeName.includes("Network")) {
     // @ts-ignore
-    netzwerkNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-network"
   } else if (routeName.includes("Media")) {
     // @ts-ignore
-    medienNavLink.value.$el.classList.add("current-page")
     backgroundClass.value = "header-wrapper-media"
-  } else if (routeName.includes("Application")) {
+  } else if (routeName.includes("Masterclass")) {
     // @ts-ignore
-    bewerbungNavLink.value.$el.classList.add("current-page")
+    backgroundClass.value = "header-wrapper-course"
+  }
+  else if (routeName.includes("Application")) {
     backgroundClass.value = "header-wrapper-application"
-  } else if (routeName.includes("Contact") || routeName.includes("Impressum") || routeName.includes("Datenschutz")) {
+  }
+  else if (routeName.includes("Contact") || routeName.includes("Impressum") || routeName.includes("Datenschutz")) {
     backgroundClass.value = "header-wrapper-impressum"
   }
   else if (routeName.includes("News")) {
@@ -53,6 +50,7 @@ onMounted(() => {
   else if (routeName.includes("Sponsors")) {
     backgroundClass.value = "header-wrapper-sponsors"
   }
+
   // @ts-ignore
   hamburger.value.addEventListener("click", () => {
     // @ts-ignore
@@ -131,22 +129,26 @@ onMounted(() => {
               $t('navigation.kurs')
             }}
           </NuxtLink>
-          <NuxtLink :to="localePath('/Faculty')" class="lehrer-nav-link" ref="lehrerNavLink">{{
-              $t('navigation.lehrer')
+          <NuxtLink
+            :to="localePath('/Masterclass')"
+            class="meisterkurs-nav-link"
+            ref="meisterkursNavLink">{{
+              $t('navigation.masterclass')
             }}
           </NuxtLink>
         </div>
 
         <div class="nav-right">
+          <NuxtLink :to="localePath('/Faculty')" class="lehrer-nav-link" ref="lehrerNavLink">{{
+              $t('navigation.lehrer')
+            }}
+          </NuxtLink>
           <NuxtLink :to="localePath('/Network')" class="netzwerk-nav-link" ref="netzwerkNavLink">
             {{ $t('navigation.netzwerk') }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Media')" class="medien-nav-link" ref="medienNavLink">{{
               $t('navigation.medien')
             }}
-          </NuxtLink>
-          <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link" ref="bewerbungNavLink">
-            {{ $t('navigation.bewerbung') }}
           </NuxtLink>
         </div>
       </nav>
@@ -208,6 +210,7 @@ onMounted(() => {
             <NuxtLink :to="localePath('/Network')">{{ $t('navigation.netzwerk') }}</NuxtLink>
             <NuxtLink :to="localePath('/Media')">{{ $t('navigation.medien') }}</NuxtLink>
             <NuxtLink :to="localePath('/Application')">{{ $t('navigation.bewerbung') }}</NuxtLink>
+            <NuxtLink :to="localePath('/Masterclass')">{{ $t('navigation.masterclass') }}</NuxtLink>
           </nav>
         </div>
         <div>
@@ -225,25 +228,7 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
-// VARIABLES
-$black: #202020
-$red: #A91744
-
-.current-page
-  &:after
-    content: ''
-    position: absolute
-    width: 100%
-    height: 2px
-    display: block
-    margin-top: 5px
-    right: 0
-    left: 0
-    background: #FFF
-    transition: width .3s ease
 
 .mobile-nav
   display: none
@@ -298,7 +283,7 @@ $red: #A91744
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_network.jpg')
   z-index: 1
   background-size: cover
-  background-position: center !important
+  background-position: top !important
 
 .header-wrapper-sponsors
   height: 530px
@@ -473,7 +458,6 @@ nav
     z-index: 1000
     top: 0
     left: 0
-    margin-top: 0px
     display: none
     flex-direction: column
     margin-top: 80px

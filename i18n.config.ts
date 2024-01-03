@@ -71,6 +71,7 @@ export default defineI18nConfig(() => ({
                 netzwerk: 'NETWORK',
                 medien: 'MEDIA',
                 bewerbung: 'APPLICATION',
+                masterclass: 'MASTERCLASS',
                 title: 'INTERNATIONALE MEISTERSINGER AKADEMIE',
                 director: 'EDITH WIENS',
                 position: 'Director'
@@ -118,6 +119,7 @@ export default defineI18nConfig(() => ({
                 network: "Network",
                 news: "News",
                 sponsors: "Sponsors",
+                masterclass: "Masterclass",
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
@@ -186,6 +188,7 @@ export default defineI18nConfig(() => ({
                 netzwerk: 'NETZWERK',
                 medien: 'MEDIEN',
                 bewerbung: 'BEWERBUNG',
+                masterclass: 'MEISTERKURS',
                 title: 'INTERNATIONALE MEISTERSINGER AKADEMIE',
                 director: 'EDITH WIENS',
                 position: 'Director'
@@ -233,6 +236,7 @@ export default defineI18nConfig(() => ({
                 network: "Netzwerk",
                 news: "News",
                 sponsors: "Sponsoren",
+                masterclass: "Meisterkurs",
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
