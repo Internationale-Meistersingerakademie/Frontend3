@@ -54,7 +54,7 @@ const getPersonsByCategory = (category:string):any => {
 
       <!-- LANGUAGE COACH -->
       <div class="list-category">
-        <h1 class=".language-coach-hl">{{ $t("faculty.categories.coaching") }}</h1>
+        <h1 class="language-coach-hl">{{ $t("faculty.categories.coaching") }}</h1>
 
         <div
           v-for="lehrer in getPersonsByCategory('languageCoach')"
