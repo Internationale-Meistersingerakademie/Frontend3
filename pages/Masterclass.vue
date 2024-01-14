@@ -29,26 +29,19 @@ async function fetchTextData() {
 
 await fetchTextData();
 
-const buttonClicked = () => {
-  alert('Kommt bald!')
-}
-
 </script>
 <template>
   <ScholarshipBanner/>
   <Navigation/>
   <div class="category-header">
     <h1>{{ content[0][$i18n.locale]['title'] }}</h1>
-    <p>
-      <HelperMarkdownStringRenderer :markdownString="content[0][$i18n.locale]['content']" />
-    </p>
-    <a
-      type="button"
-      href="#"
-      class="border-button"
-      @click="buttonClicked"
-    >{{ $t("application.applyNow") }}</a
-    >
+  </div>
+  <div class="content-container">
+    <HelperMarkdownStringRenderer :markdownString="content[0][$i18n.locale]['content']"/>
+    <div class="image-container">
+      <img src="/media/masterclass/IMA2023-07-18_Kurse_1439.webp" alt="Masterclass Image 1"/>
+      <img src="/media/masterclass/IMA2023-07-18_Kurse_1451.webp" alt="Masterclass Image 2" class="last-image"/>
+    </div>
   </div>
   <Footer/>
 
@@ -78,36 +71,34 @@ const buttonClicked = () => {
     text-transform: uppercase
     margin-bottom: 40px
 
-  p
-    text-align: center
-    max-width: 720px
-    color: $black
-    font-size: 16px
-    letter-spacing: 1px
-    margin-bottom: 40px
-    z-index: 100
+p
+  text-align: center
+  max-width: 720px
+  color: $black
+  font-size: 16px
+  letter-spacing: 1px
+  margin-bottom: 40px
+  z-index: 100
+
+
+.content-container
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 20px
+  max-width: 60vw
+  margin: 0 auto
+
+.image-container
+  display: flex
+  justify-content: center
+  margin-top: 20px
 
   img
+    max-width: 50%
+    height: auto
     margin-bottom: 50px
 
-// BORDER BUTTON
-.border-button
-  padding: 10px 20px
-  border: 3px solid $red
-  font-size: 12px
-  font-weight: 700
-  color: $red
-  text-transform: uppercase
-  letter-spacing: 0.4px
-  cursor: pointer
-  text-decoration: none
-  transition: all .5s ease
-  background-color: #FFF
-  margin-bottom: 40px
-
-  &:hover
-    background-color: $red
-    color: #FFF
 
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
@@ -121,10 +112,20 @@ const buttonClicked = () => {
       font-size: 23px
       margin-top: 50px
 
-    p
-      max-width: 80vw
-      text-align: justify
+  .content-container
+    max-width: 80vw
+
+  .image-container
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    margin-top: 20px
 
     img
+      max-width: 80vw
+    .last-image
       margin-bottom: -250px
+
+
 </style>

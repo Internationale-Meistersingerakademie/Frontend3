@@ -262,17 +262,17 @@ onMounted(() => {
 
 .header-wrapper-masterclass
   height: 530px
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_masterclass.webp')
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_masterclass.jpg')
   z-index: 1
   background-size: cover
   background-position: center !important
 
 .header-wrapper-faculty
   height: 530px
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_faculty.jpg')
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 25%), url('/media/header_background_faculty.webp')
   z-index: 1
   background-size: cover
-  background-position: center !important
+  background-position: top !important
 
 .header-wrapper-media
   height: 530px
