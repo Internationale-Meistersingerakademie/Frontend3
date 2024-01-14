@@ -13,7 +13,7 @@ const getPersonsByCategory = (category:string):any => {
     <div class="list-wrapper">
       <!-- MASTERTEACHERS -->
       <div class="list-category">
-        <h1 class="masterteachers-hl" id="meisterlehrer">MEISTERLEHRER</h1>
+        <h1 class="masterteachers-hl" id="meisterlehrer">{{ $t("faculty.categories.masterteachers") }}</h1>
         <div
           v-for="lehrer in getPersonsByCategory('masterTeacher')"
           v-bind:key="lehrer.name"
@@ -37,7 +37,7 @@ const getPersonsByCategory = (category:string):any => {
 
       <!-- HEAD COACH -->
       <div class="list-category">
-        <h1 class="head-coach-hl" id="korrepetitor">STUDIENLEITER DER IMA</h1>
+        <h1 class="head-coach-hl" id="korrepetitor">{{ $t("faculty.categories.headCoach") }}</h1>
 
         <div
           v-for="lehrer in getPersonsByCategory('headCoach')"
@@ -54,7 +54,7 @@ const getPersonsByCategory = (category:string):any => {
 
       <!-- LANGUAGE COACH -->
       <div class="list-category">
-        <h1 class="$i18n.locale-coach-hl">COACHING</h1>
+        <h1 class=".language-coach-hl">{{ $t("faculty.categories.coaching") }}</h1>
 
         <div
           v-for="lehrer in getPersonsByCategory('languageCoach')"
@@ -71,7 +71,7 @@ const getPersonsByCategory = (category:string):any => {
 
       <!-- PINANISTS -->
       <div class="list-category">
-        <h1 class="pianists-hl">PIANISTEN</h1>
+        <h1 class="pianists-hl">{{ $t("faculty.categories.pianists") }}</h1>
 
         <div
           v-for="lehrer in getPersonsByCategory('pianist')"
@@ -88,7 +88,7 @@ const getPersonsByCategory = (category:string):any => {
 
       <!-- MAKE-UP MASTERCLASS -->
       <div class="list-category">
-        <h1 class="makeup-hl" id="makup">MAKE-UP KÜNSTLER</h1>
+        <h1 class="makeup-hl" id="makup">{{ $t("faculty.categories.makeupArtist") }}</h1>
 
         <div
           v-for="lehrer in getPersonsByCategory('makeup')"
