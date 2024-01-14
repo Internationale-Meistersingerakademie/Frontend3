@@ -57,7 +57,7 @@ const getPersonsByCategory = (category:string):any => {
         <h1 class="$i18n.locale-coach-hl">COACHING</h1>
 
         <div
-          v-for="lehrer in getPersonsByCategory('$i18n.localeCoach')"
+          v-for="lehrer in getPersonsByCategory('languageCoach')"
           v-bind:key="lehrer.name"
         >
           <div class="lehrer">
