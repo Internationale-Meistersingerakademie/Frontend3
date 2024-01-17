@@ -1,21 +1,28 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
-const localePath = useLocalePath()
+const { $getElementByTitle } = useNuxtApp();
+const localePath = useLocalePath();
 
 // Define your props here
 const props = defineProps({
-  text: { type: Array<Record<string, any>>, required: true },
-  auditions: {type: Array<Record<string, any>>, required: true}
-})
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  auditions: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
 
-const participantsTitle = $getElementByTitle("participants", props.text).title
-const participantsSubtitle = $getElementByTitle("participants", props.text).subtitle
-const participantsContent = $getElementByTitle("participants", props.text).content
-const auditionDeadlinesTextTitle = $getElementByTitle("audition_deadlines_text", props.text).title
-const auditionDeadlinesTextSubtitle = $getElementByTitle("audition_deadlines_text", props.text).subtitle
-const auditionDeadlinesTextContent = $getElementByTitle("audition_deadlines_text", props.text).content
-const auditionTextContent = $getElementByTitle("audition_text", props.text).content
+const participantsTitle = $getElementByTitle("participants", props.text).title;
+const participantsSubtitle = $getElementByTitle("participants", props.text).subtitle;
+const participantsContent = $getElementByTitle("participants", props.text).content;
+const auditionDeadlinesTextTitle = $getElementByTitle("audition_deadlines_text", props.text).title;
+const auditionDeadlinesTextSubtitle = $getElementByTitle("audition_deadlines_text", props.text).subtitle;
+const auditionDeadlinesTextContent = $getElementByTitle("audition_deadlines_text", props.text).content;
+const auditionTextContent = $getElementByTitle("audition_text", props.text).content;
 </script>
+
 <template>
   <div class="teilnehmer">
     <div class="left">
@@ -34,9 +41,7 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
       <h3>
         {{ auditionDeadlinesTextSubtitle }}
       </h3>
-      <h3 class="neumarkt_angabe">
-        NEUMARKT i.d.OPf.
-      </h3>
+      <h3 class="neumarkt_angabe">NEUMARKT i.d.OPf.</h3>
       <h2>
         {{ auditionDeadlinesTextContent }}
       </h2>
@@ -46,33 +51,30 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 
       <!-- VORSINGEN ELEMENTE -->
       <div class="vorsingen-elements-wrapper">
-        <div
-          class="vorsingen-element"
-          v-for="audition in auditions"
-          v-bind:key="audition[$i18n.locale].location"
-        >
+        <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="audition[$i18n.locale].location">
           <h4 class="location">{{ audition[$i18n.locale].location }}</h4>
           <h4 class="date">{{ audition[$i18n.locale].date }}</h4>
           <h4 class="deadline">
             Deadline:
-            <span>{{ new Date(audition[$i18n.locale].deadline).toLocaleDateString($i18n.locale,  {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric"
-            }) }}</span>
+            <span>{{
+              new Date(audition[$i18n.locale].deadline).toLocaleDateString($i18n.locale, {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }}</span>
           </h4>
         </div>
       </div>
       <!-- ANMELDEN BUTTON -->
       <NuxtLink :to="localePath('/Application')">
         <button type="button" name="button" class="border-button">
-          {{ $t('home.vorsingen.apply') }}
+          {{ $t("home.vorsingen.apply") }}
         </button>
       </NuxtLink>
-
-		</div>
-	</div>
+    </div>
+  </div>
 </template>
 
 <style lang="sass" scoped>

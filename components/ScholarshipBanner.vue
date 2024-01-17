@@ -1,52 +1,44 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {useRoute} from "vue-router";
+import { useRoute } from "vue-router";
 
-const localePath = useLocalePath()
-const route = useRoute()
+const localePath = useLocalePath();
+const route = useRoute();
 
-const bewerbungNavLink = ref(null)
+const bewerbungNavLink = ref<HTMLElement | null>(null);
 
 onMounted(() => {
   // HIGHLIGHT CURRENT PAGE
-  const routeName = route.fullPath
+  const routeName = route.fullPath;
   if (routeName.includes("Application")) {
-    // @ts-ignore
-    bewerbungNavLink.value.$el.classList.add("current-page")
+    bewerbungNavLink.value!.classList.add("current-page");
   }
-})
+});
 </script>
+
 <template>
   <div class="scholarship-banner">
     <div class="banner">
       <div class="lang-switcher element">
         <div v-if="$i18n.locale === 'de'">
-          <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element"
-          >DEU
-          </NuxtLink>
+          <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element">DEU </NuxtLink>
           <span class="lang-switcher-element">–</span>
-          <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"
-          >ENG
-          </NuxtLink>
+          <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element">ENG </NuxtLink>
         </div>
         <div v-else>
-          <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"
-          >ENG
-          </NuxtLink>
+          <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element">ENG </NuxtLink>
           <span class="lang-switcher-element">–</span>
-          <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element"
-          >DEU
-          </NuxtLink>
+          <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element">DEU </NuxtLink>
         </div>
       </div>
-      <h2>{{ $t('home.scholarshipBanner.title') }}</h2>
+      <h2>{{ $t("home.scholarshipBanner.title") }}</h2>
       <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link element" ref="bewerbungNavLink">
-        {{ $t('navigation.bewerbung') }}
+        {{ $t("navigation.bewerbung") }}
       </NuxtLink>
-      <img src="/media/home/banner.png" alt="Banner"/>
+      <img src="/media/home/banner.png" alt="Banner" />
     </div>
   </div>
 </template>
+
 <style lang="sass" scoped>
 a
   color: #FFF

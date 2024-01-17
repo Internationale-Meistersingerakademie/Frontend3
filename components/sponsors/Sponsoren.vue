@@ -1,112 +1,42 @@
-<script setup lang="ts">
-</script>
 <template>
   <div class="category-header">
-    <h1>{{ $t('sponsors.sponsors') }}</h1>
+    <h1>{{ $t("sponsors.sponsors") }}</h1>
     <div class="sponsoren-wrapper">
       <div class="row">
-        <img
-            src="/media/sponsors/sponsor_3.jpg"
-            style="height:110px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_2.png"
-            style="height:120px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_1.png"
-            style="height:100px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_4.png"
-            style="height:80px"
-            alt=""
-        />
+        <img src="/media/sponsors/sponsor_3.jpg" style="height: 110px" alt="" />
+        <img src="/media/sponsors/sponsor_2.png" style="height: 120px" alt="" />
+        <img src="/media/sponsors/sponsor_1.png" style="height: 100px" alt="" />
+        <img src="/media/sponsors/sponsor_4.png" style="height: 80px" alt="" />
       </div>
 
       <div class="row">
-        <img
-            src="/media/sponsors/sponsor_5.png"
-            style="height:90px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_6.jpg"
-            style="height:100px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_7.jpg"
-            style="height:100px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_8.jpg"
-            style="height:110px"
-            alt=""
-        />
+        <img src="/media/sponsors/sponsor_5.png" style="height: 90px" alt="" />
+        <img src="/media/sponsors/sponsor_6.jpg" style="height: 100px" alt="" />
+        <img src="/media/sponsors/sponsor_7.jpg" style="height: 100px" alt="" />
+        <img src="/media/sponsors/sponsor_8.jpg" style="height: 110px" alt="" />
       </div>
 
       <div class="row">
-        <img
-            src="/media/sponsors/sponsor_10.png"
-            style="height:90px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_11.png"
-            style="height:80px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_12.png"
-            style="height:70px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_14.png"
-            style="height:120px"
-            alt=""
-        />
+        <img src="/media/sponsors/sponsor_10.png" style="height: 90px" alt="" />
+        <img src="/media/sponsors/sponsor_11.png" style="height: 80px" alt="" />
+        <img src="/media/sponsors/sponsor_12.png" style="height: 70px" alt="" />
+        <img src="/media/sponsors/sponsor_14.png" style="height: 120px" alt="" />
       </div>
 
       <div class="row">
-        <img
-            src="/media/sponsors/sponsor_15.png"
-            style="height:100px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_16.png"
-            style="height:120px"
-            alt=""
-        />
-        <img
-            src="/media/sponsors/sponsor_20.jpg"
-            style="height:80px"
-            alt=""
-        />
+        <img src="/media/sponsors/sponsor_15.png" style="height: 100px" alt="" />
+        <img src="/media/sponsors/sponsor_16.png" style="height: 120px" alt="" />
+        <img src="/media/sponsors/sponsor_20.jpg" style="height: 80px" alt="" />
 
-        <img src="/media/sponsors/sponsor_21.png" alt=""/>
+        <img src="/media/sponsors/sponsor_21.png" alt="" />
       </div>
 
       <div class="row">
-        <img
-            src="/media/sponsors/sponsor_22.jpg"
-            style="height:80px"
-            alt=""
-        />
+        <img src="/media/sponsors/sponsor_22.jpg" style="height: 80px" alt="" />
 
-        <img src="/media/sponsors/sponsor_19.png" alt=""/>
+        <img src="/media/sponsors/sponsor_19.png" alt="" />
 
-        <img
-            src="/media/sponsors/sponsor_23.png"
-            style="height:80px"
-            alt=""
-        />
+        <img src="/media/sponsors/sponsor_23.png" style="height: 80px" alt="" />
       </div>
     </div>
   </div>

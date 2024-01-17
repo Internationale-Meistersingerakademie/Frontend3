@@ -1,15 +1,18 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
+const { $getElementByTitle } = useNuxtApp();
 
 // Define your props here
 const props = defineProps({
-  text: { type: Array<Record<string, any>>, required: true }
-})
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
 
-const courseDescription1Title = $getElementByTitle("courseDescription1", props.text).title
-const courseDescription2Title = $getElementByTitle("courseDescription2", props.text).title
-const courseDescription1Content = $getElementByTitle("courseDescription1", props.text).content
-const courseDescription2Content = $getElementByTitle("courseDescription2", props.text).content
+const courseDescription1Title = $getElementByTitle("courseDescription1", props.text).title;
+const courseDescription2Title = $getElementByTitle("courseDescription2", props.text).title;
+const courseDescription1Content = $getElementByTitle("courseDescription1", props.text).content;
+const courseDescription2Content = $getElementByTitle("courseDescription2", props.text).content;
 </script>
 <template>
   <div class="kursbeschreibung">
@@ -22,11 +25,7 @@ const courseDescription2Content = $getElementByTitle("courseDescription2", props
       </div>
     </div>
     <div class="right">
-      <video
-        src="/media/course/kurs_video.mp4#t=0.5"
-        controls
-        preload="metadata"
-      ></video>
+      <video src="/media/course/kurs_video.mp4#t=0.5" controls preload="metadata"></video>
       <h1>{{ courseDescription2Title }}</h1>
       <p>{{ courseDescription2Content }}</p>
     </div>

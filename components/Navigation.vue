@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
-import {onMounted, onBeforeUnmount, ref} from 'vue'
+
 import {useRoute} from 'vue-router'
 import anime from 'animejs'
 

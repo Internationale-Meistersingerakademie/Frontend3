@@ -1,92 +1,83 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
+const { $getElementByTitle } = useNuxtApp();
 
 // Define your props here
 const props = defineProps({
-  text: { type: Array<Record<string, any>>, required: true },
-  list: { type: Array<Record<string, any>>, required: true }
-})
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  list: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
 
-const repertoireTitle = $getElementByTitle("repertoire", props.list).title
-const repertoireContent = $getElementByTitle("repertoire", props.list).content as Array<Record<string, any>>
-const financialTermsTitle = $getElementByTitle("financialTerms", props.list).title
-const financialTermsContent = $getElementByTitle("financialTerms", props.list).content as Array<Record<string, any>>
-const locationCourseTitle = $getElementByTitle("location_course", props.text).title
-const locationCourseContent = $getElementByTitle("location_course", props.text).content as string
+const repertoireTitle = $getElementByTitle("repertoire", props.list).title;
+const repertoireContent = $getElementByTitle("repertoire", props.list).content as Array<Record<string, any>>;
+const financialTermsTitle = $getElementByTitle("financialTerms", props.list).title;
+const financialTermsContent = $getElementByTitle("financialTerms", props.list).content as Array<Record<string, any>>;
+const locationCourseTitle = $getElementByTitle("location_course", props.text).title;
+const locationCourseContent = $getElementByTitle("location_course", props.text).content as string;
 </script>
 <template>
-	<div class="repertoire">
-		<!-- CURVED BACKGROUND -->
-		<div class="hide-overflow">
-			<div class="curved-bg"></div>
-		</div>
+  <div class="repertoire">
+    <!-- CURVED BACKGROUND -->
+    <div class="hide-overflow">
+      <div class="curved-bg"></div>
+    </div>
 
-		<!-- REPERTOIRE WRAPPER -->
-		<div class="repertoire-wrapper">
-			<h1>{{ repertoireTitle }}</h1>
+    <!-- REPERTOIRE WRAPPER -->
+    <div class="repertoire-wrapper">
+      <h1>{{ repertoireTitle }}</h1>
 
-			<div
-				class="rep-entry"
-				v-for="elem in repertoireContent"
-				v-bind:key="elem.subtitle"
-			>
-				<h2>{{ elem.subtitle }}</h2>
-				<li> <helperMarkdownStringRenderer :markdownString="elem.text" /></li>
-			</div>
-		</div>
+      <div class="rep-entry" v-for="elem in repertoireContent" v-bind:key="elem.subtitle">
+        <h2>{{ elem.subtitle }}</h2>
+        <li><helperMarkdownStringRenderer :markdownString="elem.text" /></li>
+      </div>
+    </div>
 
-		<!-- GALLERY WRAPPER -->
-		<div class="gallery-wrapper">
-			<div class="gallery-entry">
-				<img
-					src="/media/course/gallery_3.png"
-					alt="Reitstadel Neumarkt"
-				/>
-				<p>
+    <!-- GALLERY WRAPPER -->
+    <div class="gallery-wrapper">
+      <div class="gallery-entry">
+        <img src="/media/course/gallery_3.png" alt="Reitstadel Neumarkt" />
+        <p>
           {{ $t("course.repertoire.gallery.0") }}
-				</p>
-			</div>
+        </p>
+      </div>
 
-			<div class="gallery-entry">
-				<img src="/media/course/gallery_2.png" alt="" />
-				<p>
+      <div class="gallery-entry">
+        <img src="/media/course/gallery_2.png" alt="" />
+        <p>
           {{ $t("course.repertoire.gallery.1") }}
         </p>
-			</div>
+      </div>
 
-			<div class="gallery-entry">
-				<img
-					src="/media/course/gallery_1.png"
-					alt="St. Josef Kloster"
-				/>
-				<p>
+      <div class="gallery-entry">
+        <img src="/media/course/gallery_1.png" alt="St. Josef Kloster" />
+        <p>
           {{ $t("course.repertoire.gallery.2") }}
         </p>
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<!-- FINANCE WRAPPER -->
-		<div class="finance-wrapper">
-			<div class="finance">
-				<h1>{{ financialTermsTitle }}</h1>
-				<ul>
-					<li
-						v-for="elem in financialTermsContent"
-						v-bind:key="elem.subtitle"
-					>
-						{{ elem["subtitle"] }}{{ elem["text"] }}
-					</li>
-				</ul>
-			</div>
+    <!-- FINANCE WRAPPER -->
+    <div class="finance-wrapper">
+      <div class="finance">
+        <h1>{{ financialTermsTitle }}</h1>
+        <ul>
+          <li v-for="elem in financialTermsContent" v-bind:key="elem.subtitle">{{ elem["subtitle"] }}{{ elem["text"] }}</li>
+        </ul>
+      </div>
 
-			<div class="ort">
-				<h1>{{ locationCourseTitle }}</h1>
-				<p>
+      <div class="ort">
+        <h1>{{ locationCourseTitle }}</h1>
+        <p>
           <HelperMarkdownStringRenderer :markdownString="locationCourseContent" />
         </p>
-			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="sass" scoped>

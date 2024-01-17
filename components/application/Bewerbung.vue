@@ -3,6 +3,7 @@ defineProps({
   text: { required: true, type: Object },
 });
 </script>
+
 <template>
   <div class="category-header">
     <h1>{{ text[0][$i18n.locale].title }}</h1>

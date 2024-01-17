@@ -1,45 +1,30 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
+const { $getElementByTitle } = useNuxtApp();
 
 const props = defineProps({
-  text: {type: Array<Record<string, any>>, required: true}
-})
+  text: { type: Array as PropType<Array<Record<string, any>>>, required: true },
+});
 
-const welcomeText = $getElementByTitle('welcome_at_ima', props.text)
-
+const welcomeText = $getElementByTitle("welcome_at_ima", props.text);
 </script>
 <template>
-	<div class="welcome-video">
-		<div class="welcome-wrapper">
-			<!-- WILLKOMMEN VIDEO -->
-			<div class="welcome-video-wrapper">
-				<video
-          v-if="$i18n.locale === 'de'"
-					loading="lazy"
-					src="/media/home/edith_wiens_de.mp4"
-					width="710px"
-					controls
-					preload="metadata"
-				></video>
-        <video
-          v-else
-          loading="lazy"
-          src="/media/home/edith_wiens_en.mp4"
-          width="710px"
-          controls
-          preload="metadata"
-        ></video>
-			</div>
+  <div class="welcome-video">
+    <div class="welcome-wrapper">
+      <!-- WILLKOMMEN VIDEO -->
+      <div class="welcome-video-wrapper">
+        <video v-if="$i18n.locale === 'de'" loading="lazy" src="/media/home/edith_wiens_de.mp4" width="710px" controls preload="metadata"></video>
+        <video v-else loading="lazy" src="/media/home/edith_wiens_en.mp4" width="710px" controls preload="metadata"></video>
+      </div>
 
-			<!-- WILLKOMMEN TEXT -->
-			<div class="welcome-text-wrapper">
-				<h1>{{ welcomeText.title }}</h1>
-				<p>
+      <!-- WILLKOMMEN TEXT -->
+      <div class="welcome-text-wrapper">
+        <h1>{{ welcomeText.title }}</h1>
+        <p>
           {{ welcomeText.content }}
-				</p>
-			</div>
-		</div>
-	</div>
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="sass" scoped>

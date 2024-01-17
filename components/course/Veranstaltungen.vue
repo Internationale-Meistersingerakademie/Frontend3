@@ -1,100 +1,106 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
+const { $getElementByTitle } = useNuxtApp();
 
 // Define your props here
 const props = defineProps({
-  text: { type: Array<Record<string, any>>, required: true },
-  list: { type: Array<Record<string, any>>, required: true }
-})
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  list: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
 
-const eventsCourseTitle = $getElementByTitle("events_course", props.list).title
-const eventsCourseContent = $getElementByTitle("events_course", props.list).content as Array<Record<string, any>>
-const roundtablesTitle = $getElementByTitle("roundtables", props.text).title
-const roundtablesContent = $getElementByTitle("roundtables", props.text).content
+const eventsCourseTitle = $getElementByTitle("events_course", props.list).title;
+const eventsCourseContent = $getElementByTitle("events_course", props.list).content as Array<Record<string, any>>;
+const roundtablesTitle = $getElementByTitle("roundtables", props.text).title;
+const roundtablesContent = $getElementByTitle("roundtables", props.text).content;
 
 const images = ref([
-  'IMA 2011 (_) - Abschluss Blumen.jpg',
-  'IMA 2011 - Wallis Giunta, Simone Easthope, Erin Snell.jpg',
-  'IMA 2011 - Wallis Giunta.jpg',
-  'IMA 2013 - Deanne Breiwick, Takaoki Onishi.jpg',
-  'IMA 2014 - Andrew Stenson.jpg',
-  'IMA 2014 - Virginie Verrez.jpg',
-  'IMA 2016 - Fassbaender und Ivan.jpg',
-  'IMA 2017 - Kelsey.jpg',
-  'IMA 2017 - Natalia.jpg',
-  'IMA 2017 - Tamara.jpg',
-  'IMA 2017 - Virginie Verrez.jpg',
-  'IMA 2018 - Alina_Adamski.jpg',
-  'IMA 2018 - Hubert_Zapiór.jpg',
-  'IMA 2018 - Jonathan_Abernethy.jpg',
-  'IMA 2019 - Cabaret.jpg',
-  'IMA 2019 - Cabaret - Kasanders, Wolz und Moore Kopie 2.jpg',
-  'IMA 2019 - Liederabend - Jamez McCorkle.jpg',
-  'IMA 2019 - Operagala - Meghan-Jamez.jpg',
-  'IMA 2019 - Orchestra - Erika Baikoff.jpg',
-  'IMA 2019 - Orchestra - Ian Castro, Tenor.jpg',
-  'IMA 2019 Wiens_Martineau.jpg',
-  'IMA2023-07-13_Eroeffnungskonzert_0037.webp',
-  'IMA2023-07-13_Eroeffnungskonzert_0059.webp',
-  'IMA2023-07-13_Eroeffnungskonzert_0081.webp',
-  'IMA2023-07-13_Eroeffnungskonzert_0138.webp',
-  'IMA2023-07-13_Eroeffnungskonzert_0148.webp',
-  'IMA2023-07-13_Eroeffnungskonzert_0232.webp',
-  'IMA2023-07-18_Kurse_1204.webp',
-  'IMA2023-07-18_Kurse_1228.webp',
-  'IMA2023-07-18_Kurse_1250.webp',
-  'IMA2023-07-18_Kurse_1382.webp',
-  'IMA2023-07-18_Kurse_1439.webp',
-  'IMA2023-07-18_Kurse_1485.webp',
-  'IMA2023-07-18_Kurse_1510.webp',
-  'IMA2023-07-18_Kurse_1517.webp',
-  'IMA2023-07-18_Kurse_1518.webp',
-  'IMA2023-07-21_Liederabend_0441.webp',
-  'IMA2023-08-04_Operngala_0546.webp',
-  'IMA2023-08-04_Operngala_0549.webp',
-  'IMA2023-08-04_Operngala_0561.webp',
-  'IMA2023-08-04_Operngala_0591.webp',
-  'IMA2023-08-04_Operngala_0607.webp',
-  'IMA2023-08-04_Operngala_0634.webp',
-  'IMA2023-08-04_Operngala_0643.webp',
-  'IMA2023-08-04_Operngala_0645.webp',
-  'IMA2023-08-04_Operngala_0667.webp',
-  'IMA2023-08-04_Operngala_0679.webp',
-  'IMA2023-08-04_Operngala_0684.webp',
-  'IMA2023-08-04_Operngala_0692.webp',
-  'IMG_0003.jpg',
-])
-const currentImage = ref(0)
+  "IMA 2011 (_) - Abschluss Blumen.jpg",
+  "IMA 2011 - Wallis Giunta, Simone Easthope, Erin Snell.jpg",
+  "IMA 2011 - Wallis Giunta.jpg",
+  "IMA 2013 - Deanne Breiwick, Takaoki Onishi.jpg",
+  "IMA 2014 - Andrew Stenson.jpg",
+  "IMA 2014 - Virginie Verrez.jpg",
+  "IMA 2016 - Fassbaender und Ivan.jpg",
+  "IMA 2017 - Kelsey.jpg",
+  "IMA 2017 - Natalia.jpg",
+  "IMA 2017 - Tamara.jpg",
+  "IMA 2017 - Virginie Verrez.jpg",
+  "IMA 2018 - Alina_Adamski.jpg",
+  "IMA 2018 - Hubert_Zapiór.jpg",
+  "IMA 2018 - Jonathan_Abernethy.jpg",
+  "IMA 2019 - Cabaret.jpg",
+  "IMA 2019 - Cabaret - Kasanders, Wolz und Moore Kopie 2.jpg",
+  "IMA 2019 - Liederabend - Jamez McCorkle.jpg",
+  "IMA 2019 - Operagala - Meghan-Jamez.jpg",
+  "IMA 2019 - Orchestra - Erika Baikoff.jpg",
+  "IMA 2019 - Orchestra - Ian Castro, Tenor.jpg",
+  "IMA 2019 Wiens_Martineau.jpg",
+  "IMA2023-07-13_Eroeffnungskonzert_0037.webp",
+  "IMA2023-07-13_Eroeffnungskonzert_0059.webp",
+  "IMA2023-07-13_Eroeffnungskonzert_0081.webp",
+  "IMA2023-07-13_Eroeffnungskonzert_0138.webp",
+  "IMA2023-07-13_Eroeffnungskonzert_0148.webp",
+  "IMA2023-07-13_Eroeffnungskonzert_0232.webp",
+  "IMA2023-07-18_Kurse_1204.webp",
+  "IMA2023-07-18_Kurse_1228.webp",
+  "IMA2023-07-18_Kurse_1250.webp",
+  "IMA2023-07-18_Kurse_1382.webp",
+  "IMA2023-07-18_Kurse_1439.webp",
+  "IMA2023-07-18_Kurse_1485.webp",
+  "IMA2023-07-18_Kurse_1510.webp",
+  "IMA2023-07-18_Kurse_1517.webp",
+  "IMA2023-07-18_Kurse_1518.webp",
+  "IMA2023-07-21_Liederabend_0441.webp",
+  "IMA2023-08-04_Operngala_0546.webp",
+  "IMA2023-08-04_Operngala_0549.webp",
+  "IMA2023-08-04_Operngala_0561.webp",
+  "IMA2023-08-04_Operngala_0591.webp",
+  "IMA2023-08-04_Operngala_0607.webp",
+  "IMA2023-08-04_Operngala_0634.webp",
+  "IMA2023-08-04_Operngala_0643.webp",
+  "IMA2023-08-04_Operngala_0645.webp",
+  "IMA2023-08-04_Operngala_0667.webp",
+  "IMA2023-08-04_Operngala_0679.webp",
+  "IMA2023-08-04_Operngala_0684.webp",
+  "IMA2023-08-04_Operngala_0692.webp",
+  "IMG_0003.jpg",
+]);
+const currentImage = ref(0);
 
 const nextImage = () => {
   if (currentImage.value < images.value.length - 1) {
-    currentImage.value++
+    currentImage.value++;
   } else {
-    currentImage.value = 0
+    currentImage.value = 0;
   }
-}
+};
 
 const previousImage = () => {
   if (currentImage.value > 0) {
-    currentImage.value--
+    currentImage.value--;
   } else {
-    currentImage.value = images.value.length - 1
+    currentImage.value = images.value.length - 1;
   }
-}
+};
 
-let prefetchLink:any = null
+let prefetchLink: any = null;
 
 onMounted(() => {
-  prefetchLink = document.createElement('link')
-  prefetchLink.rel = 'prefetch'
-  document.head.appendChild(prefetchLink)
-})
+  prefetchLink = document.createElement("link");
+  prefetchLink.rel = "prefetch";
+  document.head.appendChild(prefetchLink);
+});
 
 watch(currentImage, () => {
-  const nextImageIndex = (currentImage.value + 1) % images.value.length
-  const nextImageUrl = '/media/course/roundtables_galery/' + images.value[nextImageIndex]
-  prefetchLink.href = nextImageUrl
-})
+  const nextImageIndex = (currentImage.value + 1) % images.value.length;
+  const nextImageUrl = "/media/course/roundtables_galery/" + images.value[nextImageIndex];
+  prefetchLink.href = nextImageUrl;
+});
 </script>
 <template>
   <div class="veranstaltungen">
@@ -105,11 +111,7 @@ watch(currentImage, () => {
       </h1>
 
       <div class="events-wrapper">
-        <div
-          class="event-entry"
-          v-for="elem in eventsCourseContent"
-          v-bind:key="elem.subtitle"
-        >
+        <div class="event-entry" v-for="elem in eventsCourseContent" v-bind:key="elem.subtitle">
           <h3>{{ elem.subtitle }}</h3>
           <p>
             {{ elem.text }}
@@ -120,8 +122,9 @@ watch(currentImage, () => {
       <a
         class="border-button"
         href="https://www.neumarkt.de/kultur-stadtinfo/veranstaltungen-und-feste/internationale-meistersinger-akademie/"
-        target="_blank">{{$t('course.events.tickets')}}</a>
-
+        target="_blank"
+        >{{ $t("course.events.tickets") }}</a
+      >
     </div>
 
     <!-- ROUNDTABLES GALLERY WRAPPER -->
@@ -148,23 +151,21 @@ watch(currentImage, () => {
       </div>
       <div class="imageContainer">
         <div></div>
-        <img src="/media/course/arrow_back.svg" alt="arrow_back" class="arrow" v-on:click="previousImage"/>
+        <img src="/media/course/arrow_back.svg" alt="arrow_back" class="arrow" v-on:click="previousImage" />
         <div>
           <img
             v-for="(image, index) in images"
             :src="'/media/course/roundtables_galery/' + image"
             :alt="'Image ' + index"
             class="image"
-            :style="{ display: index === currentImage ? 'block' : 'none' }"
-          />
+            :style="{ display: index === currentImage ? 'block' : 'none' }" />
         </div>
-        <img src="/media/course/arrow_forward.svg" alt="arrow_forward" class="arrow" v-on:click="nextImage"/>
+        <img src="/media/course/arrow_forward.svg" alt="arrow_forward" class="arrow" v-on:click="nextImage" />
         <div></div>
       </div>
     </div>
   </div>
 </template>
-
 
 <style lang="sass" scoped>
 

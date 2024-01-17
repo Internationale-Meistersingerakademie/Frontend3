@@ -1,31 +1,36 @@
 <script setup lang="ts">
-import type {ComputedRef} from "vue";
-
-const {$getElementByTitle} = useNuxtApp()
-const localePath = useLocalePath()
+const { $getElementByTitle } = useNuxtApp();
+const localePath = useLocalePath();
 
 // Define your props here
 const props = defineProps({
-  text: {type: Array<Record<string, any>>, required: true},
-  list: {type: Array<Record<string, any>>, required: true},
-  persons: {type: Array<Record<string, any>>, required: true}
-})
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  list: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  persons: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
 const splitText = (text: string) => text.split(" ").slice(0, 25).join(" ") + (text.split(" ").length > 25 ? " ..." : "");
 
-const reducedNewsArray: ComputedRef<Array<Record<string, any>>> = computed(() => {
-  return $getElementByTitle("news", props.list)
-    // @ts-ignore
-    .content.sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3)
-})
+const reducedNewsArray = computed<Array<Record<string, any>>>(() => {
+  return (
+    $getElementByTitle("news", props.list)
+      // @ts-ignore
+      .content.sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3)
+  );
+});
 
-const teachersShown = [
-  "Prof. Dr. h.c. mult. Edith Wiens",
-  "Anne Sofie von Otter",
-  "Pål Moe"
-]
-
+// const teachersShown = ["Prof. Dr. h.c. mult. Edith Wiens", "Anne Sofie von Otter", "Pål Moe"];
 </script>
+
 <template>
   <div class="news-lehrer">
     <div class="news-lehrer-wrapper">
@@ -36,75 +41,52 @@ const teachersShown = [
         </h1>
 
         <!-- NEWS ELEMENT 1 -->
-        <div
-          class="news-element"
-          v-for="elem in reducedNewsArray"
-          v-bind:key="elem.subtitle"
-        >
+        <div class="news-element" v-for="elem in reducedNewsArray" v-bind:key="elem.subtitle">
           <h5>{{ elem.subtitle }}</h5>
           <p class="news-lehrer-text">
             {{ splitText(elem.text) }}
           </p>
           <div class="date-link-wrapper">
             <div>
-              <h6>{{
-                  new Date(elem.date).toLocaleDateString(
-                    $i18n.locale, {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric"
-                    }
-                  )
-                }}</h6>
+              <h6>
+                {{
+                  new Date(elem.date).toLocaleDateString($i18n.locale, {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })
+                }}
+              </h6>
             </div>
-            <NuxtLink :to="localePath('News')" class="news-lehrer-link"
-            >{{$t('home.newsLehrer.readMore')}} <span>►</span></NuxtLink
-            >
+            <NuxtLink :to="localePath('News')" class="news-lehrer-link">{{ $t("home.newsLehrer.readMore") }} <span>►</span></NuxtLink>
           </div>
         </div>
 
         <!-- NEWS BUTTON -->
-        <NuxtLink :to="localePath('News')" class="border-button">{{$t('home.newsLehrer.allNews')}}</NuxtLink>
+        <NuxtLink :to="localePath('News')" class="border-button">{{ $t("home.newsLehrer.allNews") }}</NuxtLink>
       </div>
 
       <!-- LEHRER SECTION -->
-            <div class="lehrer">
-              <h1 class="news-lehrer-title">{{$t('home.newsLehrer.faculty')}}</h1>
+      <div class="lehrer">
+        <h1 class="news-lehrer-title">{{ $t("home.newsLehrer.faculty") }}</h1>
 
-              <div
-                class="lehrer-element"
-                v-for="i in [0,1,2]"
-                v-bind:key="i"
-              >
-                <div
-                  class="lehrer-img"
-                  :style="
-                    'background: url(' +
-                      persons[i].image +
-                      ');background-size: 100% 100%;'
-                  "
-                ></div>
-                <div class="lehrer-text-wrapper">
-                  <h6>{{ persons[i].name }}</h6>
-                  <p>
-                    {{ splitText(persons[i][$i18n.locale].content) }}
-                  </p>
-                  <NuxtLink
-                    :to="localePath('/Faculty')"
-                    class="news-lehrer-link lehrer-hover"
-                  >{{$t('home.newsLehrer.readMore')}} <span>►</span></NuxtLink
-                  >
-                </div>
-              </div>
+        <div class="lehrer-element" v-for="i in [0, 1, 2]" v-bind:key="i">
+          <div class="lehrer-img" :style="'background: url(' + persons[i].image + ');background-size: 100% 100%;'"></div>
+          <div class="lehrer-text-wrapper">
+            <h6>{{ persons[i].name }}</h6>
+            <p>
+              {{ splitText(persons[i][$i18n.locale].content) }}
+            </p>
+            <NuxtLink :to="localePath('/Faculty')" class="news-lehrer-link lehrer-hover"
+              >{{ $t("home.newsLehrer.readMore") }} <span>►</span></NuxtLink
+            >
+          </div>
+        </div>
 
-              <!-- LEHRER BUTTON -->
-              <NuxtLink
-                :to="localePath('/Faculty')" class="border-button"
-              >{{$t('home.newsLehrer.allFaculty')}}
-              </NuxtLink
-              >
-            </div>
+        <!-- LEHRER BUTTON -->
+        <NuxtLink :to="localePath('/Faculty')" class="border-button">{{ $t("home.newsLehrer.allFaculty") }} </NuxtLink>
+      </div>
     </div>
   </div>
 </template>

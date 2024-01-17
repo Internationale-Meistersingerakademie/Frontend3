@@ -1,14 +1,23 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
-const localePath = useLocalePath()
+const { $getElementByTitle } = useNuxtApp();
+const localePath = useLocalePath();
 
 const props = defineProps({
-  text: {type: Array<Record<string, any>>, required: true},
-  list: {type: Array<Record<string, any>>, required: true},
-  auditions: {type: Array<Record<string, any>>, required: true}
-})
-
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  list: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+  auditions: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
 </script>
+
 <template>
   <div class="vorsingen">
     <div class="vorsingen-wrapper">
@@ -19,9 +28,7 @@ const props = defineProps({
       <h3>
         {{ $getElementByTitle("audition_deadlines_text", props.text).subtitle }}
       </h3>
-      <h3 class="neumarkt_angabe">
-        NEUMARKT i.d.OPf., Germany
-      </h3>
+      <h3 class="neumarkt_angabe">NEUMARKT i.d.OPf., Germany</h3>
       <h2>
         {{ $getElementByTitle("audition_deadlines_text", props.text).content }}
       </h2>
@@ -30,73 +37,67 @@ const props = defineProps({
       </p>
       <!-- VORSINGEN ELEMENTE -->
       <div class="vorsingen-elements-wrapper">
-        <div
-          class="vorsingen-element"
-          v-for="audition in auditions"
-          v-bind:key="audition[$i18n.locale].location"
-        >
+        <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="audition[$i18n.locale].location">
           <h4 class="location">{{ audition[$i18n.locale].location }}</h4>
           <h4 class="date">{{ audition[$i18n.locale].date }}</h4>
           <h4 class="deadline">
             Deadline:
-            <span>{{ new Date(audition[$i18n.locale].deadline).toLocaleDateString($i18n.locale,  {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric"
-            }) }}</span>
+            <span>{{
+              new Date(audition[$i18n.locale].deadline).toLocaleDateString($i18n.locale, {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }}</span>
           </h4>
         </div>
       </div>
       <!-- ANMELDEN BUTTON -->
       <NuxtLink :to="localePath('/Application')">
         <button type="button" name="button" class="border-button">
-          {{ $t('home.vorsingen.apply') }}
+          {{ $t("home.vorsingen.apply") }}
         </button>
       </NuxtLink>
 
       <!-- IMA AUF EINEN BLICK -->
       <div class="blick-wrapper">
-        <h5>{{ $t('home.vorsingen.glance') }}</h5>
+        <h5>{{ $t("home.vorsingen.glance") }}</h5>
         <div>
           <NuxtLink :to="localePath('/Network#gaeste')">
-            {{ $t('home.vorsingen.glanceContent.0') }}
+            {{ $t("home.vorsingen.glanceContent.0") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Course#veranstaltungen')">
-            {{ $t('home.vorsingen.glanceContent.1') }}
+            {{ $t("home.vorsingen.glanceContent.1") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Course#veranstaltungen')">
-            {{ $t('home.vorsingen.glanceContent.2') }}
+            {{ $t("home.vorsingen.glanceContent.2") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Faculty#meisterlehrer')">
-            {{ $t('home.vorsingen.glanceContent.3') }}
+            {{ $t("home.vorsingen.glanceContent.3") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Faculty#korrepetitor')">
-            {{ $t('home.vorsingen.glanceContent.4') }}
+            {{ $t("home.vorsingen.glanceContent.4") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Course')">
-            {{ $t('home.vorsingen.glanceContent.5') }}
+            {{ $t("home.vorsingen.glanceContent.5") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Media')">
-            {{ $t('home.vorsingen.glanceContent.6') }}
+            {{ $t("home.vorsingen.glanceContent.6") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Network#engagements')">
-            {{ $t('home.vorsingen.glanceContent.7') }}
+            {{ $t("home.vorsingen.glanceContent.7") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Faculty#makup')">
-            {{ $t('home.vorsingen.glanceContent.8') }}
+            {{ $t("home.vorsingen.glanceContent.8") }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Course')">
-            {{ $t('home.vorsingen.glanceContent.9') }}
+            {{ $t("home.vorsingen.glanceContent.9") }}
           </NuxtLink>
         </div>
       </div>
 
-      <img
-          src="/media/home/video_curve.png"
-          alt=""
-          class="video-curve"
-      />
+      <img src="/media/home/video_curve.png" alt="" class="video-curve" />
     </div>
   </div>
 </template>

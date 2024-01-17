@@ -1,42 +1,45 @@
 <script setup lang="ts">
-const { $getElementByTitle } = useNuxtApp()
+const { $getElementByTitle } = useNuxtApp();
 
 // Define your props here
 const props = defineProps({
-  text: { type: Array<Record<string, any>>, required: true }
-})
-const scrollTo = (selector:string) => {
-  const element = document.querySelector(selector)
+  text: {
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  },
+});
+const scrollTo = (selector: string) => {
+  const element = document.querySelector(selector);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
+    element.scrollIntoView({ behavior: "smooth" });
   }
-}
-const additionalTextContent = $getElementByTitle("additional_text", props.text).content
+};
+const additionalTextContent = $getElementByTitle("additional_text", props.text).content;
 </script>
 <template>
   <div class="lehrer-categories">
     <div class="category-header">
-      <h1>{{ $t('faculty.ourTeachers') }}</h1>
+      <h1>{{ $t("faculty.ourTeachers") }}</h1>
 
       <p class="hinweis">
         {{ additionalTextContent }}
       </p>
 
       <div class="categories">
-        <div class="category masterteachers"  @click="scrollTo('.masterteachers-hl')">
-          {{ $t('faculty.categories.masterteachers') }}
+        <div class="category masterteachers" @click="scrollTo('.masterteachers-hl')">
+          {{ $t("faculty.categories.masterteachers") }}
         </div>
-        <div class="category head-coach"  @click="scrollTo('.head-coach-hl')">
-          {{ $t('faculty.categories.headCoach') }}
+        <div class="category head-coach" @click="scrollTo('.head-coach-hl')">
+          {{ $t("faculty.categories.headCoach") }}
         </div>
-        <div class="category language-coach"  @click="scrollTo('.language-coach-hl')">
-          {{ $t('faculty.categories.coaching') }}
+        <div class="category language-coach" @click="scrollTo('.language-coach-hl')">
+          {{ $t("faculty.categories.coaching") }}
         </div>
-        <div class="category pianists"  @click="scrollTo('.pianists-hl')">
-          {{ $t('faculty.categories.pianists') }}
+        <div class="category pianists" @click="scrollTo('.pianists-hl')">
+          {{ $t("faculty.categories.pianists") }}
         </div>
         <div class="category makeup" @click="scrollTo('.makeup-hl')">
-          {{ $t('faculty.categories.makeupArtist') }}
+          {{ $t("faculty.categories.makeupArtist") }}
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ if (error.value) {
   });
 }
 </script>
+
 <template>
   <ScholarshipBanner />
   <Navigation />
@@ -37,6 +38,7 @@ if (error.value) {
   </div>
   <Footer />
 </template>
+
 <style lang="sass" scoped>
 // CATEGORY HEADER
 .category-header
