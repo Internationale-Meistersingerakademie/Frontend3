@@ -1,53 +1,48 @@
 <script setup lang="ts">
-import type {Ref} from "vue";
-
-const {t} = useI18n()
+const { t } = useI18n();
 
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | ${t("misc.media")}` : t("misc.media");
-  }
-})
-const runtimeConfig = useRuntimeConfig()
+  },
+});
+const runtimeConfig = useRuntimeConfig();
 
-let text: Ref<Array<Record<string, any>>> = ref([])
-let media: Ref<Array<Record<string, any>>> = ref([])
+const text = ref<Array<Record<string, any>>>([]);
+const media = ref<Array<Record<string, any>>>([]);
 
 async function fetchMediaData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/media`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/media`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/media'
-      }
-    })
+        source: "/media",
+      },
+    });
   } else {
-    //@ts-ignore
-    media = data
+    if (data.value) media.value = data.value;
   }
 }
 async function fetchTextData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/text/name/mediaText`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/text/name/mediaText`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/text/name/mediaText'
-      }
-    })
+        source: "/text/name/mediaText",
+      },
+    });
   } else {
-    //@ts-ignore
-    text = data
+    if (data.value) text.value = data.value;
   }
 }
-await fetchMediaData()
-await fetchTextData()
 
+await Promise.all([fetchMediaData(), fetchTextData()]);
 </script>
 <template>
   <ScholarshipBanner />
@@ -55,5 +50,4 @@ await fetchTextData()
   <MediaYearNavigation :text="text" :media="media" />
   <MediaMedienContent :media="media" />
   <Footer />
-
 </template>

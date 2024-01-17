@@ -1,50 +1,41 @@
 <script setup lang="ts">
-const {t} = useI18n()
-const runtimeConfig = useRuntimeConfig()
+const { t } = useI18n();
+const runtimeConfig = useRuntimeConfig();
 
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | ${t("misc.masterclass")}` : t("misc.masterclass");
-  }
-})
+  },
+});
 
-let content: Ref<Array<Record<string, any>>> = ref([])
-
-async function fetchTextData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/text/name/masterclass`)
-  if (error.value) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'Could not load data',
-      data: {
-        error: error.value,
-        source: '/text/name/masterclass'
-      }
-    })
-  } else {
-    //@ts-ignore
-    content = data
-  }
+const { data: content, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/text/name/masterclass`, {
+  default: () => [],
+});
+if (error.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Could not load data",
+    data: {
+      error: error.value,
+      source: "/text/name/masterclass",
+    },
+  });
 }
-
-await fetchTextData();
-
 </script>
 <template>
-  <ScholarshipBanner/>
-  <Navigation/>
+  <ScholarshipBanner />
+  <Navigation />
   <div class="category-header">
-    <h1>{{ content[0][$i18n.locale]['title'] }}</h1>
+    <h1>{{ content[0][$i18n.locale]["title"] }}</h1>
   </div>
   <div class="content-container">
-    <HelperMarkdownStringRenderer :markdownString="content[0][$i18n.locale]['content']"/>
+    <HelperMarkdownStringRenderer :markdownString="content[0][$i18n.locale]['content']" />
     <div class="image-container">
-      <img src="/media/masterclass/IMA2023-07-18_Kurse_1439.webp" alt="Masterclass Image 1"/>
-      <img src="/media/masterclass/IMA2023-07-18_Kurse_1451.webp" alt="Masterclass Image 2" class="last-image"/>
+      <img src="/media/masterclass/IMA2023-07-18_Kurse_1439.webp" alt="Masterclass Image 1" />
+      <img src="/media/masterclass/IMA2023-07-18_Kurse_1451.webp" alt="Masterclass Image 2" class="last-image" />
     </div>
   </div>
-  <Footer/>
-
+  <Footer />
 </template>
 <style lang="sass" scoped>
 // CATEGORY HEADER
@@ -126,6 +117,4 @@ p
       max-width: 80vw
     .last-image
       margin-bottom: -250px
-
-
 </style>

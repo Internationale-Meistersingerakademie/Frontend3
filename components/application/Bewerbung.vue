@@ -1,9 +1,7 @@
 <script setup lang="ts">
-
-const props = defineProps({
-    text: {required: true, type:Object}
-  }
-)
+defineProps({
+  text: { required: true, type: Object },
+});
 </script>
 <template>
   <div class="category-header">
@@ -16,17 +14,12 @@ const props = defineProps({
       href="https://www.yaptracker.com/applications/internationale-meistersinger-akademie-2024"
       class="border-button"
       target="_blank"
-    >{{ $t("application.applyNow") }}</a
+      >{{ $t("application.applyNow") }}</a
     >
 
-    <img
-      src="/media/application/bewerbung_img.jpg"
-      alt="Bewerbungsbild"
-      style="max-height: 512px"
-    />
+    <img src="/media/application/bewerbung_img.jpg" alt="Bewerbungsbild" style="max-height: 512px" />
   </div>
 </template>
-
 
 <style lang="sass" scoped>
 // CATEGORY HEADER
