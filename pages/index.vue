@@ -85,7 +85,7 @@ useHead({
     <Navigation />
     <HomeWelcomeVideo :text="text" />
     <HomeVorsingen :text="text" :list="list" :auditions="audition" />
-    <HomeMediaPreview :text="text" :list="list" />
+    <HomeMediaPreview />
     <HomeNewsLehrer :text="text" :list="list" :persons="faculty" />
     <HomeSocialMedia />
     <Footer />
