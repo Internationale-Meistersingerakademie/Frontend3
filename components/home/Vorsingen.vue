@@ -16,10 +16,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-onMounted(() => {
-  console.log(props.auditions[0]);
-});
 </script>
 
 <template>
