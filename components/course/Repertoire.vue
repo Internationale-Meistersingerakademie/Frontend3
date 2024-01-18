@@ -87,6 +87,7 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 	display: flex
 	flex-direction: row
 	margin-top: -50px
+	position: relative
 
 // CURVED BACKGROUND
 .curved-bg
