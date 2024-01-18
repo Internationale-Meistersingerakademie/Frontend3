@@ -1,18 +1,5 @@
-<script setup lang="ts">
-import { useRoute } from "vue-router";
-
+<script lang="ts" setup>
 const localePath = useLocalePath();
-const route = useRoute();
-
-const bewerbungNavLink = ref<HTMLElement | null>(null);
-
-onMounted(() => {
-  // HIGHLIGHT CURRENT PAGE
-  const routeName = route.fullPath;
-  if (routeName.includes("Application")) {
-    bewerbungNavLink.value!.classList.add("current-page");
-  }
-});
 </script>
 
 <template>
@@ -31,7 +18,7 @@ onMounted(() => {
         </div>
       </div>
       <h2>{{ $t("home.scholarshipBanner.title") }}</h2>
-      <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link element" ref="bewerbungNavLink">
+      <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link element">
         {{ $t("navigation.bewerbung") }}
       </NuxtLink>
       <img src="/media/home/banner.png" alt="Banner" />
@@ -67,6 +54,19 @@ a
     width: 100%
     left: 0
     background: #FFF
+
+  &.router-link-active
+    &:after
+      content: '' !important
+      position: absolute !important
+      width: 100% !important
+      height: 2px !important
+      display: block !important
+      margin-top: 5px !important
+      right: 0 !important
+      left: 0 !important
+      background: #FFF !important
+      transition: width .3s ease !important
 
 .banner
   height: 105px
