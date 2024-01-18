@@ -214,12 +214,14 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
 
 .vorsingen-liste
   max-width: 65%
+  width: 100%
   display: flex
   flex-direction: column
-  align-items: center
+  align-items: flex-start
 
   h1
     margin-bottom: 30px
+    align-self: center
     color: $red
 
   ul
