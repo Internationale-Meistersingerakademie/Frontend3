@@ -16,6 +16,10 @@ const props = defineProps({
     required: true,
   },
 });
+
+onMounted(() => {
+  console.log(props.auditions[0]);
+});
 </script>
 
 <template>
@@ -36,7 +40,7 @@ const props = defineProps({
         {{ $getElementByTitle("audition_text", props.text).content }}
       </p>
       <!-- VORSINGEN ELEMENTE -->
-      <div class="vorsingen-elements-wrapper">
+      <div class="vorsingen-elements-wrapper" v-if="auditions.length">
         <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="audition[$i18n.locale].location">
           <h4 class="location">{{ audition[$i18n.locale].location }}</h4>
           <h4 class="date">{{ audition[$i18n.locale].date }}</h4>
