@@ -1,20 +1,20 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t } = useI18n();
 const head = useLocaleHead({
   addDirAttribute: true,
-  identifierAttribute: 'id',
-  addSeoAttributes: true
-})
+  identifierAttribute: "id",
+  addSeoAttributes: true,
+});
 useSeoMeta({
-  ogTitle: t('seo.ogTitle'),
-  ogDescription: t('seo.ogDescription'),
+  ogTitle: t("seo.ogTitle"),
+  ogDescription: t("seo.ogDescription"),
   ogImage: "", // TODO
   twitterCard: "summary_large_image",
-})
-const title = computed(() => t('seo.title'))
-const description = computed(() => t('seo.description'))
-
+});
+const title = computed(() => t("seo.title"));
+const description = computed(() => t("seo.description"));
 </script>
+
 <template>
   <Head>
     <Title>{{ title }}</Title>
@@ -27,9 +27,10 @@ const description = computed(() => t('seo.description'))
     </template>
   </Head>
   <div class="site-wrapper">
-    <NuxtPage/>
+    <NuxtPage />
   </div>
 </template>
+
 <style lang="sass">
 @import url("~/assets/fonts/main.css")
 
@@ -63,7 +64,6 @@ const description = computed(() => t('seo.description'))
 // ADD PADDING WHEN SCREEN IS TOO LARGE
 @media screen and (min-width: 1920px)
   html, body
-    padding: 0 200px
     display: flex
     justify-content: center
     align-items: center
@@ -76,5 +76,4 @@ const description = computed(() => t('seo.description'))
 
 a
   color: #A91744
-
 </style>

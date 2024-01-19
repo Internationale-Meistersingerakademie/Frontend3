@@ -1,8 +1,7 @@
 <script setup lang="ts">
-const props = defineProps({
-    text: {required: true, type:Object}
-  }
-)
+defineProps({
+  text: { required: true, type: Array as PropType<Array<Record<string, any>>> },
+});
 </script>
 
 <template>

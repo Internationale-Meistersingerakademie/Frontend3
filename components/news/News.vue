@@ -1,26 +1,22 @@
 <script setup lang="ts">
-const i18n = useI18n()
-const {$getElementByTitle} = useNuxtApp()
+const i18n = useI18n();
+const { $getElementByTitle } = useNuxtApp();
 
 const props = defineProps({
   list: {
     type: Array as PropType<Array<Record<string, any>>>,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
- const niceDates = (elem: Record<string, any>) => {
-   return new Date(elem.date).toLocaleDateString(
-     i18n.locale.value,
-     {
-       weekday: "long",
-       year: "numeric",
-       month: "long",
-       day: "numeric"
-     }
-   )
- }
-
+const niceDates = (elem: Record<string, any>) => {
+  return new Date(elem.date).toLocaleDateString(i18n.locale.value, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
 </script>
 <template>
   <div class="category-header">

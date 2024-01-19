@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import {Record} from "immutable";
-
-const props = defineProps({
-    text: {required: true, type:Object as any},
-    media: {required: true, type: Object}
-  }
-)
-const scrollTo = (selector:string) => {
-  const element = document.querySelector(selector)
+defineProps({
+  text: { required: true, type: Array as PropType<Array<Record<string, any>>> },
+  media: { required: true, type: Object },
+});
+const scrollTo = (selector: string) => {
+  const element = document.querySelector(selector);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
+    element.scrollIntoView({ behavior: "smooth" });
   }
-}
+};
 </script>
 <template>
   <div class="medien-header">
@@ -22,12 +19,7 @@ const scrollTo = (selector:string) => {
     </p>
 
     <div class="year-navigation">
-      <div
-        v-for="year in media"
-        v-bind:key="year"
-        class="year"
-        @click="scrollTo('#year' + year.year)"
-      >
+      <div v-for="year in media" v-bind:key="year" class="year" @click="scrollTo('#year' + year.year)">
         {{ year.year }}
       </div>
     </div>

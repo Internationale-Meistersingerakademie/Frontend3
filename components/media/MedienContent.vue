@@ -1,15 +1,14 @@
 <script setup lang="ts">
 const props = defineProps({
-  media: {type: Array<Record<string, any>>, required: true}
-})
+  media: { type: Array as PropType<Array<Record<string, any>>>, required: true },
+});
 const changeAudio = (id: string, link: string) => {
-  const audio = document.getElementById(id) as HTMLAudioElement
-  audio.pause()
-  audio.src = link
-  audio.load()
-  audio.play()
-}
-
+  const audio = document.getElementById(id) as HTMLAudioElement;
+  audio.pause();
+  audio.src = link;
+  audio.load();
+  audio.play();
+};
 </script>
 <template>
   <div class="medien-wrapper">
@@ -22,19 +21,13 @@ const changeAudio = (id: string, link: string) => {
         </h1>
 
         <div class="year-text-wrapper">
-
           <div class="teilnehmer">
             <h3>
-              <HelperMarkdownStringRenderer
-                :markdownString="year.textDE.titleOfTheYear"/>
+              <HelperMarkdownStringRenderer :markdownString="year.textDE.titleOfTheYear" />
             </h3>
             <ul>
-              <li
-                v-for="participant in year.textDE.participants"
-                v-bind:key="participant"
-              >
-                <HelperMarkdownStringRenderer
-                  :markdownString="participant"/>
+              <li v-for="participant in year.textDE.participants" v-bind:key="participant">
+                <HelperMarkdownStringRenderer :markdownString="participant" />
               </li>
             </ul>
           </div>
@@ -49,15 +42,16 @@ const changeAudio = (id: string, link: string) => {
               :src="videoLink"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+              allowfullscreen></iframe>
             <object
               v-if="year.video.length === year.downloads.length && year.downloads[index].link !== ''"
               :data="year.downloads[index].link"
               type="application/pdf"
               width="100%"
               height="315">
-              <p>Programm: <a :href="year.downloads[index].link" target="_system"> {{ year.downloads[index].alt}}</a></p>
+              <p>
+                Programm: <a :href="year.downloads[index].link" target="_system"> {{ year.downloads[index].alt }}</a>
+              </p>
             </object>
           </div>
 
@@ -75,46 +69,35 @@ const changeAudio = (id: string, link: string) => {
           <!--                /></slide>-->
           <!--              </carousel>-->
           <!--            </div>-->
-
         </div>
         <!-- AUDIO WRAPPER -->
         <div v-if="year.audio.length > 0" class="audio-wrapper">
           <div class="audio-leute">
             <h3 style="margin-top: 10px">Audio-Demos</h3>
             <ul>
-              <li
-                v-for="audio in year.audio"
-                v-bind:key="audio"
-                @click="changeAudio('audio' + year.year, audio.link)"
-              >
+              <li v-for="audio in year.audio" v-bind:key="audio" @click="changeAudio('audio' + year.year, audio.link)">
                 {{ audio.name }}
               </li>
             </ul>
-
           </div>
-          <audio
-            :src="year.audio[0].link"
-            :id="'audio' + year.year"
-            controls
-          >
+          <audio :src="year.audio[0].link" :id="'audio' + year.year" controls>
             Sadly, your Browser does not support the
             <code>audio</code>-Tag.
           </audio>
         </div>
         <!-- Downloads - wurde nutzlos, da die PDFs nun oben integriert sind-->
-<!--        <div class="teilnehmer" v-if="year.downloads.length">-->
-<!--          <h3 style="margin-top: 10px">Programmhefte</h3>-->
-<!--          <ul>-->
-<!--            <li v-for="download in year.downloads" v-bind:key="download.alt">-->
-<!--              <a :href="download.link" target="_blank"> {{ download.alt }}</a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
+        <!--        <div class="teilnehmer" v-if="year.downloads.length">-->
+        <!--          <h3 style="margin-top: 10px">Programmhefte</h3>-->
+        <!--          <ul>-->
+        <!--            <li v-for="download in year.downloads" v-bind:key="download.alt">-->
+        <!--              <a :href="download.link" target="_blank"> {{ download.alt }}</a>-->
+        <!--            </li>-->
+        <!--          </ul>-->
+        <!--        </div>-->
       </div>
     </div>
   </div>
 </template>
-
 
 <style lang="sass" scoped>
 .timeline

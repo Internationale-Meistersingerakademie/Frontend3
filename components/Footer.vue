@@ -1,78 +1,46 @@
 <script setup lang="ts">
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
+
 <template>
   <div class="footer">
     <div class="footer-wrapper">
       <div class="links">
         <!-- LINKS -->
         <div class="weitere-links-wrapper">
-          <span class="link-title">{{$t('home.footer.weitereLinks')}}</span>
+          <span class="link-title">{{ $t("home.footer.weitereLinks") }}</span>
           <div>
-            <a
-              href="https://www.neumarkt.de/kultur-stadtinfo/veranstaltungen-und-feste/internationale-meistersinger-akademie/"
-              target="_blank"
-            >{{$t('home.footer.kartenverkauf')}}</a
-            >
-            <a href="https://www.ima-neumarkt.de/" target="_blank"
-            >{{$t('home.footer.foerderverein')}}</a
-            >
-            <NuxtLink :to="localePath('/Media')">{{$t('home.footer.medien')}}</NuxtLink>
-            <NuxtLink :to="localePath('/Sponsors')">{{$t('home.footer.sponsoren')}}</NuxtLink>
-            <NuxtLink :to="localePath('/Contact')">{{$t('home.footer.kontakt')}}</NuxtLink>
+            <a href="https://www.neumarkt.de/kultur-stadtinfo/veranstaltungen-und-feste/internationale-meistersinger-akademie/" target="_blank">{{
+              $t("home.footer.kartenverkauf")
+            }}</a>
+            <a href="https://www.ima-neumarkt.de/" target="_blank">{{ $t("home.footer.foerderverein") }}</a>
+            <NuxtLink :to="localePath('/Media')">{{ $t("home.footer.medien") }}</NuxtLink>
+            <NuxtLink :to="localePath('/Sponsors')">{{ $t("home.footer.sponsoren") }}</NuxtLink>
+            <NuxtLink :to="localePath('/Contact')">{{ $t("home.footer.kontakt") }}</NuxtLink>
           </div>
         </div>
 
         <!-- SOCIAL & LANGUAGE -->
         <div class="lang-social-wrapper">
           <div class="lang-switcher">
-            <span class="link-title">{{$t('home.footer.changeLanguage')}}</span>
+            <span class="link-title">{{ $t("home.footer.changeLanguage") }}</span>
             <div v-if="$i18n.locale === 'de'">
-              <NuxtLink
-                :to="localePath($route.fullPath, 'de')"
-                class="lang-switcher-element"
-                @click="$i18n.locale = 'de'"
-              >
-                DEU
-              </NuxtLink>
+              <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element" @click="$i18n.locale = 'de'"> DEU </NuxtLink>
               <span class="lang-switcher-element">–</span>
-              <NuxtLink
-                :to="localePath($route.fullPath, 'en')"
-                class="lang-switcher-element"
-              >
-                ENG
-              </NuxtLink>
+              <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"> ENG </NuxtLink>
             </div>
             <div v-else>
-              <NuxtLink
-                :to="localePath($route.fullPath, 'en')"
-                class="lang-switcher-element"
-              >
-                ENG
-              </NuxtLink>
+              <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"> ENG </NuxtLink>
               <span class="lang-switcher-element">–</span>
-              <NuxtLink
-                :to="localePath($route.fullPath, 'de')"
-                class="lang-switcher-element"
-              >
-                DEU
-              </NuxtLink>
+              <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element"> DEU </NuxtLink>
             </div>
           </div>
 
           <div class="social-links">
-            <span class="link-title">{{$t('home.footer.folgtUns')}}</span>
+            <span class="link-title">{{ $t("home.footer.folgtUns") }}</span>
             <div>
-              <a
-                href="https://www.facebook.com/IMA-116394978416192/"
-                target="_system"
-              >Facebook</a
-              >
-              <a
-                href="https://www.instagram.com/intern.meistersingerakademie/"
-                target="_system"
-              >Instagram</a
-              >
+              <a href="https://www.facebook.com/IMA-116394978416192/" target="_system">Facebook</a>
+              <a href="https://www.instagram.com/intern.meistersingerakademie/" target="_system">Instagram</a>
               <!--<a href="#">Twitter</a>-->
             </div>
           </div>
@@ -82,20 +50,15 @@ const localePath = useLocalePath()
       <!-- IMPRESSUM -->
       <div class="impressum">
         <div>
-          <NuxtLink :to="localePath('/Impressum')" class="impressum-link">{{$t('home.footer.impressum')}}</NuxtLink>
-          <NuxtLink :to="localePath('/Datenschutz')" class="datenschutz-link">{{$t('home.footer.datenschutz')}}</NuxtLink>
+          <NuxtLink :to="localePath('/Impressum')" class="impressum-link">{{ $t("home.footer.impressum") }}</NuxtLink>
+          <NuxtLink :to="localePath('/Datenschutz')" class="datenschutz-link">{{ $t("home.footer.datenschutz") }}</NuxtLink>
         </div>
-        <span>© Copyright 2020 - {{(new Date()).getFullYear()}}</span>
+        <span>© Copyright 2020 - {{ new Date().getFullYear() }}</span>
       </div>
 
       <!-- SPONSOREN -->
       <div class="sponsoren">
-        <img
-          src="/media/neumarkt_logo.png"
-          loading="lazy"
-          height="140px"
-          alt="Neumarkt Logo"
-        />
+        <img src="/media/neumarkt_logo.png" loading="lazy" height="140px" alt="Neumarkt Logo" />
       </div>
     </div>
   </div>

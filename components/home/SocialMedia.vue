@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
+
 <template>
   <div class="social-media">
     <div class="social-media-wrapper">
@@ -9,31 +10,25 @@ const localePath = useLocalePath()
         <h1 class="insta-fb-title">Instagram</h1>
         <div class="insta-grid">
           <!-- LIGHTWIDGET INSTAGRAM -->
-            <iframe
-              src="https://cdn.lightwidget.com/widgets/9fe9954c82765ba4845d27ff1a3df830.html"
-              scrolling="no"
-              allowtransparency="true"
-              class="lightwidget-widget"
-              style="width:100%;border:0;overflow:hidden;"
-            ></iframe
-            >
+          <iframe
+            src="https://cdn.lightwidget.com/widgets/9fe9954c82765ba4845d27ff1a3df830.html"
+            scrolling="no"
+            allowtransparency="true"
+            class="lightwidget-widget"
+            style="width: 100%; border: 0; overflow: hidden"></iframe>
         </div>
 
-        <a
-          type="button"
-          href="https://www.instagram.com/intern.meistersingerakademie/"
-          class="border-button"
-          target="_system"
-        >{{ $t('home.social.to') }} Instagram</a
-        >
+        <a type="button" href="https://www.instagram.com/intern.meistersingerakademie/" class="border-button" target="_system">
+          {{ $t("home.social.to") }} Instagram
+        </a>
       </div>
 
       <!-- FACEBOOK -->
       <div class="facebook">
         <!-- ERFOLGE BUTTON -->
-        <NuxtLink :to="localePath('/Network')" class="border-button erfolge-button"
-        ><span>{{ $t('home.social.successes') }}</span></NuxtLink
-        >
+        <NuxtLink :to="localePath('/Network')" class="border-button erfolge-button">
+          <span>{{ $t("home.social.successes") }}</span>
+        </NuxtLink>
 
         <h1 class="insta-fb-title">Meta</h1>
 
@@ -47,24 +42,14 @@ const localePath = useLocalePath()
           data-small-header="false"
           data-adapt-container-width="false"
           data-hide-cover="false"
-          data-show-facepile="true"
-        >
-          <blockquote
-            cite="https://www.facebook.com/IMA-116394978416192/"
-            class="fb-xfbml-parse-ignore"
-          >
-            <a href="https://www.facebook.com/IMA-116394978416192/"
-            >IMA {{ $t('home.social.on') }} Meta</a
-            >
+          data-show-facepile="true">
+          <blockquote cite="https://www.facebook.com/IMA-116394978416192/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/IMA-116394978416192/">IMA {{ $t("home.social.on") }} Meta</a>
           </blockquote>
         </div>
-        <a
-          type="button"
-          href="https://www.facebook.com/IMA-116394978416192/"
-          class="border-button"
-          target="_blank"
-        >{{ $t('home.social.to') }} Facebook</a
-        >
+        <a type="button" href="https://www.facebook.com/IMA-116394978416192/" class="border-button" target="_blank">
+          {{ $t("home.social.to") }} Facebook
+        </a>
       </div>
     </div>
   </div>

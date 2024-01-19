@@ -1,58 +1,53 @@
 <script setup lang="ts">
-import type {Ref} from "vue";
-
-const {t} = useI18n()
-const runtimeConfig = useRuntimeConfig()
+const { t } = useI18n();
+const runtimeConfig = useRuntimeConfig();
 
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | ${t("misc.network")}` : t("misc.network");
-  }
-})
-let text: Ref<Array<Record<string, any>>> = ref([])
-let list: Ref<Array<Record<string, any>>> = ref([])
+  },
+});
+
+const text = ref<Array<Record<string, any>>>([]);
+const list = ref<Array<Record<string, any>>>([]);
 
 async function fetchTextData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/text/site/home`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/text/site/home`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/text/site/home'
-      }
-    })
+        source: "/text/site/home",
+      },
+    });
   } else {
-    //@ts-ignore
-    text = data
+    if (data.value) text.value = data.value;
   }
 }
 
 async function fetchListData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/list/site/network`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/list/site/network`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/list/site/network'
-      }
-    })
+        source: "/list/site/network",
+      },
+    });
   } else {
-    //@ts-ignore
-    list = data
+    if (data.value) list.value = data.value;
   }
 }
 
-await fetchTextData()
-await fetchListData()
-
+await Promise.all([fetchTextData(), fetchListData()]);
 </script>
 <template>
   <ScholarshipBanner />
   <Navigation />
-  <NetworkNetzwerk :text="text" :list="list"/>
+  <NetworkNetzwerk :text="text" :list="list" />
   <Footer />
 </template>

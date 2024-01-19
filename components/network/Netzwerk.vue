@@ -1,71 +1,58 @@
 <script setup lang="ts">
-const {$getElementByTitle} = useNuxtApp()
+const { $getElementByTitle } = useNuxtApp();
 
 const props = defineProps({
-  text: {type: Array<Record<string, any>>, required: true},
-  list: {type: Array<Record<string, any>>, required: true}
-})
+  text: { type: Array as PropType<Array<Record<string, any>>>, required: true },
+  list: { type: Array as PropType<Array<Record<string, any>>>, required: true },
+});
 const scrollTo = (selector: string) => {
-  const element = document.querySelector(selector)
+  const element = document.querySelector(selector);
   if (element) {
-    element.scrollIntoView({behavior: 'smooth'})
+    element.scrollIntoView({ behavior: "smooth" });
   }
-}
+};
 
-const year = new Date().getFullYear()
-const startYear = 2014
-const years = Array.from({length: year - startYear + 1}, (_, i) => startYear + i)
-
+const year = new Date().getFullYear();
+const startYear = 2014;
+const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear + i);
 </script>
+
 <template>
   <div class="lehrer-categories">
     <div class="category-header">
-      <h1>{{ $t('network.network') }}</h1>
+      <h1>{{ $t("network.network") }}</h1>
       <h3>{{ $getElementByTitle("network", props.text).title }}</h3>
       <p>
-        <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network', props.text).content as string"/>
+        <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network', props.text).content as string" />
       </p>
 
       <div class="netzwerk-structure-wrapper">
         <a class="gaeste category" @click="scrollTo('.gaeste-hl')">
-          {{ $t('network.attendeesOfTheAuditions') }}
+          {{ $t("network.attendeesOfTheAuditions") }}
         </a>
         <div class="arrow">
-          <svg
-            width="60"
-            height="17"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
+          <svg width="60" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
-              <path
-                d="M1806 632c994.113 0 1794-250.138 1794-386S2794.113 0 1800 0 0 110.138 0 246s811.887 386 1806 386z"
-                id="a"
-              />
+              <path d="M1806 632c994.113 0 1794-250.138 1794-386S2794.113 0 1800 0 0 110.138 0 246s811.887 386 1806 386z" id="a" />
             </defs>
             <g fill="none" fill-rule="evenodd">
-              <use
-                fill="#FFF"
-                fill-rule="nonzero"
-                xlink:href="#a"
-                transform="translate(-1513 -316)"
-              />
+              <use fill="#FFF" fill-rule="nonzero" xlink:href="#a" transform="translate(-1513 -316)" />
               <g fill="#9C9C9C">
-                <path d="M0 6.086h53v4H0z"/>
-                <path d="M50.293 0l9.192 8.086-9.192 8.072z"/>
+                <path d="M0 6.086h53v4H0z" />
+                <path d="M50.293 0l9.192 8.086-9.192 8.072z" />
               </g>
             </g>
           </svg>
         </div>
         <!-- <div class="resultierende-label">RESULTIERENDE</div> -->
         <a class="engagements category" @click="scrollTo('.engagements-hl')">
-          {{ $t('network.engagements') }}
+          {{ $t("network.engagements") }}
         </a>
         <div>&#38;</div>
         <a class="vertretungen category" @click="scrollTo('.vertretungen-hl')">
-          {{ $t('network.generalManagement') }}
+          {{ $t("network.generalManagement") }}
         </a>
-        <a class="preise category" @click="scrollTo('.preise-hl')">{{ $t('network.prices') }}</a>
+        <a class="preise category" @click="scrollTo('.preise-hl')">{{ $t("network.prices") }}</a>
       </div>
 
       <div class="vorsingen-wrapper">
@@ -75,16 +62,14 @@ const years = Array.from({length: year - startYear + 1}, (_, i) => startYear + i
         <div
           v-for="year in years.reverse()"
           class="vorsingen-liste"
-          v-if="$getElementByTitle('networkParticipants'+year.toString(), props.list) != null"
-        >
+          v-if="$getElementByTitle('networkParticipants' + year.toString(), props.list) != null">
           <h1 class="gaeste-hl">
-            {{ ($getElementByTitle('networkParticipants' + year.toString(), props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkParticipants" + year.toString(), props.list) as any)["title"] }}
           </h1>
           <ul>
             <li
               v-for="guest in ($getElementByTitle('networkParticipants'+year.toString(), props.list) as any)['content']"
-              v-bind:key="guest.subtitle"
-            >
+              v-bind:key="guest.subtitle">
               <span>{{ guest.subtitle }}</span> {{ guest.text }}
             </li>
           </ul>
@@ -93,124 +78,89 @@ const years = Array.from({length: year - startYear + 1}, (_, i) => startYear + i
 
       <div class="engagements-wrapper">
         <h1 class="engagements-hl">RESULTIERENDE ENGAGEMENTS</h1>
-        <div
-          class="engagement"
-          v-if="($getElementByTitle('networkFixedContract', props.list) as any) != null"
-        >
+        <div class="engagement" v-if="($getElementByTitle('networkFixedContract', props.list) as any) != null">
           <h1>
-            {{ ($getElementByTitle('networkFixedContract', props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkFixedContract", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
-              <li
-                v-for="element in ($getElementByTitle('networkFixedContract', props.list) as any)['content']"
-                v-bind:key="element.text"
-              >
-                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`"/>
+              <li v-for="element in ($getElementByTitle('networkFixedContract', props.list) as any)['content']" v-bind:key="element.text">
+                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div
-          class="engagement"
-          v-if="($getElementByTitle('networkGuestContract', props.list) as any) != null"
-        >
+        <div class="engagement" v-if="($getElementByTitle('networkGuestContract', props.list) as any) != null">
           <h1>
-            {{ ($getElementByTitle('networkGuestContract', props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkGuestContract", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
-              <li
-                v-for="element in ($getElementByTitle('networkGuestContract', props.list) as any)['content']"
-                v-bind:key="element.text"
-              >
-                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`"/>
+              <li v-for="element in ($getElementByTitle('networkGuestContract', props.list) as any)['content']" v-bind:key="element.text">
+                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div
-          class="engagement"
-          v-if="($getElementByTitle('networkYoungEngagement', props.list) as any) != null"
-        >
+        <div class="engagement" v-if="($getElementByTitle('networkYoungEngagement', props.list) as any) != null">
           <h1>
-            {{ ($getElementByTitle('networkYoungEngagement', props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkYoungEngagement", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
-              <li
-                v-for="element in ($getElementByTitle('networkYoungEngagement', props.list) as any)['content']"
-                v-bind:key="element.text"
-              >
-                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`"/>
+              <li v-for="element in ($getElementByTitle('networkYoungEngagement', props.list) as any)['content']" v-bind:key="element.text">
+                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
             </ul>
           </div>
         </div>
 
         <p class="special-information">
-          <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network_special', props.text).content as string"/>
+          <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network_special', props.text).content as string" />
         </p>
 
-        <div
-          class="engagement"
-          v-if="($getElementByTitle('networkConcertRecital', props.list) as any) != null"
-        >
+        <div class="engagement" v-if="($getElementByTitle('networkConcertRecital', props.list) as any) != null">
           <h1>
-            {{ ($getElementByTitle('networkConcertRecital', props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkConcertRecital", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
               <li
                 v-for="element in ($getElementByTitle('networkConcertRecital'+year.toString(), props.list) as any)['content']"
-                v-bind:key="element.text"
-              >
-                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`"/>
+                v-bind:key="element.text">
+                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div
-          class="engagement"
-          v-if="($getElementByTitle('networkManagement', props.list) as any) != null"
-        >
+        <div class="engagement" v-if="($getElementByTitle('networkManagement', props.list) as any) != null">
           <h1 class="vertretungen-hl">
-            {{ ($getElementByTitle('networkManagement', props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkManagement", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
-              <li
-                v-for="element in ($getElementByTitle('networkManagement', props.list) as any)['content']"
-                v-bind:key="element.text"
-              >
-                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`"/>
+              <li v-for="element in ($getElementByTitle('networkManagement', props.list) as any)['content']" v-bind:key="element.text">
+                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div
-          class="engagement"
-          v-if="($getElementByTitle('networkCompetitionPrices', props.list) as any) != null"
-        >
+        <div class="engagement" v-if="($getElementByTitle('networkCompetitionPrices', props.list) as any) != null">
           <h1 class="preise-hl">
-            {{ ($getElementByTitle('networkCompetitionPrices', props.list) as any)["title"] }}
+            {{ ($getElementByTitle("networkCompetitionPrices", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
-              <li
-                v-for="element in ($getElementByTitle('networkCompetitionPrices', props.list) as any)['content']"
-                v-bind:key="element.text"
-              >
-                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`"/>
+              <li v-for="element in ($getElementByTitle('networkCompetitionPrices', props.list) as any)['content']" v-bind:key="element.text">
+                <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
             </ul>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -264,12 +214,14 @@ const years = Array.from({length: year - startYear + 1}, (_, i) => startYear + i
 
 .vorsingen-liste
   max-width: 65%
+  width: 100%
   display: flex
   flex-direction: column
-  align-items: center
+  align-items: flex-start
 
   h1
     margin-bottom: 30px
+    align-self: center
     color: $red
 
   ul

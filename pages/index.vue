@@ -1,101 +1,93 @@
 <script setup lang="ts">
-import type {Ref} from "vue";
+const runtimeConfig = useRuntimeConfig();
 
-const runtimeConfig = useRuntimeConfig()
-
-let text: Ref<Array<Record<string, any>>> = ref([])
-let list: Ref<Array<Record<string, any>>> = ref([])
-let audition: Ref<Array<Record<string, any>>> = ref([])
-let faculty: Ref<Array<Record<string, any>>> = ref([])
+const text = ref<Array<Record<string, any>>>([]);
+const list = ref<Array<Record<string, any>>>([]);
+const audition = ref<Array<Record<string, any>>>([]);
+const faculty = ref<Array<Record<string, any>>>([]);
 
 async function fetchTextData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/text/site/home`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/text/site/home`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/text/site/home'
-      }
-    })
+        source: "/text/site/home",
+      },
+    });
   } else {
-    //@ts-ignore
-    text = data
+    if (data.value) text.value = data.value;
   }
 }
 
 async function fetchListData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/list/site/home`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/list/site/home`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/list/site/home'
-      }
-    })
+        source: "/list/site/home",
+      },
+    });
   } else {
-    //@ts-ignore
-    list = data
+    if (data.value) list.value = data.value;
   }
 }
 
 async function fetchAuditionData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/audition`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/audition`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/audition'
-      }
-    })
+        source: "/audition",
+      },
+    });
   } else {
-    //@ts-ignore
-    audition = data
+    if (data.value) audition.value = data.value;
   }
 }
 
 async function fetchFacultyData() {
-  const {data, error} = await useFetch(`${runtimeConfig.public.API}/person`)
+  const { data, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/person`);
   if (error.value) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Could not load data',
+      statusMessage: "Could not load data",
       data: {
         error: error.value,
-        source: '/person'
-      }
-    })
+        source: "/person",
+      },
+    });
   } else {
-    //@ts-ignore
-    faculty = data.value.sort((a, b) => b.importance - a.importance).filter(d => d.published);
+    if (data.value) faculty.value = data.value.sort((a, b) => b.importance - a.importance).filter((d) => d.published);
   }
 }
 
-await fetchListData();
-await fetchAuditionData();
-await fetchFacultyData();
-await fetchTextData();
+await Promise.all([fetchTextData(), fetchListData(), fetchAuditionData(), fetchFacultyData()]);
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | Home` : 'Home';
-  }
-})
+    return titleChunk ? `${titleChunk} | Home` : "Home";
+  },
+});
 </script>
+
 <template>
   <div>
-    <ScholarshipBanner/>
-    <Navigation/>
-    <HomeWelcomeVideo :text="text"/>
-    <HomeVorsingen :text="text" :list="list" :auditions="audition"/>
-    <HomeMediaPreview :text="text" :list="list"/>
-    <HomeNewsLehrer :text="text" :list="list" :persons="faculty"/>
-    <HomeSocialMedia/>
-    <Footer/>
+    <ScholarshipBanner />
+    <Navigation />
+    <HomeWelcomeVideo :text="text" />
+    <HomeVorsingen :text="text" :list="list" :auditions="audition" />
+    <HomeMediaPreview />
+    <HomeNewsLehrer :text="text" :list="list" :persons="faculty" />
+    <HomeSocialMedia />
+    <Footer />
   </div>
 </template>

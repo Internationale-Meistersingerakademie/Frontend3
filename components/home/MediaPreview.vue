@@ -1,27 +1,16 @@
 <script setup lang="ts">
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
+
 <template>
   <div class="media-preview">
     <div class="media-preview-wrapper">
       <div class="link">
-        <NuxtLink :to="localePath('/Media')" class="media-button"
-          >{{$t('home.mediaPreview.toMedia')}}</NuxtLink
-        >
+        <NuxtLink :to="localePath('/Media')" class="media-button">{{ $t("home.mediaPreview.toMedia") }}</NuxtLink>
       </div>
-      <video
-        src="/media/home/bg_video.mp4"
-        class="bg-video"
-        autoplay
-        loop
-        muted
-      ></video>
+      <video src="/media/home/bg_video.mp4" class="bg-video" autoplay loop muted></video>
     </div>
-    <img
-      src="/media/home/video_curve.png"
-      alt=""
-      class="video-curve"
-    />
+    <img src="/media/home/video_curve.png" alt="" class="video-curve" />
   </div>
 </template>
 
