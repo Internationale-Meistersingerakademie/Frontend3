@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
+const { $getElementByTitle } = useNuxtApp();
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -8,7 +9,7 @@ useHead({
   },
 });
 
-const { data: content, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/text/name/masterclass`, {
+const { data: content, error } = await useFetch<Array<Record<string, any>>>(`${runtimeConfig.public.API}/text/site/masterclass`, {
   default: () => [],
 });
 if (error.value) {
@@ -21,19 +22,29 @@ if (error.value) {
     },
   });
 }
+
 </script>
 
 <template>
   <ScholarshipBanner />
   <Navigation />
   <div class="category-header">
-    <h1>{{ content[0][$i18n.locale]["title"] }}</h1>
+    <h1>{{ $getElementByTitle('masterclass', content)["title"] }}</h1>
   </div>
   <div class="content-container">
-    <HelperMarkdownStringRenderer :markdownString="content[0][$i18n.locale]['content']" />
+    <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('masterclass', content)['content'] as string" />
     <div class="image-container">
       <img src="/media/masterclass/IMA2023-07-18_Kurse_1439.webp" alt="Masterclass Image 1" />
       <img src="/media/masterclass/IMA2023-07-18_Kurse_1451.webp" alt="Masterclass Image 2" class="last-image" />
+    </div>
+  </div>
+  <div class="extra" v-if=" $getElementByTitle('masterclass-extra', content) &&  $getElementByTitle('masterclass-extra', content)['title']">
+    <div class="category-header">
+      <h1>{{ $getElementByTitle('masterclass-extra', content)["title"] }}</h1>
+    </div>
+    <div class="content-container">
+      <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('masterclass-extra', content)['content'] as string" />
+
     </div>
   </div>
   <Footer />
