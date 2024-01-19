@@ -15,6 +15,10 @@ const props = defineProps({
     type: Array as PropType<Array<Record<string, any>>>,
     required: true,
   },
+  dates:{
+    type: Array as PropType<Array<Record<string, any>>>,
+    required: true,
+  }
 });
 </script>
 
@@ -54,9 +58,34 @@ const props = defineProps({
         </div>
       </div>
       <!-- ANMELDEN BUTTON -->
-      <NuxtLink :to="localePath('/Application')">
+      <NuxtLink :to="localePath('/Application')" v-if="auditions.length">
         <button type="button" name="button" class="border-button">
           {{ $t("home.vorsingen.apply") }}
+        </button>
+      </NuxtLink>
+
+      <!-- TERMINE ELEMENTE -->
+      <div class="vorsingen-elements-wrapper" v-if="dates.length">
+        <div class="vorsingen-element" v-for="date in dates" v-bind:key="date[$i18n.locale].location">
+          <h4 class="location">{{ date[$i18n.locale].location }}</h4>
+          <h4 class="date">{{ date[$i18n.locale].text }}</h4>
+          <h4 class="deadline">
+            {{$t("home.vorsingen.date") }}:
+            <span>{{
+                new Date(date[$i18n.locale].date).toLocaleDateString($i18n.locale, {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }}</span>
+          </h4>
+        </div>
+      </div>
+      <!-- ANMELDEN BUTTON -->
+      <NuxtLink to="https://www.neumarkt.de/kultur-stadtinfo/veranstaltungen-und-feste/internationale-meistersinger-akademie/" v-if="dates.length" target="_blank">
+        <button type="button" name="button" class="border-button">
+          {{ $t("home.vorsingen.tickets") }}
         </button>
       </NuxtLink>
 

@@ -14,6 +14,8 @@ export default defineI18nConfig(() => ({
                 },
                 vorsingen: {
                     apply: 'Apply',
+                    date: 'Date',
+                    tickets: 'Tickets',
                     livestream: 'Livestream here',
                     glance: 'IMA at a glance:',
                     glanceContent: [
@@ -140,7 +142,9 @@ export default defineI18nConfig(() => ({
                     toMedia: "ZU UNSEREN MEDIEN",
                 },
                 vorsingen: {
-                    apply: 'Zu der Bewerbungsseite',
+                    apply: 'Anmeldung',
+                    date: 'Datum',
+                    tickets: 'Tickets',
                     glance: 'IMA auf einen Blick:',
                     glanceContent: [
                         'Vorsingen vor Intendanten, Casting Direktoren, Operndirektoren, Agenten, Veranstalter •',
