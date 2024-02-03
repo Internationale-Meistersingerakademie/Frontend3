@@ -19,6 +19,7 @@ const description = computed(() => t("seo.description"));
   <Head>
     <Title>{{ title }}</Title>
     <Meta name="description" :content="description" />
+    <Meta name="google-site-verification" content="lAkh-BvANcTC1hIt5qqARbshxyDxPfnruUEzL8oGY8U" />
     <template v-for="link in head.link" :key="link.id">
       <Link :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
     </template>
