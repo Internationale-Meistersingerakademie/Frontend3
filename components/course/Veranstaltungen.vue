@@ -158,6 +158,7 @@ watch(currentImage, () => {
             :src="'/media/course/roundtables_galery/' + image"
             :alt="'Image ' + index"
             class="image"
+            loading="lazy"
             :style="{ display: index === currentImage ? 'block' : 'none' }" />
         </div>
         <img src="/media/course/arrow_forward.svg" alt="arrow_forward" class="arrow" v-on:click="nextImage" />
@@ -339,6 +340,7 @@ watch(currentImage, () => {
     cursor: pointer
     transition: all .5s ease
     align-self: center
+    z-index: 100
 
     &:hover
       transform: scale(1.1)
@@ -418,7 +420,6 @@ watch(currentImage, () => {
       height: auto
 
     .arrow
-      z-index: 1
       width: 7vw
       height: auto
 
