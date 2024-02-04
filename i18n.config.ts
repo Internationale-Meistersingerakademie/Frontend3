@@ -125,9 +125,9 @@ export default defineI18nConfig(() => ({
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
-                description: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie.',
+                description: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie. IMA offers a unique opportunity for soprano, mezzo-soprano, tenor, baritone and bass to study with some of the world’s most renowned artists and teachers like Edith Wiens. Apply for IMA '+ new Date().getFullYear() + ' now!',
                 ogTitle: 'IMA - International Meistersinger Academy',
-                ogDescription: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie.',
+                ogDescription: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie. IMA offers a unique opportunity for soprano, mezzo-soprano, tenor, baritone and bass to study with some of the world’s most renowned artists and teachers like Edith Wiens. Apply for IMA '+ new Date().getFullYear() + ' now!',
             }
         },
         de: {
@@ -244,9 +244,9 @@ export default defineI18nConfig(() => ({
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
-                description: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie.',
+                description: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie. Die IMA bietet Sopranisten, Mezzosopranisten, Tenören, Baritonen und Bässen die einzigartige Möglichkeit, bei einigen der weltweit renommiertesten Künstler und Lehrer wie Edith Wiens zu studieren. Bewerben Sie sich für IMA '+ new Date().getFullYear() +' jetzt!,',
                 ogTitle: 'IMA - Internationale Meistersinger Akademie',
-                ogDescription: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie.',
+                ogDescription: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie. Die IMA bietet Sopranisten, Mezzosopranisten, Tenören, Baritonen und Bässen die einzigartige Möglichkeit, bei einigen der weltweit renommiertesten Künstler und Lehrer wie Edith Wiens zu studieren. Bewerben Sie sich für IMA '+ new Date().getFullYear() +' jetzt!,',
             }
         }
     }
