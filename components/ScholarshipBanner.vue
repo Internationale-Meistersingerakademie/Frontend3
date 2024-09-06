@@ -18,9 +18,9 @@ const localePath = useLocalePath();
         </div>
       </div>
       <h2>{{ $t("home.scholarshipBanner.title") }}</h2>
-      <NuxtLink :to="localePath('/Application')" class="bewerbung-nav-link element">
-        {{ $t("navigation.bewerbung") }}
-      </NuxtLink>
+      <div class="lang-switcher element">
+<!--        Placeholder -->
+      </div>
       <img src="/media/home/banner.png" alt="Banner" />
     </div>
   </div>
@@ -99,7 +99,7 @@ img
 
 
 .lang-switcher
-
+  width: 120px
   div
     span
       color: #FFF

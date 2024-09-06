@@ -129,26 +129,22 @@ onMounted(() => {
               $t('navigation.kurs')
             }}
           </NuxtLink>
-          <NuxtLink
-            :to="localePath('/Masterclass')"
-            class="meisterkurs-nav-link"
-            ref="meisterkursNavLink">{{
-              $t('navigation.masterclass')
+          <NuxtLink :to="localePath('/Faculty')" class="lehrer-nav-link" ref="lehrerNavLink">{{
+              $t('navigation.lehrer')
             }}
           </NuxtLink>
         </div>
 
         <div class="nav-right">
-          <NuxtLink :to="localePath('/Faculty')" class="lehrer-nav-link" ref="lehrerNavLink">{{
-              $t('navigation.lehrer')
-            }}
-          </NuxtLink>
           <NuxtLink :to="localePath('/Network')" class="netzwerk-nav-link" ref="netzwerkNavLink">
             {{ $t('navigation.netzwerk') }}
           </NuxtLink>
           <NuxtLink :to="localePath('/Media')" class="medien-nav-link" ref="medienNavLink">{{
               $t('navigation.medien')
             }}
+          </NuxtLink>
+          <NuxtLink :to="localePath('/Application')" class="bewerbungNavLink">
+            {{ $t("navigation.bewerbung") }}
           </NuxtLink>
         </div>
       </nav>
@@ -202,7 +198,6 @@ onMounted(() => {
           <nav class="mobile_nav" ref="mobileNav">
             <NuxtLink :to="localePath('/')">{{ $t('navigation.home') }}</NuxtLink>
             <NuxtLink :to="localePath('/Course')">{{ $t('navigation.kurs') }}</NuxtLink>
-            <NuxtLink :to="localePath('/Masterclass')">{{ $t('navigation.masterclass') }}</NuxtLink>
             <NuxtLink :to="localePath('/Faculty')">{{ $t('navigation.lehrer') }}</NuxtLink>
             <NuxtLink :to="localePath('/Network')">{{ $t('navigation.netzwerk') }}</NuxtLink>
             <NuxtLink :to="localePath('/Media')">{{ $t('navigation.medien') }}</NuxtLink>
