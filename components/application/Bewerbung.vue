@@ -12,7 +12,7 @@ defineProps({
     </p>
     <a
       type="button"
-      href="https://www.yaptracker.com/applications/internationale-meistersinger-akademie-2024"
+      href="https://www.yaptracker.com/applications/internationale-meistersinger-akademie-2025"
       class="border-button"
       target="_blank"
       >{{ $t("application.applyNow") }}</a
