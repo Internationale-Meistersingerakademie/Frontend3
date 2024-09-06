@@ -2,7 +2,7 @@ export default defineI18nConfig(() => ({
     legacy: false,
     messages: {
         en: {
-            application:{
+            application: {
                 applyNow: "Apply now",
             },
             home: {
@@ -37,7 +37,7 @@ export default defineI18nConfig(() => ({
                     faculty: "Faculty",
                     allFaculty: "ALL FACULTY",
                 },
-                social:{
+                social: {
                     to: "To",
                     on: "on",
                     successes: "To our successes",
@@ -80,13 +80,13 @@ export default defineI18nConfig(() => ({
             },
             course: {
                 repertoire: {
-                    gallery:[
+                    gallery: [
                         "The historic Reitstadel with a concert hall (455 seats) and practice rooms in the modern glass extension.",
                         "In the Residenz (with foyer, ballroom and changing rooms) (individual) lessons take place and social activities.",
                         "The St. Josef Monastery offers an idyllic and quiet retreat with en suite rooms for all participants."
                     ]
                 },
-                events:{
+                events: {
                     tickets: "Ticket Sales"
                 }
             },
@@ -100,14 +100,14 @@ export default defineI18nConfig(() => ({
                     makeupArtist: 'MAKE-UP ARTIST'
                 }
             },
-            network:{
-                network:"NETZWERK",
+            network: {
+                network: "NETZWERK",
                 attendeesOfTheAuditions: "ATTENDEES OF THE AUDITIONS",
                 engagements: "RESULTING ENGAGEMENTS",
                 generalManagement: "GENERAL MANAGEMENT",
                 prices: "PRICES",
             },
-            sponsors:{
+            sponsors: {
                 sponsors: "SPONSORS"
             },
             misc: {
@@ -125,13 +125,13 @@ export default defineI18nConfig(() => ({
             },
             seo: {
                 title: 'IMA - International Meistersinger Academy',
-                description: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie. IMA offers a unique opportunity for soprano, mezzo-soprano, tenor, baritone and bass to study with some of the world’s most renowned artists and teachers like Edith Wiens. Apply for IMA '+ new Date().getFullYear() + ' now!',
+                description: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie. IMA offers a unique opportunity for soprano, mezzo-soprano, tenor, baritone and bass to study with some of the world’s most renowned artists and teachers like Edith Wiens. Apply for IMA ' + new Date().getFullYear() + ' now!',
                 ogTitle: 'IMA - International Meistersinger Academy',
-                ogDescription: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie. IMA offers a unique opportunity for soprano, mezzo-soprano, tenor, baritone and bass to study with some of the world’s most renowned artists and teachers like Edith Wiens. Apply for IMA '+ new Date().getFullYear() + ' now!',
+                ogDescription: 'The International Meistersinger Academy (IMA) offers emerging artists an exceptional environment of excellence in the study of opera, oratorio and Lied/Mélodie. IMA offers a unique opportunity for soprano, mezzo-soprano, tenor, baritone and bass to study with some of the world’s most renowned artists and teachers like Edith Wiens. Apply for IMA ' + new Date().getFullYear() + ' now!',
             }
         },
         de: {
-            application:{
+            application: {
                 applyNow: "Jetzt bewerben",
             },
             home: {
@@ -165,7 +165,7 @@ export default defineI18nConfig(() => ({
                     faculty: "Lehrkörper",
                     allFaculty: "ALLE LEHRKÖRPER",
                 },
-                social:{
+                social: {
                     to: "Zu",
                     on: "auf",
                     successes: "Zu unseren Erfolgen",
@@ -199,7 +199,7 @@ export default defineI18nConfig(() => ({
             },
             course: {
                 repertoire: {
-                    gallery:[
+                    gallery: [
                         "Der Historische Reitstadel mit Konzertsaal (455 Sitzplätze) und Übungsräumen im modernen Glasanbau.",
                         "In der Residenz (mit Foyer, Festsaal und Garderoben) finden (individueller) Unterricht statt und soziale Aktivitäten.",
                         "Das Kloster St. Josef bietet mit en Suite Zimmern für alle Teilnehmer einen idyllischen und ruhigen Rückzugsort."
@@ -219,14 +219,14 @@ export default defineI18nConfig(() => ({
                     makeupArtist: 'MAKE-UP KÜNSTLER'
                 }
             },
-            network:{
-                network:"NETZWERK",
+            network: {
+                network: "NETZWERK",
                 attendeesOfTheAuditions: "GREMIEN DER VORSINGEN",
                 engagements: "RESULTIERENDE ENGAGEMENTS",
                 generalManagement: "VERTRETUNGEN",
                 prices: "PREISE",
             },
-            sponsors:{
+            sponsors: {
                 sponsors: "SPONSOREN"
             },
             misc: {
@@ -244,9 +244,9 @@ export default defineI18nConfig(() => ({
             },
             seo: {
                 title: 'IMA - Internationale Meistersinger Akademie',
-                description: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie. Die IMA bietet Sopranisten, Mezzosopranisten, Tenören, Baritonen und Bässen die einzigartige Möglichkeit, bei einigen der weltweit renommiertesten Künstler und Lehrer wie Edith Wiens zu studieren. Bewerben Sie sich für IMA '+ new Date().getFullYear() +' jetzt!,',
+                description: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie. Die IMA bietet Sopranisten, Mezzosopranisten, Tenören, Baritonen und Bässen die einzigartige Möglichkeit, bei einigen der weltweit renommiertesten Künstler und Lehrer wie Edith Wiens zu studieren. Bewerben Sie sich für IMA ' + new Date().getFullYear() + ' jetzt!,',
                 ogTitle: 'IMA - Internationale Meistersinger Akademie',
-                ogDescription: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie. Die IMA bietet Sopranisten, Mezzosopranisten, Tenören, Baritonen und Bässen die einzigartige Möglichkeit, bei einigen der weltweit renommiertesten Künstler und Lehrer wie Edith Wiens zu studieren. Bewerben Sie sich für IMA '+ new Date().getFullYear() +' jetzt!,',
+                ogDescription: 'Die Internationale Meistersinger Akademie (IMA) bietet in einer außergewöhnlichen Arbeitsumgebung angehenden Künstlern eine herausragende Studienmöglichkeit in den Bereichen Oper, Oratorium und Lied/Mélodie. Die IMA bietet Sopranisten, Mezzosopranisten, Tenören, Baritonen und Bässen die einzigartige Möglichkeit, bei einigen der weltweit renommiertesten Künstler und Lehrer wie Edith Wiens zu studieren. Bewerben Sie sich für IMA ' + new Date().getFullYear() + ' jetzt!,',
             }
         }
     }
