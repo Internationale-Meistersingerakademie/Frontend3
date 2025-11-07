@@ -35,6 +35,8 @@
 
         <img src="/media/sponsors/sponsor_21.png" alt="" />
 
+        <img src="/media/sponsors/sponsor_37.png" alt="" />
+
       </div>
     </div>
   </div>
