@@ -19,6 +19,8 @@
       <div class="row">
         <img src="/media/sponsors/sponsor_11.png" style="height: 80px" alt="" />
         <img src="/media/sponsors/sponsor_12.png" style="height: 70px" alt="" />
+
+        <img src="/media/sponsors/sponsor_37.png" alt="" />
         <img src="/media/sponsors/sponsor_14.png" style="height: 120px" alt="" />
       </div>
 
@@ -34,8 +36,6 @@
         <img src="/media/sponsors/sponsor_19.png" alt="" />
 
         <img src="/media/sponsors/sponsor_21.png" alt="" />
-
-        <img src="/media/sponsors/sponsor_37.png" alt="" />
 
       </div>
     </div>
