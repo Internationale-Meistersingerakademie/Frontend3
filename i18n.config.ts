@@ -44,6 +44,7 @@ export default defineI18nConfig(() => ({
                     to: "To",
                     on: "on",
                     successes: "To our successes",
+                    metaLead: "Concert announcements, photos from the course and news from the academy — posted regularly on our Facebook page.",
                 },
                 footer: {
                     weitereLinks: "Further Links:",
@@ -172,6 +173,7 @@ export default defineI18nConfig(() => ({
                     to: "Zu",
                     on: "auf",
                     successes: "Zu unseren Erfolgen",
+                    metaLead: "Konzertankündigungen, Bilder aus dem Kurs und Neuigkeiten aus der Akademie — regelmäßig auf unserer Facebook-Seite.",
                 },
                 footer: {
                     weitereLinks: "Weitere Links:",
