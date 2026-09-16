@@ -156,9 +156,6 @@ const niceDates = (elem: Record<string, any>) => {
     width: 100vw
     border-right: 1px solid #E9E9E9
 
-    &:last-child
-      margin-bottom: -280px
-
   .news-element
     width: 100vw
     background-color: #F9F9F9
@@ -182,7 +179,7 @@ const niceDates = (elem: Record<string, any>) => {
       font-size: 12px
       color: $black
       letter-spacing: 0.67px
-      text-align: justify
+      text-align: left
       margin-bottom: 15px
       line-height: 20px
       width: 90%

@@ -67,7 +67,13 @@ const availableLocales = useTranslatedLocales();
 
       <!-- SPONSOREN -->
       <div class="sponsoren">
-        <img src="/media/neumarkt_logo.png" loading="lazy" height="140px" alt="Neumarkt Logo" />
+        <!-- Bare numbers rather than `height="140px"`: the units are invalid in
+             an HTML dimension attribute, and while Chrome happens to parse the
+             leading digits anyway, only a valid pair gives the browser an
+             aspect ratio to reserve space with before this lazy image loads.
+             477x140 is the file's own 1182x347 ratio. The rendered size is set
+             in CSS below, not here. -->
+        <img src="/media/neumarkt_logo.png" loading="lazy" width="477" height="140" alt="Neumarkt Logo" />
       </div>
     </div>
   </div>
@@ -81,7 +87,7 @@ const availableLocales = useTranslatedLocales();
   margin-left: 15px
 
 .footer-wrapper
-  height: 220px
+  min-height: 220px
   width: 100%
   display: flex
   padding: 0 5%
@@ -245,9 +251,29 @@ const availableLocales = useTranslatedLocales();
     align-self: center
     background-color: #FFF
     padding: 35px
+    // Sized from the height, with the width left to follow the logo's own
+    // 1182x347 ratio — 70px tall is what the old `height="140px"` attribute
+    // actually produced, since the global border-box rule spent 70px of it on
+    // the padding. Stating it here keeps the 35px white frame *around* the
+    // logo rather than inside it, so the picture is the size it used to be
+    // instead of half again as large.
+    box-sizing: content-box
+    width: auto
+    height: 70px
+    // Room for the padding in the cap, and `contain` as a hard floor against
+    // distortion: the mobile rule at the bottom of this file pins the height,
+    // so a clamped width would otherwise squash the logo (it was rendering 37%
+    // too wide for its height at 390px).
+    max-width: calc(100% - 70px)
+    object-fit: contain
 
 .weitere-links-wrapper
+  // max-width, because the mobile breakpoint below never reset the 600px and
+  // the block ran off the left edge of a 390px screen — taking the ENG, DEU,
+  // 한국 and 中文 links with it. Those last two appear nowhere else in the UI,
+  // so on a phone the site had two entirely unreachable locales.
   width: 600px
+  max-width: 100%
   position: absolute
 
   div
@@ -258,18 +284,24 @@ const availableLocales = useTranslatedLocales();
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
   .footer-wrapper
-    height: 750px
+    min-height: 750px
     flex-direction: column
     justify-content: center
     align-items: center
     padding: 0 5%
-    margin-top: 300px
+    // Was 300px, which six different components then subtracted back out with
+    // negative bottom margins of -200px to -280px. Because each page picked its
+    // own counterweight, the actual gap above the footer ranged from 20px on
+    // /Faculty to 340px on /Course. One modest value, applied once, replaces
+    // the whole arrangement.
+    margin-top: 80px
 
   .weitere-links-wrapper
     display: flex
     flex-direction: column
     align-items: center
     position: relative
+    width: 100%
 
     span
       margin-bottom: 0px
@@ -335,5 +367,7 @@ const availableLocales = useTranslatedLocales();
       margin: 15px 0 0 0
 
     img
-      height: 130px
+      // 60px of picture, matching what `height: 130px` used to leave once the
+      // border-box padding was taken out of it.
+      height: 60px
 </style>

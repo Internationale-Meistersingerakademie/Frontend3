@@ -65,5 +65,4 @@ defineProps({
 
 		.rich-text
 			max-width: 80vw
-			text-align: justify
 </style>

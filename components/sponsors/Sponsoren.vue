@@ -52,8 +52,11 @@
     text-transform: uppercase
 
 .sponsoren-wrapper
+  // width, not min-width: the mobile breakpoint lowers max-width to 500px, but
+  // a min-width of 1200px outranked it and forced the block to 1200px on a
+  // 390px screen. This fills the same space on desktop without the floor.
+  width: 100%
   max-width: 1200px
-  min-width: 1200px
 
 .row
   margin-bottom: 80px
@@ -70,7 +73,6 @@
     justify-content: space-between
     align-items: center
     flex-direction: column
-    margin-bottom: -200px
 
     h1
       font-size: 23px

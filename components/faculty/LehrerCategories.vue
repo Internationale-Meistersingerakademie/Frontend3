@@ -54,6 +54,11 @@ const additionalTextContent = $getElementByTitle("additional_text", props.text).
 	justify-content: space-between
 	align-items: center
 	flex-direction: column
+	// Same as on /Network: the hero's curve overhangs this block by 57px and
+	// the hero carries z-index: 1, so it painted over the heading. The h1's own
+	// z-index: 2 could not do anything without a `position`.
+	position: relative
+	z-index: 2
 
 	h1
 		font-size: 28px
@@ -61,11 +66,15 @@ const additionalTextContent = $getElementByTitle("additional_text", props.text).
 		color: $black
 		letter-spacing: 1px
 		margin-bottom: 50px
-		z-index: 2
 
 .categories
 	display: flex
 	justify-content: space-between
+	// The filter labels are translated, so their combined width varies by
+	// locale. Wrapping keeps every filter reachable instead of pushing the last
+	// ones past the edge, and changes nothing while they still fit on one row.
+	flex-wrap: wrap
+	gap: 12px
 	width: 75%
 	max-width: 1100px
 
@@ -104,9 +113,12 @@ const additionalTextContent = $getElementByTitle("additional_text", props.text).
 
 	.categories
 		display: flex
-		justify-content: space-between
+		// Wrapping rather than a horizontal scroller: three of the five filters
+		// sat outside the visible area at 390px with no affordance suggesting
+		// the strip could be scrolled at all.
+		flex-wrap: wrap
+		justify-content: center
 		width: 80%
-		overflow-x: scroll
 
 	.category
 		background-color: #F1F1F1

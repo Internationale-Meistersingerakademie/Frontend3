@@ -39,7 +39,7 @@ const welcomeText = $getElementByTitle("welcome_at_ima", props.text);
 	justify-content: space-between
 	align-items: center
 	margin-top: -58px
-	height: 400px
+	min-height: 400px
 
 .welcome-video-wrapper
 	flex: 1
@@ -115,9 +115,9 @@ const welcomeText = $getElementByTitle("welcome_at_ima", props.text);
 @media only screen and (min-width: 50px) and (max-width: 1200px)
 	.welcome-wrapper
 		background-color: #FFF
-		height: 880px
+		min-height: auto
 		flex-direction: column-reverse
-		margin: 170px 0 0 0
+		margin: 40px 0 0 0
 		padding: 0
 		overflow: visible
 
@@ -130,7 +130,7 @@ const welcomeText = $getElementByTitle("welcome_at_ima", props.text);
 			width: 100%
 			z-index: 10000
 			height: 180px
-			margin-top: 100px
+			margin-top: 40px
 
 	.welcome-text-wrapper
 		padding: 0 40px
@@ -144,7 +144,7 @@ const welcomeText = $getElementByTitle("welcome_at_ima", props.text);
 			font-size: 13px
 			color: $black
 			letter-spacing: 1px
-			text-align: justify
+			text-align: left
 			line-height: 24px
 			max-width: 620px
 </style>

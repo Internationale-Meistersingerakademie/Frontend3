@@ -61,8 +61,14 @@ const scrollTo = (selector: string) => {
     padding: 0 100px
 
 .year-navigation
-  height: 70px
+  // The list grows by one entry every January, so a fixed single row was always
+  // going to run out of width — at 1440px the current year was already cut in
+  // half. min-height keeps the original rhythm while allowing a second row.
+  min-height: 70px
   display: flex
+  flex-wrap: wrap
+  justify-content: center
+  row-gap: 10px
   padding: 15px 20px 15px 10px
 
   @media screen and (min-width: 1440px)
@@ -96,7 +102,6 @@ const scrollTo = (selector: string) => {
 
   .year-navigation
     width: 80%
-    overflow-x: scroll
 
   .timeline
     display: none

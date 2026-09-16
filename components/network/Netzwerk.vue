@@ -205,6 +205,13 @@ const populatedYears = computed<Array<number>>(() =>
   justify-content: space-between
   align-items: center
   flex-direction: column
+  // The hero's decorative curve hangs 57px past the bottom of the header, and
+  // the header carries z-index: 1, so it paints over the start of this block —
+  // 57px of it, which reached 9px into the subtitle and shaved its capitals.
+  // The h1 below already asked for z-index: 2 but had no `position`, so the
+  // property was inert. Lifting the whole header block is what that line meant.
+  position: relative
+  z-index: 2
 
   h1
     font-size: 28px
@@ -212,7 +219,6 @@ const populatedYears = computed<Array<number>>(() =>
     color: $black
     letter-spacing: 1px
     margin-bottom: 10px
-    z-index: 2
     text-transform: uppercase
 
   h3
@@ -375,7 +381,7 @@ const populatedYears = computed<Array<number>>(() =>
       max-width: 300px
 
     p
-      text-align: justify
+      text-align: left
       max-width: 80%
       font-size: 15px
       margin-bottom: 10px
@@ -411,7 +417,6 @@ const populatedYears = computed<Array<number>>(() =>
     display: flex
     flex-direction: column
     align-items: center
-    margin-bottom: -220px
     max-width: 80%
 
     h1
@@ -440,7 +445,7 @@ const populatedYears = computed<Array<number>>(() =>
   .netzwerk-structure-wrapper
     flex-direction: column
     width: auto
-    height: 500px
+    min-height: 500px
     margin: 30px 0 10px 0
 
     svg

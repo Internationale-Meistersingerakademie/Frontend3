@@ -27,6 +27,12 @@ const localePath = useLocalePath();
 		margin-left: -300px
 
 .media-preview-wrapper
+	// Fixed on purpose, not an oversight. The video is 300px lower and much
+	// taller than this box and deliberately overflows it at z-index -2, so it
+	// reads as a strip passing behind the sections above and below. Relaxing
+	// this to min-height let the video claim its full 810px plus the 300px
+	// offset and the band became a 1110px full-bleed block. Nothing in here is
+	// CMS text, so nothing needs room to grow.
 	height: 350px
 	width: 100%
 	position: relative
@@ -83,6 +89,8 @@ const localePath = useLocalePath();
 		display: none
 
 	.media-preview-wrapper
+		// Same reasoning as the desktop rule above: the band is a fixed-height
+		// window onto an oversized video, not a box that wraps it.
 		height: 350px
 		width: 100%
 		position: relative

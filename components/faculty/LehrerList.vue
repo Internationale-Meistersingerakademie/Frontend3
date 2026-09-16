@@ -135,6 +135,12 @@ const getPersonsByCategory = (category: string): any => {
     position: absolute
     height: 120px
     width: 120px
+    // The slot is square but the uploads are not: of the thirteen portraits the
+    // CMS currently serves, six are 2:3 or 3:2 and were being squeezed into the
+    // square on both axes — up to 50% out of shape. `cover` crops to the slot
+    // instead, and `center` keeps the crop on the face.
+    object-fit: cover
+    object-position: center
     left: -60px
     top: 30px
 
@@ -165,7 +171,6 @@ const getPersonsByCategory = (category: string): any => {
 @media only screen and (min-width: 50px) and (max-width: 1200px)
   .lehrer-list
     padding-left: 0
-    margin-bottom: -280px
 
   .list-wrapper
     width: 100%

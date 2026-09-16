@@ -84,7 +84,7 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 
 <style lang="sass" scoped>
 .repertoire
-	height: 1240px
+	min-height: 1240px
 	width: 100%
 	display: flex
 	flex-direction: row
@@ -115,7 +115,11 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 	display: flex
 	flex-direction: column
 	align-items: center
-	justify-content: center
+	// flex-start + padding rather than centring, so the heading below can sit in
+	// normal flow at roughly its old offset instead of being positioned over the
+	// list. The mobile breakpoint already made it static; this agrees with it.
+	justify-content: flex-start
+	padding: 100px 0 60px
 	position: relative
 	margin-top: 0px
 
@@ -123,8 +127,9 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 		font-size: 28px
 		color: $black
 		letter-spacing: 1px
-		position: absolute
-		top: 100px
+		text-align: center
+		max-width: 90%
+		margin-bottom: 40px
 
 .rep-entry
 	margin-bottom: 50px
@@ -242,7 +247,6 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 
 	.rich-text
 		max-width: 350px
-		text-align: justify
 		opacity: 0.7
 		font-size: 15px
 		color: $black
@@ -279,15 +283,20 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 	.hide-overflow
 		display: none
 
+	// The column keeps its desktop width: 33.3% here, which is why its children
+	// were given 300% and 130% to claw the space back — and why they overflowed
+	// the parent. Widening the column lets them all be 100%.
+	.finance-wrapper
+		width: 100%
+
 	.ort
-		width: 300%
+		width: 100%
 		display: flex
 		flex-direction: column
 		align-items: center
 
 		.rich-text
 			width: 75%
-			text-align: justify
 			font-size: 14px
 
 	.finance
@@ -301,7 +310,7 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 			justify-content: center
 
 			li
-				width: 130%
+				width: 75%
 
 	// REPERTOIRE WRAPPER
 	.repertoire-wrapper
@@ -317,12 +326,14 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 	// GALLERY WRAPPER
 	.gallery-wrapper
 		height: 100%
-		width: 50%
+		width: 100%
 		margin-top: -30px
 
 	.gallery-entry
+		// 100vw inside a half-width parent overflowed by design; now that the
+		// wrapper is full width the image can simply fill it.
 		img
-			width: 100vw
+			width: 100%
 			height: auto
 			margin-top: 60px
 

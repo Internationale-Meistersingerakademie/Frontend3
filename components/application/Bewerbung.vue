@@ -32,7 +32,13 @@ const applyLink = computed(
       >{{ $t("application.applyNow") }}</a
     >
 
-    <img src="/media/application/bewerbung_img.jpg" alt="Bewerbungsbild" style="max-height: 512px" />
+    <!-- max-width alongside max-height: with only a height cap the intrinsic
+         768px width was kept at every viewport, hanging 189px off each side of
+         a 390px screen. -->
+    <img
+      src="/media/application/bewerbung_img.jpg"
+      alt="Bewerbungsbild"
+      style="max-height: 512px; max-width: 100%; height: auto" />
   </div>
 </template>
 
@@ -114,8 +120,4 @@ const applyLink = computed(
 
     .rich-text
       max-width: 80vw
-      text-align: justify
-
-    img
-      margin-bottom: -250px
 </style>

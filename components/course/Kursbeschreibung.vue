@@ -35,7 +35,7 @@ const courseDescription2Content = $getElementByTitle("courseDescription2", props
 <style lang="sass" scoped>
 .kursbeschreibung
 	width: 100%
-	height: 600px
+	min-height: 600px
 	background-color: #FFF
 	display: flex
 	flex-direction: row
@@ -122,7 +122,7 @@ const courseDescription2Content = $getElementByTitle("courseDescription2", props
 		align-items: center
 
 		p
-			text-align: justify
+			text-align: left
 			margin-bottom: 20px
 			line-height: 24px
 			max-width: 75%

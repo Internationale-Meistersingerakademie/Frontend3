@@ -128,6 +128,4 @@ p
 
     img
       max-width: 80vw
-    .last-image
-      margin-bottom: -250px
 </style>

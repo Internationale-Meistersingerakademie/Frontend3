@@ -218,7 +218,7 @@ const auditionDeadlines = computed(() => {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
 .vorsingen-wrapper
-  height: 830px
+  min-height: 830px
   width: 100%
   background-color: #FFF
   display: flex
@@ -508,20 +508,29 @@ const auditionDeadlines = computed(() => {
   .vorsingen-elements-wrapper
     flex-direction: column
     justify-content: space-between
+    // Separates the list from the red deadline paragraph above it. Nothing
+    // held these apart before except the slack the 1550px box was handing out,
+    // and the list is empty out of season, so the gap has to be its own.
+    margin-top: 30px
 
   .vorsingen-element
     margin-bottom: 30px
 
   .vorsingen-wrapper
-    height: 1550px
+    // Was min-height: 1550px, holding ~690px of content. `space-around` then
+    // shared the ~860px of slack out between the headings, so the title, the
+    // dates and the location each floated on their own screenful of white.
+    // Sized to content instead, with the rhythm set by explicit margins below.
+    min-height: auto
     margin-top: 0px
+    padding-bottom: 60px
 
     h1
       font-size: 20px
       color: $black
       max-width: 350px
       letter-spacing: 1px
-      margin-top: 20px
+      margin-top: 40px
       text-align: center
 
     h3
@@ -530,12 +539,15 @@ const auditionDeadlines = computed(() => {
       color: $black
       letter-spacing: 1.22px
       margin-top: 0px
+      // The desktop -7px pulls the location line up into the date line once
+      // the slack above is gone.
+      margin-bottom: 6px
 
     h2
       font-size: 15px
       color: $red
       letter-spacing: 1.11px
-      margin-top: 0px
+      margin-top: 24px
 
   .neumarkt_angabe
     font-size: 19px
@@ -616,7 +628,7 @@ const auditionDeadlines = computed(() => {
     text-align: center
     max-width: 80%
     font-size: 13px
-    margin-top: 0px
+    margin-top: 24px
 
   .border-button
     margin-bottom: 20px
@@ -630,6 +642,7 @@ const auditionDeadlines = computed(() => {
     display: flex
     flex-direction: column
     align-items: center
+    margin-top: 40px
 
     h5
       font-size: 16px

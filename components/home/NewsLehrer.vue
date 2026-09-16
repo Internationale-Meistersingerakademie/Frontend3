@@ -116,7 +116,7 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
 <style lang="sass" scoped>
 
 .news-lehrer-wrapper
-  height: 900px
+  min-height: 900px
   width: 100%
   background-color: #FFF
   display: flex
@@ -132,8 +132,10 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
   text-transform: uppercase
   letter-spacing: 0.4px
   cursor: pointer
-  position: absolute
-  bottom: 60px
+  // In flow, not pinned to `bottom: 60px`. The wrapper became min-height so it
+  // can grow with the news and faculty copy, and the pinned button then landed
+  // on top of the last card. The mobile breakpoint already set this static.
+  margin-top: 40px
   transition: all .5s ease
   background-color: #FFF
   text-decoration: none
@@ -199,7 +201,7 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
 .news-element
   max-width: 570px
   min-width: 570px
-  height: 170px
+  min-height: 170px
   background-color: #F9F9F9
   margin-bottom: 35px
   display: flex
@@ -252,7 +254,7 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
 .lehrer-element
   display: flex
   flex-direction: row
-  height: 170px
+  min-height: 170px
   max-width: 570px
   min-width: 375px
   margin-bottom: 35px
@@ -304,19 +306,25 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
   .news-lehrer-wrapper
-    height: 2000px
+    // Was min-height: 2000px around ~1360px of content. `.news` and `.lehrer`
+    // are `flex: 1`, so they stretched into the slack and the ~640px surplus
+    // came out as blank page under the faculty button. The -120px pulled the
+    // whole section up under the media strip to compensate for a curve
+    // graphic that mobile hides (`.video-curve { display: none }`).
+    min-height: auto
     flex-direction: column
-    margin-top: -120px
+    margin-top: 0
+    padding-bottom: 60px
 
   // NEWS
   .news-element
     width: 100%
     min-width: inherit
-    height: 190px
+    min-height: 190px
     margin-bottom: 25px
 
     @media screen and (max-width: 320px)
-      height: 200px
+      min-height: 200px
 
     p
       font-size: 13px
@@ -332,7 +340,10 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
 
   .news-lehrer-title
     margin-bottom: 50px
-    margin-top: -160px
+    // The negative pull only worked while the stretched, centred `.news` /
+    // `.lehrer` boxes had slack to absorb it. Against content-sized boxes it
+    // lifted "News" out of the section and behind the media video.
+    margin-top: 0
     font-size: 30px
 
   .news-lehrer-link
@@ -347,7 +358,8 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
 
   // LEHRER
   .lehrer
-    margin-top: -150px
+    // Same story: -150px was clawing back part of the 2000px box, not spacing.
+    margin-top: 60px
 
     h1
       margin-bottom: 80px
@@ -360,7 +372,7 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
     width: 85px
 
   .lehrer-element
-    height: 210px
+    min-height: 210px
     max-width: 100%
     min-width: inherit
     margin-bottom: 60px
@@ -373,7 +385,10 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
   .lehrer-text-wrapper
     h6
       font-size: 14px
-      max-width: 180px
+      // The cap exists to keep long names clear of the portrait pinned at the
+      // top right; deriving it from that element's width instead of hardcoding
+      // 180px means it still works when the name is longer than the designer's.
+      max-width: calc(100% - 100px)
 
     p
       font-size: 13px
