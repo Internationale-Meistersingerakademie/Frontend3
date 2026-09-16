@@ -15,6 +15,34 @@ const scrollTo = (selector: string) => {
 const year = new Date().getFullYear();
 const startYear = 2014;
 const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear + i);
+
+// The guards below used to read `$getElementByTitle(...) != null`, which is
+// never false: the helper falls back to { title: "", subtitle: "", content: "" }
+// rather than returning null. Every block therefore rendered even with nothing
+// in it — an empty CMS produced an 11,360px blank list and a 2,354px gap above
+// the footer. This asks the question the guards meant to ask.
+//
+// A record counts as populated only if something in it actually has text: the
+// CMS keeps its list rows when an editor clears the fields, so testing
+// `content.length` alone still let 76 empty <li> through.
+const isFilled = (value: unknown): boolean => !!String(value ?? "").trim();
+
+const hasContent = (key: string, source: Array<Record<string, any>>): boolean => {
+  const entry = $getElementByTitle(key, source) as any;
+  if (!entry) return false;
+  const filled = Array.isArray(entry.content)
+    ? entry.content.some((row: Record<string, any>) => isFilled(row?.text) || isFilled(row?.subtitle))
+    : isFilled(entry.content);
+  return filled || isFilled(entry.title);
+};
+
+// Resolved here rather than with a v-if on the v-for element. Vue evaluates
+// v-if *before* v-for, so a guard sharing that element could not see the loop's
+// `year` — it silently read the `year` constant above (the current year), missed
+// every key, and removed all eleven year lists from the page.
+const populatedYears = computed<Array<number>>(() =>
+  years.filter((y) => hasContent("networkParticipants" + y.toString(), props.list)).reverse()
+);
 </script>
 
 <template>
@@ -62,10 +90,7 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
         <span class="gaeste-hl"></span>
         <!-- Anker -->
 
-        <div
-          v-for="year in years.reverse()"
-          class="vorsingen-liste"
-          v-if="$getElementByTitle('networkParticipants' + year.toString(), props.list) != null">
+        <div v-for="year in populatedYears" :key="year" class="vorsingen-liste">
           <h1 class="gaeste-hl">
             {{ ($getElementByTitle("networkParticipants" + year.toString(), props.list) as any)["title"] }}
           </h1>
@@ -81,7 +106,7 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
 
       <div class="engagements-wrapper">
         <h1 class="engagements-hl">RESULTIERENDE ENGAGEMENTS</h1>
-        <div class="engagement" v-if="($getElementByTitle('networkFixedContract', props.list) as any) != null">
+        <div class="engagement" v-if="hasContent('networkFixedContract', props.list)">
           <h1>
             {{ ($getElementByTitle("networkFixedContract", props.list) as any)["title"] }}
           </h1>
@@ -94,7 +119,7 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
           </div>
         </div>
 
-        <div class="engagement" v-if="($getElementByTitle('networkGuestContract', props.list) as any) != null">
+        <div class="engagement" v-if="hasContent('networkGuestContract', props.list)">
           <h1>
             {{ ($getElementByTitle("networkGuestContract", props.list) as any)["title"] }}
           </h1>
@@ -107,7 +132,7 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
           </div>
         </div>
 
-        <div class="engagement" v-if="($getElementByTitle('networkYoungEngagement', props.list) as any) != null">
+        <div class="engagement" v-if="hasContent('networkYoungEngagement', props.list)">
           <h1>
             {{ ($getElementByTitle("networkYoungEngagement", props.list) as any)["title"] }}
           </h1>
@@ -124,14 +149,18 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
           <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network_special', props.text).content as string" />
         </div>
 
-        <div class="engagement" v-if="($getElementByTitle('networkConcertRecital', props.list) as any) != null">
+        <div class="engagement" v-if="hasContent('networkConcertRecital', props.list)">
           <h1>
             {{ ($getElementByTitle("networkConcertRecital", props.list) as any)["title"] }}
           </h1>
           <div class="engagement-liste">
             <ul>
+              <!-- Was keyed 'networkConcertRecital' + year, but the CMS record
+                   is called plain 'networkConcertRecital' — the year-suffixed
+                   lookup missed, returned "", and the list rendered empty under
+                   its heading while 10 entries sat in the database. -->
               <li
-                v-for="element in ($getElementByTitle('networkConcertRecital'+year.toString(), props.list) as any)['content']"
+                v-for="element in ($getElementByTitle('networkConcertRecital', props.list) as any)['content']"
                 v-bind:key="element.text">
                 <HelperMarkdownStringRenderer :markdownString="`${element.subtitle} ${element.text}`" />
               </li>
@@ -139,7 +168,7 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
           </div>
         </div>
 
-        <div class="engagement" v-if="($getElementByTitle('networkManagement', props.list) as any) != null">
+        <div class="engagement" v-if="hasContent('networkManagement', props.list)">
           <h1 class="vertretungen-hl">
             {{ ($getElementByTitle("networkManagement", props.list) as any)["title"] }}
           </h1>
@@ -152,7 +181,7 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
           </div>
         </div>
 
-        <div class="engagement" v-if="($getElementByTitle('networkCompetitionPrices', props.list) as any) != null">
+        <div class="engagement" v-if="hasContent('networkCompetitionPrices', props.list)">
           <h1 class="preise-hl">
             {{ ($getElementByTitle("networkCompetitionPrices", props.list) as any)["title"] }}
           </h1>
