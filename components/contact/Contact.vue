@@ -7,9 +7,12 @@ defineProps({
 <template>
   <div class="category-header">
     <h1>{{ $loc(text[0]).title }}</h1>
-    <p>
+    <!-- A div, not a p: the renderer emits block-level elements, and the browser
+         auto-closed the paragraph around them — which ejected the content from
+         the styled element and dropped these rules entirely. -->
+    <div class="rich-text">
       <helperMarkdownStringRenderer :markdownString="$loc(text[0]).content" />
-    </p>
+    </div>
   </div>
 </template>
 
@@ -32,14 +35,21 @@ defineProps({
 		z-index: 2
 		text-transform: uppercase
 
-	p
-		text-align: justify
+	.rich-text
 		max-width: 900px
 		color: $black
 		font-size: 16px
 		letter-spacing: 1px
 		margin-bottom: 40px
 		z-index: 100
+
+		// The Markdown output is rendered by a child component, so its own
+		// paragraphs sit outside this file's scope id and need :deep().
+		:deep(p)
+			margin-bottom: 16px
+
+			&:last-child
+				margin-bottom: 0
 
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
@@ -53,7 +63,7 @@ defineProps({
 			font-size: 23px
 			margin-top: 50px
 
-		p
+		.rich-text
 			max-width: 80vw
 			text-align: justify
 </style>

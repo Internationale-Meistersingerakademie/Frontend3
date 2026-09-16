@@ -22,9 +22,12 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
     <div class="category-header">
       <h1>{{ $t("network.network") }}</h1>
       <h3>{{ $getElementByTitle("network", props.text).title }}</h3>
-      <p>
+      <!-- A div, not a p: the renderer emits block-level elements, and the
+           browser auto-closed the paragraph around them — which ejected the
+           content from the styled element and dropped these rules entirely. -->
+      <div class="rich-text">
         <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network', props.text).content as string" />
-      </p>
+      </div>
 
       <div class="netzwerk-structure-wrapper">
         <a class="gaeste category" @click="scrollTo('.gaeste-hl')">
@@ -117,9 +120,9 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
           </div>
         </div>
 
-        <p class="special-information">
+        <div class="special-information">
           <HelperMarkdownStringRenderer :markdownString="$getElementByTitle('network_special', props.text).content as string" />
-        </p>
+        </div>
 
         <div class="engagement" v-if="($getElementByTitle('networkConcertRecital', props.list) as any) != null">
           <h1>
@@ -191,13 +194,21 @@ const years = Array.from({ length: year - startYear + 1 }, (_, i) => startYear +
     text-transform: uppercase
     margin-bottom: 40px
 
-  p
+  .rich-text
     text-align: center
     max-width: 720px
     color: $black
     font-size: 16px
     letter-spacing: 1px
     margin-bottom: 40px
+
+    // The Markdown output is rendered by a child component, so its own
+    // paragraphs sit outside this file's scope id and need :deep().
+    :deep(p)
+      margin-bottom: 16px
+
+      &:last-child
+        margin-bottom: 0
 
 
 .special-information

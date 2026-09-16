@@ -72,9 +72,11 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 
       <div class="ort">
         <h1>{{ locationCourseTitle }}</h1>
-        <p>
+        <!-- A div, not a p: the renderer emits block-level elements, and the
+             browser auto-closed the paragraph around them. -->
+        <div class="rich-text">
           <HelperMarkdownStringRenderer :markdownString="locationCourseContent" />
-        </p>
+        </div>
       </div>
     </div>
   </div>
@@ -238,7 +240,7 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 		text-align: center
 		margin-bottom: 30px
 
-	p
+	.rich-text
 		max-width: 350px
 		text-align: justify
 		opacity: 0.7
@@ -246,6 +248,14 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 		color: $black
 		letter-spacing: 1px
 		line-height: 25px
+
+		// The Markdown output is rendered by a child component, so its own
+		// paragraphs sit outside this file's scope id and need :deep().
+		:deep(p)
+			margin-bottom: 16px
+
+			&:last-child
+				margin-bottom: 0
 
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
@@ -275,7 +285,7 @@ const locationCourseContent = $getElementByTitle("location_course", props.text).
 		flex-direction: column
 		align-items: center
 
-		p
+		.rich-text
 			width: 75%
 			text-align: justify
 			font-size: 14px
