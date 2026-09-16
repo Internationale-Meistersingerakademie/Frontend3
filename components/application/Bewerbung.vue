@@ -1,7 +1,18 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   text: { required: true, type: Object },
 });
+
+// The application URL changes every season, so it is editable in the CMS
+// (Apply → Bewerbungs-Link) rather than hardcoded here. The fallback keeps the
+// button working if the field is ever blank — an empty href would otherwise
+// silently reload the current page instead of going to YAP Tracker.
+const FALLBACK_APPLY_LINK =
+  "https://www.yaptracker.com/applications/internationale-meistersinger-akademie-2027";
+
+const applyLink = computed(
+  () => props.text?.[0]?.link?.trim() || FALLBACK_APPLY_LINK
+);
 </script>
 
 <template>
@@ -15,7 +26,7 @@ defineProps({
     </div>
     <a
       type="button"
-      href="https://www.yaptracker.com/applications/internationale-meistersinger-akademie-2026"
+      :href="applyLink"
       class="border-button"
       target="_blank"
       >{{ $t("application.applyNow") }}</a
