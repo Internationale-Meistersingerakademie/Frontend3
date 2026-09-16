@@ -55,20 +55,12 @@ const changeAudio = (id: string, link: string) => {
             </object>
           </div>
 
-          <!-- Bilder - müsste migriert werden -->
-          <!--            &lt;!&ndash; Documentation: https://ssense.github.io/vue-carousel/ &ndash;&gt;-->
-          <!--            <div v-if="year.images.length > 0" class="gallery-wrapper">-->
-          <!--              <carousel-->
-          <!--                class="siema"-->
-          <!--                :autoplay="true"-->
-          <!--                :perPage="1"-->
-          <!--                :paginationEnabled="false"-->
-          <!--              >-->
-          <!--                <slide v-for="image in year.images" v-bind:key="image.link"-->
-          <!--                  ><img :src="image.link" :alt="image.alt"-->
-          <!--                /></slide>-->
-          <!--              </carousel>-->
-          <!--            </div>-->
+          <!-- BILDERGALERIE
+               The original gallery used vue-carousel and was commented out
+               during the Nuxt 3 migration (Vue 2 only) — so `images` had no
+               rendering path at all until now. See media/Gallery.vue for the
+               layout rationale. -->
+          <MediaGallery v-if="year.images" :images="year.images" :year="year.year" />
         </div>
         <!-- AUDIO WRAPPER -->
         <div v-if="year.audio.length > 0" class="audio-wrapper">
@@ -264,25 +256,7 @@ const changeAudio = (id: string, link: string) => {
 audio
   width: 100%
 
-// SIEMA GALLERY
-.VueCarousel-dot
-  margin-top: 0px !important
-
-.VueCarousel-dot-container
-  margin-top: 0px !important
-
-.gallery-wrapper
-  width: 49%
-  height: 315px
-  border: 5px solid red
-
-  div
-    width: 100%
-    height: 100%
-
-    img
-      width: 100%
-      height: 100%
+// Gallery styling lives in media/Gallery.vue, scoped to that component.
 
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
@@ -353,8 +327,7 @@ audio
     flex-direction: column
     align-items: center
 
-  .gallery-wrapper
-    width: 100%
+  // Gallery has its own responsive rules in media/Gallery.vue.
 
   // AUDIO WRAPPER
   .audio-wrapper
