@@ -11,32 +11,23 @@
 
       <div class="row">
         <img src="/media/sponsors/sponsor_5.png" style="height: 120px" alt="" />
-        <img src="/media/sponsors/sponsor_6.jpg" style="height: 100px" alt="" />
         <img src="/media/sponsors/sponsor_8.jpg" style="height: 110px" alt="" />
         <img src="/media/sponsors/sponsor_10.png" style="height: 90px" alt="" />
+        <img src="/media/sponsors/sponsor_11.png" style="height: 80px" alt="" />
       </div>
 
       <div class="row">
-        <img src="/media/sponsors/sponsor_11.png" style="height: 80px" alt="" />
         <img src="/media/sponsors/sponsor_12.png" style="height: 70px" alt="" />
-
         <img src="/media/sponsors/sponsor_37.png" alt="" />
         <img src="/media/sponsors/sponsor_14.png" style="height: 120px" alt="" />
-      </div>
-
-      <div class="row">
         <img src="/media/sponsors/sponsor_16.png" style="height: 120px" alt="" />
-        <img src="/media/sponsors/sponsor_7.svg" style="height: 70px" alt="" />
-        <img src="/media/sponsors/sponsor_20.jpg" style="height: 80px" alt="" />
       </div>
 
       <div class="row">
+        <img src="/media/sponsors/sponsor_20.jpg" style="height: 80px" alt="" />
         <img src="/media/sponsors/sponsor_22.jpg" style="height: 80px" alt="" />
-
         <img src="/media/sponsors/sponsor_19.png" alt="" />
-
         <img src="/media/sponsors/sponsor_21.png" alt="" />
-
       </div>
     </div>
   </div>
