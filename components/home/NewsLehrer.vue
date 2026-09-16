@@ -17,16 +17,36 @@ const props = defineProps({
     required: true,
   },
 });
-const splitText = (text: string) => text.split(" ").slice(0, 25).join(" ") + (text.split(" ").length > 25 ? " ..." : "");
+const splitText = (text?: string) => {
+  if (!text) return "";
+  const words = text.split(" ");
+  return words.slice(0, 25).join(" ") + (words.length > 25 ? " ..." : "");
+};
 
-const reducedNewsArray = computed<Array<Record<string, any>>>(() => {
-  return (
-    $getElementByTitle("news", props.list)
-      // @ts-ignore
-      .content.sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 3)
-  );
+// Indexing persons[0..2] directly threw whenever the API returned fewer than
+// three faculty members; slicing renders what is actually there.
+const featuredPersons = computed<Array<Record<string, any>>>(() => props.persons.slice(0, 3));
+
+// Several portrait filenames contain spaces, which made the previous bare
+// `url(' + image + ')` concatenation invalid CSS — the browser dropped the
+// declaration and the slot rendered empty. encodeURI escapes the space (and
+// the double quote, as %22) so the quoted url() always parses.
+// Only the image, no sizing: `.lehrer-img` already asks for `cover` / `center`,
+// which crops a portrait to fill the slot. Repeating `100% 100%` here overrode
+// that and scaled each photo to the box on both axes independently — the
+// faculty upload sizes range from 266x266 to 1814x2348, so the tall ones were
+// squashed by about a quarter.
+const portraitStyle = (image?: string) => ({
+  backgroundImage: image ? `url("${encodeURI(image)}")` : undefined,
 });
+
+// `sortedNews` rather than a local sort: /News now applies the same one, so
+// these three stay the top three of that page and the deep links below land on
+// cards the visitor can see. It also copies before sorting — the previous
+// version sorted the prop array in place.
+const reducedNewsArray = computed<Array<Record<string, any>>>(() =>
+  sortedNews(($getElementByTitle("news", props.list) as any)?.content).slice(0, 3)
+);
 
 // const teachersShown = ["Prof. Dr. h.c. mult. Edith Wiens", "Anne Sofie von Otter", "Pål Moe"];
 </script>
@@ -59,7 +79,9 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() => {
                 }}
               </h6>
             </div>
-            <NuxtLink :to="localePath('News')" class="news-lehrer-link">{{ $t("home.newsLehrer.readMore") }} <span>►</span></NuxtLink>
+            <NuxtLink :to="`${localePath('/News')}#${newsAnchor(elem)}`" class="news-lehrer-link"
+              >{{ $t("home.newsLehrer.readMore") }} <span>►</span></NuxtLink
+            >
           </div>
         </div>
 
@@ -71,14 +93,14 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() => {
       <div class="lehrer">
         <h1 class="news-lehrer-title">{{ $t("home.newsLehrer.faculty") }}</h1>
 
-        <div class="lehrer-element" v-for="i in [0, 1, 2]" v-bind:key="i">
-          <div class="lehrer-img" :style="'background: url(' + persons[i].image + ');background-size: 100% 100%;'"></div>
+        <div class="lehrer-element" v-for="person in featuredPersons" v-bind:key="person.name">
+          <div class="lehrer-img" :style="portraitStyle(person.image)"></div>
           <div class="lehrer-text-wrapper">
-            <h6>{{ persons[i].name }}</h6>
+            <h6>{{ person.name }}</h6>
             <p>
-              {{ splitText($loc(persons[i]).content) }}
+              {{ splitText($loc(person).content) }}
             </p>
-            <NuxtLink :to="localePath('/Faculty')" class="news-lehrer-link lehrer-hover"
+            <NuxtLink :to="`${localePath('/Faculty')}#${anchorId(person.name)}`" class="news-lehrer-link lehrer-hover"
               >{{ $t("home.newsLehrer.readMore") }} <span>►</span></NuxtLink
             >
           </div>

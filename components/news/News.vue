@@ -9,6 +9,19 @@ const props = defineProps({
   },
 });
 
+// `:target` only reacts to real fragment navigation; arriving here by clicking
+// a landing-page card is a history-API push, which leaves it inert. Reading the
+// hash off the route instead marks the linked item the same way in both cases.
+const route = useRoute();
+const linkedAnchor = computed(() => decodeURIComponent(route.hash.replace(/^#/, "")));
+
+// Newest first. The CMS hands these back oldest-first, so the page used to open
+// on a 2021 item and bury the current season at the bottom. `sortedNews` is the
+// same sort the landing page's preview uses, which keeps its three cards the
+// top three of this list — and therefore keeps its deep links pointing at
+// entries the visitor can see without scrolling past five years of archive.
+const newsEntries = computed(() => sortedNews(($getElementByTitle("news", props.list) as any)?.content));
+
 const niceDates = (elem: Record<string, any>) => {
   return new Date(elem.date).toLocaleDateString(i18n.locale.value, {
     weekday: "long",
@@ -24,7 +37,12 @@ const niceDates = (elem: Record<string, any>) => {
 
     <div class="news">
       <!-- NEWS ELEMENT 1 -->
-      <div class="news-element" v-for="elem in ($getElementByTitle('news',props.list) as any).content">
+      <div
+        class="news-element"
+        v-for="elem in newsEntries"
+        v-bind:key="newsAnchor(elem)"
+        :id="newsAnchor(elem)"
+        :class="{ 'is-linked': newsAnchor(elem) === linkedAnchor }">
         <h5>{{ elem.subtitle }}</h5>
         <p class="news-lehrer-text">
           {{ elem.text }}
@@ -71,6 +89,9 @@ const niceDates = (elem: Record<string, any>) => {
   min-width: 375px
   background-color: #F9F9F9
   margin-bottom: 35px
+  // Arriving from a landing-page link, the item would otherwise sit flush
+  // against the top edge of the viewport.
+  scroll-margin-top: 90px
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -78,6 +99,10 @@ const niceDates = (elem: Record<string, any>) => {
   border-left: 7px solid $red
   transition: all 0.7s ease
   cursor: auto
+
+  // Says which of the twenty-one entries the incoming link meant.
+  &.is-linked
+    background-color: #F3EAEE
 
   h5
     font-size: 15px

@@ -6,6 +6,11 @@ const props = defineProps({
   },
 });
 
+// See the note in components/news/News.vue: `:target` stays inert when the page
+// is reached by an in-app link rather than a fragment load.
+const route = useRoute();
+const linkedAnchor = computed(() => decodeURIComponent(route.hash.replace(/^#/, "")));
+
 const getPersonsByCategory = (category: string): any => {
   return props.faculty.filter((person: any) => person.category === category);
 };
@@ -17,7 +22,7 @@ const getPersonsByCategory = (category: string): any => {
       <div class="list-category">
         <h1 class="masterteachers-hl" id="meisterlehrer">{{ $t("faculty.categories.masterteachers") }}</h1>
         <div v-for="lehrer in getPersonsByCategory('masterTeacher')" v-bind:key="lehrer.name">
-          <div class="lehrer">
+          <div class="lehrer" :id="anchorId(lehrer.name)" :class="{ 'is-linked': anchorId(lehrer.name) === linkedAnchor }">
             <img :src="lehrer.image" alt="" />
             <h3>
               {{
@@ -37,7 +42,7 @@ const getPersonsByCategory = (category: string): any => {
         <h1 class="head-coach-hl" id="korrepetitor">{{ $t("faculty.categories.headCoach") }}</h1>
 
         <div v-for="lehrer in getPersonsByCategory('headCoach')" v-bind:key="lehrer.name">
-          <div class="lehrer">
+          <div class="lehrer" :id="anchorId(lehrer.name)" :class="{ 'is-linked': anchorId(lehrer.name) === linkedAnchor }">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
             <h4>{{ $loc(lehrer).subtitle }}</h4>
@@ -51,7 +56,7 @@ const getPersonsByCategory = (category: string): any => {
         <h1 class="language-coach-hl">{{ $t("faculty.categories.coaching") }}</h1>
 
         <div v-for="lehrer in getPersonsByCategory('languageCoach')" v-bind:key="lehrer.name">
-          <div class="lehrer">
+          <div class="lehrer" :id="anchorId(lehrer.name)" :class="{ 'is-linked': anchorId(lehrer.name) === linkedAnchor }">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
             <h4>{{ $loc(lehrer).subtitle }}</h4>
@@ -65,7 +70,7 @@ const getPersonsByCategory = (category: string): any => {
         <h1 class="pianists-hl">{{ $t("faculty.categories.pianists") }}</h1>
 
         <div v-for="lehrer in getPersonsByCategory('pianist')" v-bind:key="lehrer.name">
-          <div class="lehrer">
+          <div class="lehrer" :id="anchorId(lehrer.name)" :class="{ 'is-linked': anchorId(lehrer.name) === linkedAnchor }">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
             <h4>{{ $loc(lehrer).subtitle }}</h4>
@@ -79,7 +84,7 @@ const getPersonsByCategory = (category: string): any => {
         <h1 class="makeup-hl" id="makup">{{ $t("faculty.categories.makeupArtist") }}</h1>
 
         <div v-for="lehrer in getPersonsByCategory('makeup')" v-bind:key="lehrer.name">
-          <div class="lehrer">
+          <div class="lehrer" :id="anchorId(lehrer.name)" :class="{ 'is-linked': anchorId(lehrer.name) === linkedAnchor }">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
             <h4>{{ $loc(lehrer).subtitle }}</h4>
@@ -118,6 +123,13 @@ const getPersonsByCategory = (category: string): any => {
   padding: 25px 35px 25px 100px
   box-shadow: 0 0 30px 0 rgba(#000, 0.15)
   margin-bottom: 50px
+  // Landed on from a link on the landing page; without this the card sits
+  // flush against the top edge, and with the portrait hanging off its left
+  // there is nothing to show which one was meant.
+  scroll-margin-top: 90px
+
+  &.is-linked
+    box-shadow: 0 0 30px 0 rgba(#000, 0.15), inset 5px 0 0 0 $red
 
   img
     position: absolute
