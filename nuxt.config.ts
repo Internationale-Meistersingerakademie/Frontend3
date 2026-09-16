@@ -16,7 +16,10 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            API: 'https://ima.api.kaiser.fyi'
+            // Overridable at runtime with NUXT_PUBLIC_API (Nitro reads
+            // runtimeConfig from env on boot), so repointing the API needs a
+            // restart rather than a rebuild.
+            API: 'https://api.meistersingerakademie.com'
         }
     },
     i18n: {
