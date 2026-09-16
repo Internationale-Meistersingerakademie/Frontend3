@@ -1,5 +1,8 @@
+// Missing UI keys for new locales (fr/es/it/ja/ko/zh) fall back to English;
+// CMS-driven text uses plugins/content.ts which picks the right bag per locale.
 export default defineI18nConfig(() => ({
     legacy: false,
+    fallbackLocale: 'en',
     messages: {
         en: {
             application: {

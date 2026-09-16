@@ -26,8 +26,8 @@ const getPersonsByCategory = (category: string): any => {
                   : lehrer.name.toUpperCase()
               }}
             </h3>
-            <h4>{{ lehrer[$i18n.locale].subtitle }}</h4>
-            <p>{{ lehrer[$i18n.locale].content }}</p>
+            <h4>{{ $loc(lehrer).subtitle }}</h4>
+            <p>{{ $loc(lehrer).content }}</p>
           </div>
         </div>
       </div>
@@ -40,8 +40,8 @@ const getPersonsByCategory = (category: string): any => {
           <div class="lehrer">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
-            <h4>{{ lehrer[$i18n.locale].subtitle }}</h4>
-            <p>{{ lehrer[$i18n.locale].content }}</p>
+            <h4>{{ $loc(lehrer).subtitle }}</h4>
+            <p>{{ $loc(lehrer).content }}</p>
           </div>
         </div>
       </div>
@@ -54,8 +54,8 @@ const getPersonsByCategory = (category: string): any => {
           <div class="lehrer">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
-            <h4>{{ lehrer[$i18n.locale].subtitle }}</h4>
-            <p>{{ lehrer[$i18n.locale].content }}</p>
+            <h4>{{ $loc(lehrer).subtitle }}</h4>
+            <p>{{ $loc(lehrer).content }}</p>
           </div>
         </div>
       </div>
@@ -68,8 +68,8 @@ const getPersonsByCategory = (category: string): any => {
           <div class="lehrer">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
-            <h4>{{ lehrer[$i18n.locale].subtitle }}</h4>
-            <p>{{ lehrer[$i18n.locale].content }}</p>
+            <h4>{{ $loc(lehrer).subtitle }}</h4>
+            <p>{{ $loc(lehrer).content }}</p>
           </div>
         </div>
       </div>
@@ -82,8 +82,8 @@ const getPersonsByCategory = (category: string): any => {
           <div class="lehrer">
             <img :src="lehrer.image" alt="" />
             <h3>{{ lehrer.name }}</h3>
-            <h4>{{ lehrer[$i18n.locale].subtitle }}</h4>
-            <p>{{ lehrer[$i18n.locale].content }}</p>
+            <h4>{{ $loc(lehrer).subtitle }}</h4>
+            <p>{{ $loc(lehrer).content }}</p>
           </div>
         </div>
       </div>

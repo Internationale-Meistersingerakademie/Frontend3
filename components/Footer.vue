@@ -1,5 +1,15 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
+const { locale } = useI18n();
+
+const LANG_LABELS: Record<string, string> = {
+  de: 'DEU', en: 'ENG', fr: 'FRA', es: 'ESP',
+  it: 'ITA', ja: '日本', ko: '한국', zh: '中文',
+};
+
+// Not every configured locale, only the ones that are actually translated —
+// see composables/useTranslatedLocales.ts for where the bar sits.
+const availableLocales = useTranslatedLocales();
 </script>
 
 <template>
@@ -24,15 +34,14 @@ const localePath = useLocalePath();
         <div class="lang-social-wrapper">
           <div class="lang-switcher">
             <span class="link-title">{{ $t("home.footer.changeLanguage") }}</span>
-            <div v-if="$i18n.locale === 'de'">
-              <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element" @click="$i18n.locale = 'de'"> DEU </NuxtLink>
-              <span class="lang-switcher-element">–</span>
-              <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"> ENG </NuxtLink>
-            </div>
-            <div v-else>
-              <NuxtLink :to="localePath($route.fullPath, 'en')" class="lang-switcher-element"> ENG </NuxtLink>
-              <span class="lang-switcher-element">–</span>
-              <NuxtLink :to="localePath($route.fullPath, 'de')" class="lang-switcher-element"> DEU </NuxtLink>
+            <div class="lang-switcher-row">
+              <template v-for="(code, i) in availableLocales" :key="code">
+                <span v-if="i > 0" class="lang-switcher-sep">–</span>
+                <NuxtLink
+                  :to="localePath($route.fullPath, code)"
+                  :class="['lang-switcher-element', { active: locale === code }]"
+                >{{ LANG_LABELS[code] || code.toUpperCase() }}</NuxtLink>
+              </template>
             </div>
           </div>
 
@@ -125,19 +134,31 @@ const localePath = useLocalePath();
   bottom: 30px
 
 .lang-switcher
-  div
-    a, span
-      margin-right: 10px
+  .lang-switcher-row
+    display: flex
+    flex-wrap: wrap
+    gap: 6px 10px
+    align-items: center
 
-      &:nth-child(1)
-        padding-bottom: 1px
-        border-bottom: 2px solid $black
+  .lang-switcher-element
+    opacity: 0.6
+    color: $black
+    text-decoration: none
+    font-size: 15px
+    // These render as <a> inside `.links`, so they were picking up its
+    // `margin-right: 25px` — meant for the horizontal link list, not for a row
+    // that spaces itself with `gap`. It put 35px before each separator against
+    // 10px after it, and left a trailing 25px inside the centred row box, so
+    // "ENG – DEU" sat ~13px left of every other centred line in the footer.
+    margin-right: 0
 
-      &:nth-child(2)
-        opacity: 0.3
+    &.active
+      opacity: 1
+      padding-bottom: 1px
+      border-bottom: 2px solid $black
 
-      &:nth-child(3)
-        opacity: 0.6
+  .lang-switcher-sep
+    opacity: 0.3
 
 .social-links
   div

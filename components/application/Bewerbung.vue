@@ -6,9 +6,9 @@ defineProps({
 
 <template>
   <div class="category-header">
-    <h1>{{ text[0][$i18n.locale].title }}</h1>
+    <h1>{{ $loc(text[0]).title }}</h1>
     <p>
-      <helperMarkdownStringRenderer :markdownString="text[0][$i18n.locale].content" />
+      <helperMarkdownStringRenderer :markdownString="$loc(text[0]).content" />
     </p>
     <a
       type="button"

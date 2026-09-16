@@ -76,7 +76,7 @@ const reducedNewsArray = computed<Array<Record<string, any>>>(() => {
           <div class="lehrer-text-wrapper">
             <h6>{{ persons[i].name }}</h6>
             <p>
-              {{ splitText(persons[i][$i18n.locale].content) }}
+              {{ splitText($loc(persons[i]).content) }}
             </p>
             <NuxtLink :to="localePath('/Faculty')" class="news-lehrer-link lehrer-hover"
               >{{ $t("home.newsLehrer.readMore") }} <span>►</span></NuxtLink

@@ -51,13 +51,13 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 
       <!-- VORSINGEN ELEMENTE -->
       <div class="vorsingen-elements-wrapper">
-        <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="audition[$i18n.locale].location">
-          <h4 class="location">{{ audition[$i18n.locale].location }}</h4>
-          <h4 class="date">{{ audition[$i18n.locale].date }}</h4>
+        <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="$loc(audition).location">
+          <h4 class="location">{{ $loc(audition).location }}</h4>
+          <h4 class="date">{{ $loc(audition).date }}</h4>
           <h4 class="deadline">
             Deadline:
             <span>{{
-              new Date(audition[$i18n.locale].deadline).toLocaleDateString($i18n.locale, {
+              new Date($loc(audition).deadline).toLocaleDateString($i18n.locale, {
                 weekday: "long",
                 year: "numeric",
                 month: "long",

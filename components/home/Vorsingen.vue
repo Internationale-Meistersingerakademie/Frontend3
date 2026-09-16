@@ -41,13 +41,13 @@ const props = defineProps({
       </p>
       <!-- VORSINGEN ELEMENTE -->
       <div class="vorsingen-elements-wrapper" v-if="auditions.length">
-        <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="audition[$i18n.locale].location">
-          <h4 class="location">{{ audition[$i18n.locale].location }}</h4>
-          <h4 class="date">{{ audition[$i18n.locale].date }}</h4>
+        <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="$loc(audition).location">
+          <h4 class="location">{{ $loc(audition).location }}</h4>
+          <h4 class="date">{{ $loc(audition).date }}</h4>
           <h4 class="deadline">
             Deadline:
             <span>{{
-              new Date(audition[$i18n.locale].deadline).toLocaleDateString($i18n.locale, {
+              new Date($loc(audition).deadline).toLocaleDateString($i18n.locale, {
                 weekday: "long",
                 year: "numeric",
                 month: "long",
@@ -66,13 +66,13 @@ const props = defineProps({
 
       <!-- TERMINE ELEMENTE -->
       <div class="vorsingen-elements-wrapper" v-if="dates.length">
-        <div class="vorsingen-element" v-for="date in dates" v-bind:key="date[$i18n.locale].location">
-          <h4 class="location">{{ date[$i18n.locale].location }}</h4>
-          <h4 class="date">{{ date[$i18n.locale].text }}</h4>
+        <div class="vorsingen-element" v-for="date in dates" v-bind:key="$loc(date).location">
+          <h4 class="location">{{ $loc(date).location }}</h4>
+          <h4 class="date">{{ $loc(date).text }}</h4>
           <h4 class="deadline">
             {{$t("home.vorsingen.date") }}:
             <span>{{
-                new Date(date[$i18n.locale].date).toLocaleDateString($i18n.locale, {
+                new Date($loc(date).date).toLocaleDateString($i18n.locale, {
                   weekday: "long",
                   year: "numeric",
                   month: "long",

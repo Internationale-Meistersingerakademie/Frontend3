@@ -25,20 +25,20 @@ export default defineNuxtConfig({
     i18n: {
         baseUrl: 'https://meistersingerakademie.com',
         locales: [
-            {
-                code: 'en',
-                iso: 'en-US'
-            },
-            {
-                code: 'de',
-                iso: 'de-DE'
-            }
+            { code: 'en', iso: 'en-US' },
+            { code: 'de', iso: 'de-DE' },
+            { code: 'fr', iso: 'fr-FR' },
+            { code: 'es', iso: 'es-ES' },
+            { code: 'it', iso: 'it-IT' },
+            { code: 'ja', iso: 'ja-JP' },
+            { code: 'ko', iso: 'ko-KR' },
+            { code: 'zh', iso: 'zh-CN' },
         ],
         detectBrowserLanguage: {
             useCookie: true,
             cookieKey: 'i18n_redirected',
         },
-        defaultLocale: 'de'
+        defaultLocale: 'de',
     },
     devtools: {
         enabled: true,
