@@ -149,10 +149,14 @@ watch(currentImage, () => {
           </p>
         </div> -->
       </div>
+      <!-- The controls are buttons rather than click-bound <img>: as images they
+           were unreachable by keyboard and announced as decorative, so the
+           gallery could only be operated with a mouse. -->
       <div class="imageContainer">
-        <div></div>
-        <img src="/media/course/arrow_back.svg" alt="arrow_back" class="arrow" v-on:click="previousImage" />
-        <div>
+        <button type="button" class="arrow" :aria-label="$t('course.events.previousImage')" v-on:click="previousImage">
+          <img src="/media/course/arrow_back.svg" alt="" />
+        </button>
+        <div class="image-frame">
           <img
             v-for="(image, index) in images"
             :src="'/media/course/roundtables_galery/' + image"
@@ -161,8 +165,9 @@ watch(currentImage, () => {
             loading="lazy"
             :style="{ display: index === currentImage ? 'block' : 'none' }" />
         </div>
-        <img src="/media/course/arrow_forward.svg" alt="arrow_forward" class="arrow" v-on:click="nextImage" />
-        <div></div>
+        <button type="button" class="arrow" :aria-label="$t('course.events.nextImage')" v-on:click="nextImage">
+          <img src="/media/course/arrow_forward.svg" alt="" />
+        </button>
       </div>
     </div>
   </div>
@@ -182,58 +187,72 @@ watch(currentImage, () => {
   display: flex
   position: relative
   flex-direction: row
-  justify-content: center
-  flex-wrap: wrap
-  padding: 100px 100px 0 100px
+  // The wrapper is a column so the heading can sit in normal flow above the
+  // grid. It used to be absolutely positioned at top: 20px with a 68px
+  // line-height inside 100px of reserved padding — which held exactly one line.
+  // The current CMS title is 118 characters, so it wrapped and painted straight
+  // over the cards beneath it (three of them at 390px).
+  flex-direction: column
+  align-items: center
+  padding: 60px 40px 0 40px
 
   h1
-    position: absolute
-    top: 20px
     font-size: 28px
     color: $black
     letter-spacing: 1px
-    line-height: 68px
-    margin-bottom: 20px
+    line-height: 1.4
+    text-align: center
+    max-width: 800px
+    margin-bottom: 40px
 
 .events-wrapper
   display: flex
   flex-direction: row
   flex-wrap: wrap
   justify-content: center
-// background-color: pink
+  align-items: stretch
+  gap: 30px
 
+// The card matches .news-element on the landing page and /News — tinted fill,
+// left crimson rule, one shadow, lift on hover. Previously this was the only
+// card on the site with no fill, no vertical padding, two nested shadows and no
+// hover state, which is what made the block read as foreign to the page.
 .event-entry
-  margin: 20px
+  display: flex
+  flex-direction: column
+  flex: 0 1 400px
+  max-width: 400px
+  background-color: #F9F9F9
+  border-left: 7px solid $red
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1)
-  padding: 0 20px
+  padding: 22px
+  transition: all 0.2s ease
+
+  &:hover
+    transform: scale(1.01)
+    box-shadow: 0 0 40px rgba(#000, 0.1)
 
   h3
     font-size: 16px
     color: $black
     line-height: 28px
-    background-color: #FFF
-    display: inline
-    margin-left: -20px
-    padding: 5px 10px 5px 15px
-    position: relative
-    box-shadow: 0 0 25px 0 rgba(#000, 0.1)
+    letter-spacing: 1px
+    // display: block, not inline. As an inline box the heading's own text
+    // length set the card's width, so cards in one row differed by 2x, and a
+    // heading that wrapped shattered into separate shadowed chips.
+    display: block
+    margin-bottom: 12px
 
-    &:before
-      content: ""
-      display: block
-      height: 100%
-      width: 5px
-      background-color: $red
-      position: absolute
-      left: 0
-      top: 0
+    // The global `h3:empty` rule cannot win here: this scoped selector scores
+    // 0-3-2 against its 0-1-1, so an empty CMS subtitle kept its margin.
+    &:empty
+      display: none
 
   p
-    width: 400px
-    margin: 15px 0 40px 15px
     opacity: 0.7
     font-size: 15px
     color: $black
+    letter-spacing: 1px
     line-height: 24px
 
 .border-button
@@ -296,73 +315,63 @@ watch(currentImage, () => {
     line-height: 24px
     max-width: 700px
 
-.other-topic
-  margin-top: 30px
-
 // GALLERY
-.gallery-wrapper
-  display: flex
-  align-items: center
-  justify-content: center
-  margin-top: 50px
-
-  div
-    width: 700px
-
-  img
-    width: 100%
-    align-self: center
-    margin-bottom: 10px
-
-  p
-    max-width: 380px
-    font-size: 15px
-    color: $black
-    letter-spacing: 1
-    text-align: justify
-    line-height: 24px
-
+// The .gallery-wrapper and .other-topic rules that used to sit here targeted
+// selectors this component does not render — roughly 45 lines of dead
+// stylesheet, including the mobile `margin-bottom: -260px` that was supposedly
+// compensating for the footer.
 .imageContainer
   display: grid
-  grid-template-columns: 1fr 50px 800px 50px 1fr
+  // The 800px track was fixed, so the gallery could not narrow below it.
+  // minmax(0, 800px) keeps the same maximum and lets it shrink on small screens.
+  grid-template-columns: 50px minmax(0, 800px) 50px
+  justify-content: center
+  align-items: center
   grid-gap: 20px
-  justify-items: center
   margin: 40px 0
+  padding: 0 20px
+
+  .image-frame
+    min-width: 0
 
   .image
-    height: 400px
+    max-height: 400px
+    max-width: 100%
     width: auto
-    align-self: center
+    margin: 0 auto
 
   .arrow
     height: 30px
     width: 30px
+    padding: 0
+    border: none
+    background: none
     cursor: pointer
     transition: all .5s ease
-    align-self: center
     z-index: 100
 
-    &:hover
-      transform: scale(1.1)
-      opacity: 0.6
-      transition: all .5s ease
+    img
+      width: 100%
+      height: 100%
+      display: block
 
-    &:active
+    &:hover,
+    &:active,
+    &:focus-visible
       transform: scale(1.1)
       opacity: 0.6
-      transition: all .5s ease
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
 
   // VERANSTALTUNGEN
   .veranstaltungen-wrapper
-    h1
-      top: 20px
-      left: 10%
+    padding: 40px 20px 0 20px
 
+  // The card is free to use the full column width here; the old 250px cap left
+  // the text in a narrow ribbon inside a much wider card.
   .event-entry
-    p
-      max-width: 250px
+    flex: 1 1 100%
+    max-width: 100%
 
   .veranstaltungen
     flex-direction: column
@@ -386,21 +395,13 @@ watch(currentImage, () => {
       text-align: center
 
   // GALLERY
-  .gallery-wrapper
-    margin-top: 40px
-    margin-bottom: -260px
+  .imageContainer
+    grid-template-columns: 30px minmax(0, 1fr) 30px
+    grid-gap: 10px
+    padding: 0 10px
 
-    div
-      height: auto
-      width: 100vw
-      display: flex
-      flex-direction: column
-      justify-content: center
-
-    img
-      width: 100vw
-      height: auto
-      margin-bottom: 10px
+    .image
+      max-height: 260px
 
     p
       max-width: 250px

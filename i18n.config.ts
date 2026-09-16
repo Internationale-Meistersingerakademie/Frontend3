@@ -91,7 +91,9 @@ export default defineI18nConfig(() => ({
                     ]
                 },
                 events: {
-                    tickets: "Ticket Sales"
+                    tickets: "Ticket Sales",
+                    previousImage: "Previous image",
+                    nextImage: "Next image"
                 }
             },
             faculty: {
@@ -211,7 +213,9 @@ export default defineI18nConfig(() => ({
                     ]
                 },
                 events: {
-                    tickets: "Kartenverkauf"
+                    tickets: "Kartenverkauf",
+                    previousImage: "Vorheriges Bild",
+                    nextImage: "Nächstes Bild"
                 }
             },
             faculty: {
