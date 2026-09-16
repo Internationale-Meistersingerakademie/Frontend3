@@ -35,22 +35,25 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
       </div>
     </div>
     <div class="right">
-      <h1>
+      <h1 v-if="auditionDeadlinesTextTitle">
         {{ auditionDeadlinesTextTitle }}
       </h1>
-      <h3>
+      <h3 v-if="auditionDeadlinesTextSubtitle">
         {{ auditionDeadlinesTextSubtitle }}
       </h3>
-      <h3 class="neumarkt_angabe">NEUMARKT i.d.OPf.</h3>
-      <h2>
+      <!-- The location label belongs to the deadline block above it: it is a
+           caption for those dates, not a standalone statement, so it renders
+           only when that block has something to caption. -->
+      <h3 class="neumarkt_angabe" v-if="auditionDeadlinesTextContent || auditions.length">NEUMARKT i.d.OPf.</h3>
+      <h2 v-if="auditionDeadlinesTextContent">
         {{ auditionDeadlinesTextContent }}
       </h2>
-      <p class="special-information">
+      <p class="special-information" v-if="auditionTextContent">
         {{ auditionTextContent }}
       </p>
 
       <!-- VORSINGEN ELEMENTE -->
-      <div class="vorsingen-elements-wrapper">
+      <div class="vorsingen-elements-wrapper" v-if="auditions.length">
         <div class="vorsingen-element" v-for="audition in auditions" v-bind:key="$loc(audition).location">
           <h4 class="location">{{ $loc(audition).location }}</h4>
           <h4 class="date">{{ $loc(audition).date }}</h4>
@@ -80,10 +83,16 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 <style lang="sass" scoped>
 
 // TEILNEHMER
+// min-height, not height: the columns are filled from the CMS and both of them
+// grow with the text an editor supplies. A fixed height clipped the longer one.
 .teilnehmer
-	height: 950px
+	// No floor at all. 950px was chosen for a right-hand column that the CMS no
+	// longer fills, so the min-height held open 837px of blank space that the
+	// v-if guards had just emptied. Padding gives the section its breathing
+	// room; the taller column gives it its height.
 	width: 100%
 	display: flex
+	padding: 80px 0
 	background-color: #FFF
 	box-shadow: 0 -10px 20px 0 rgba(#000, 0.05)
 
@@ -95,13 +104,15 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 	align-items: center
 	position: relative
 
-	// Seperator
+	// Seperator — inset from the top and bottom rather than given a fixed
+	// height, so it tracks the column instead of assuming a 950 px box.
 	&:after
 		content: ""
 		display: block
 		width: 3px
-		height: 300px
 		position: absolute
+		top: 15%
+		bottom: 15%
 		right: 0
 		background-color: $black
 		opacity: 0.1
@@ -120,7 +131,11 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 
 	div
 		margin-top: 30px
+		// The 50px side padding is added on top of a child that is already
+		// width-constrained, so at 390px the padding box overhung the column by
+		// 11px. Capping the pair keeps the inset without the overhang.
 		padding: 0 50px
+		max-width: 100%
 
 	p
 		text-align: justify
@@ -139,6 +154,11 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 	display: flex
 	flex-direction: column
 	align-items: center
+	// The column stretches to match the (much longer) participants text beside
+	// it. With its content anchored to the top, the CMS's currently-empty
+	// audition fields left the slack as one gap at the bottom; centring turns
+	// that into balanced margins around the call to action.
+	justify-content: center
 
 	h1, h2, h3
 		text-transform: uppercase
@@ -336,7 +356,7 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
 	.teilnehmer
-		height: 1800px
+		min-height: 0
 		flex-direction: column
 
 	.special-information
@@ -345,6 +365,11 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 
 	.left
 		flex: none
+
+		// The separator divides two side-by-side columns; once they stack it is
+		// just a stray vertical rule against the screen edge.
+		&:after
+			display: none
 
 		h1
 			font-size: 25px
@@ -368,4 +393,13 @@ const auditionTextContent = $getElementByTitle("audition_text", props.text).cont
 
 		h2
 			font-size: 15px
+
+	// A 250px tooltip anchored 260px to the right of its button has nowhere to
+	// go on a phone — it lands entirely outside the viewport. (It is also a
+	// hardcoded German string on an eight-locale site, so it needs moving into
+	// i18n before it can be shown more widely than this.)
+	.border-button,
+	.border-button-live
+		&:after
+			display: none
 </style>
