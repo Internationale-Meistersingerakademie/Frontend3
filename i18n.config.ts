@@ -79,7 +79,7 @@ export default defineI18nConfig(() => ({
                 bewerbung: 'APPLICATION',
                 masterclass: 'MASTERCLASS',
                 title: 'INTERNATIONALE MEISTERSINGER AKADEMIE',
-                director: 'EDITH WIENS',
+                director: 'PROF. DR. EDITH WIENS',
                 position: 'Director'
             },
             course: {
@@ -201,7 +201,7 @@ export default defineI18nConfig(() => ({
                 bewerbung: 'BEWERBUNG',
                 masterclass: 'MEISTERKURS',
                 title: 'INTERNATIONALE MEISTERSINGER AKADEMIE',
-                director: 'EDITH WIENS',
+                director: 'PROF. DR. EDITH WIENS',
                 position: 'Director'
             },
             course: {
