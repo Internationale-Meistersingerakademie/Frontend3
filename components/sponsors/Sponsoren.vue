@@ -18,13 +18,12 @@
 
       <div class="row">
         <img src="/media/sponsors/sponsor_12.png" style="height: 70px" alt="" />
-        <img src="/media/sponsors/sponsor_37.png" alt="" />
         <img src="/media/sponsors/sponsor_14.png" style="height: 120px" alt="" />
         <img src="/media/sponsors/sponsor_16.png" style="height: 120px" alt="" />
+        <img src="/media/sponsors/sponsor_20.jpg" style="height: 80px" alt="" />
       </div>
 
       <div class="row">
-        <img src="/media/sponsors/sponsor_20.jpg" style="height: 80px" alt="" />
         <img src="/media/sponsors/sponsor_22.jpg" style="height: 80px" alt="" />
         <img src="/media/sponsors/sponsor_19.png" alt="" />
         <img src="/media/sponsors/sponsor_21.png" alt="" />
