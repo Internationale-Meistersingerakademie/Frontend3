@@ -272,14 +272,27 @@ const availableLocales = useTranslatedLocales();
   // the block ran off the left edge of a 390px screen — taking the ENG, DEU,
   // 한국 and 中文 links with it. Those last two appear nowhere else in the UI,
   // so on a phone the site had two entirely unreachable locales.
-  width: 600px
-  max-width: 100%
+  //
+  // As wide as the links need rather than a fixed 600px, which squeezed the
+  // German row and let `hyphens: auto` split "MEDI-EN" across two lines with
+  // half the footer still empty. The cap is the space left of the logo column:
+  // this box is positioned against the footer's padding box, where the logo's
+  // third of the content starts at 65%.
+  width: max-content
+  max-width: 57%
   position: absolute
 
   div
+    // Flex items wrap as whole links, so when the row does run out of room a
+    // label moves down intact instead of being hyphenated mid-word.
+    display: flex
+    flex-wrap: wrap
+    column-gap: 25px
+
     a
       font-size: 16px
       line-height: 30px
+      margin-right: 0
 
 // - - - MOBILE STYLES - - - //
 @media only screen and (min-width: 50px) and (max-width: 1200px)
@@ -302,6 +315,7 @@ const availableLocales = useTranslatedLocales();
     align-items: center
     position: relative
     width: 100%
+    max-width: none
 
     span
       margin-bottom: 0px
