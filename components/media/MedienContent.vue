@@ -2,6 +2,9 @@
 const props = defineProps({
   media: { type: Array as PropType<Array<Record<string, any>>>, required: true },
 });
+// Browsers render only PDFs inside <object>. Any other file — a .docx uploaded
+// as a programme — goes to the download manager, on every page view.
+const isPdf = (link: string) => /\.pdf(?:$|[?#])/i.test(link);
 const changeAudio = (id: string, link: string) => {
   const audio = document.getElementById(id) as HTMLAudioElement;
   audio.pause();
@@ -43,16 +46,21 @@ const changeAudio = (id: string, link: string) => {
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen></iframe>
-            <object
-              v-if="year.video.length === year.downloads.length && year.downloads[index].link !== ''"
-              :data="year.downloads[index].link"
-              type="application/pdf"
-              width="100%"
-              height="315">
-              <p>
+            <template v-if="year.video.length === year.downloads.length && year.downloads[index].link !== ''">
+              <object
+                v-if="isPdf(year.downloads[index].link)"
+                :data="year.downloads[index].link"
+                type="application/pdf"
+                width="100%"
+                height="315">
+                <p>
+                  Programm: <a :href="year.downloads[index].link" target="_system"> {{ year.downloads[index].alt }}</a>
+                </p>
+              </object>
+              <p v-else>
                 Programm: <a :href="year.downloads[index].link" target="_system"> {{ year.downloads[index].alt }}</a>
               </p>
-            </object>
+            </template>
           </div>
 
           <!-- BILDERGALERIE
