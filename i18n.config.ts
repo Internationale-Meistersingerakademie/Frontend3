@@ -83,6 +83,9 @@ export default defineI18nConfig(() => ({
                 position: 'Director'
             },
             course: {
+                description: {
+                    playVideo: "Play video"
+                },
                 repertoire: {
                     gallery: [
                         "The historic Reitstadel with a concert hall (455 seats) and practice rooms in the modern glass extension.",
@@ -205,6 +208,9 @@ export default defineI18nConfig(() => ({
                 position: 'Director'
             },
             course: {
+                description: {
+                    playVideo: "Video abspielen"
+                },
                 repertoire: {
                     gallery: [
                         "Der Historische Reitstadel mit Konzertsaal (455 Sitzplätze) und Übungsräumen im modernen Glasanbau.",
